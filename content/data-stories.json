@@ -1,0 +1,221 @@
+{
+  "stories": [
+    {
+      "id": "porsche",
+      "title": "Vendas Porsche: receita, crédito e entrega",
+      "tools": [
+        "Python",
+        "HTML + JavaScript"
+      ],
+      "dashboards": 1,
+      "question": "Quanto da receita depende de crédito e quanto ainda não chegou ao cliente?",
+      "shown": [
+        "A família 911 lidera a receita: US$ 4,27 mi (33,3%).",
+        "36,4% da receita passa por crédito (financiamento, leasing e cartão).",
+        "Só 39,6% da receita foi entregue; US$ 7,12 mi (55,5%) estão em trânsito ou aguardando aprovação."
+      ],
+      "reading": "55,5% da receita ainda não foi entregue (em trânsito ou aguardando aprovação): o painel mostra onde acompanhar antes de contar como receita realizada.",
+      "note": "Base de laboratório DIO · nomes removidos",
+      "images": [
+        {
+          "label": "Visão geral",
+          "src": "/projects/porsche-sales-dashboard/cover.webp",
+          "alt": "Dashboard Porsche: receita de US$ 12,83 mi, 36,4% via crédito e 39,6% entregue",
+          "width": 1400,
+          "height": 875
+        },
+        {
+          "label": "Filtro: financiamento",
+          "src": "/projects/porsche-sales-dashboard/filtro-financiamento.webp",
+          "alt": "Dashboard Porsche filtrado por financiamento: 13 vendas e só 9,6% da receita entregue",
+          "width": 1400,
+          "height": 875
+        },
+        {
+          "label": "Página inteira",
+          "src": "/projects/porsche-sales-dashboard/geral.webp",
+          "alt": "Dashboard Porsche completo: as três perguntas de negócio, painel de qualidade e tabela de vendas",
+          "width": 1200,
+          "height": 1971
+        }
+      ],
+      "project": "porsche-sales-dashboard",
+      "code": [
+        {
+          "title": "agents/sanitize_porsche.py — regra de datas",
+          "language": "python",
+          "href": "https://github.com/brenolrocha22/porsche-sales-dashboard/blob/main/agents/sanitize_porsche.py#L57-L104",
+          "code": "def _safe_date(y: int, m: int, d: int) -> str:\n    try:\n        return dt.date(y, m, d).strftime(\"%Y-%m-%d\")\n    except (ValueError, TypeError):\n        return INVALID\n\n\ndef sanitize_date(value: Any) -> str:\n    # ...\n    # YYYY-MM-DD / YYYY/MM/DD / YYYY.MM.DD\n    m = re.match(r\"^(\\d{4})[-/.](\\d{1,2})[-/.](\\d{1,2})$\", s)\n    if m:\n        return _safe_date(int(m.group(1)), int(m.group(2)), int(m.group(3)))\n\n    # MM/DD/YYYY or MM-DD-YYYY\n    m = re.match(r\"^(\\d{1,2})[-/](\\d{1,2})[-/](\\d{4})$\", s)\n    if m:\n        return _safe_date(int(m.group(3)), int(m.group(1)), int(m.group(2)))\n    # ...\n    return INVALID"
+        }
+      ],
+      "codeNote": "Data que não passa com segurança nas regras vira INVALID em vez de ser corrigida no chute: 24 das 100 vendas ficaram com a data marcada assim na base tratada (data/porsche_sanitized.xlsx)."
+    },
+    {
+      "id": "vendas-veiculos",
+      "title": "Vendas de veículos: a mesma base em 3 ferramentas",
+      "tools": [
+        "Excel",
+        "Power BI",
+        "Python",
+        "SQL"
+      ],
+      "dashboards": 2,
+      "question": "Quanto, onde e o que vendemos?",
+      "shown": [
+        "R$ 59,8 mi em 985 vendas, de 2013 a junho de 2020.",
+        "Honda (R$ 11,8 mi) e Ford (R$ 11,7 mi) praticamente empatadas no faturamento.",
+        "2018 foi o melhor ano (R$ 9,0 mi); o Brasil responde por cerca de 25%."
+      ],
+      "reading": "Os mesmos totais batem em Excel, Power BI e Python: o número é confiável antes de virar decisão.",
+      "note": "Base real, nomes anonimizados",
+      "images": [
+        {
+          "label": "Excel",
+          "src": "/projects/dashboard-vendas-excel/geral.webp",
+          "alt": "Dashboard em Excel: R$ 59,8 mi em 985 vendas, Honda e Ford empatadas no faturamento",
+          "width": 1403,
+          "height": 1224
+        },
+        {
+          "label": "Power BI",
+          "src": "/projects/rag-dio/powerbi.webp",
+          "alt": "Relatório Power BI: faturamento de 59.835.220,02 em 985 vendas, 2018 como melhor ano",
+          "width": 934,
+          "height": 538
+        },
+        {
+          "label": "Python",
+          "src": "/projects/rag-dio/python-charts.webp",
+          "alt": "Gráficos em Python: Honda lidera em vendas, Brasil em faturamento e queda em 2020 com dados até junho",
+          "width": 1235,
+          "height": 707
+        },
+        {
+          "label": "Excel: Honda 2018",
+          "src": "/projects/dashboard-vendas-excel/honda-2018.webp",
+          "alt": "Dashboard em Excel filtrado por Honda em 2018",
+          "width": 1403,
+          "height": 1224
+        },
+        {
+          "label": "Excel: Brasil 2019",
+          "src": "/projects/dashboard-vendas-excel/brasil-2019.webp",
+          "alt": "Dashboard em Excel filtrado por Brasil em 2019",
+          "width": 1403,
+          "height": 1224
+        }
+      ],
+      "project": "dashboard-vendas-excel",
+      "code": [
+        {
+          "title": "RAG-DIO · src/database.py — view com JOIN usada nas consultas",
+          "language": "sql",
+          "href": "https://github.com/brenolrocha22/RAG-DIO/blob/main/src/database.py#L40-L55",
+          "code": "CREATE VIEW vendas_detalhadas AS\nSELECT\n    v.sale_id,\n    v.data_venda,\n    CAST(substr(v.data_venda, 1, 4) AS INTEGER) AS ano,\n    CAST(substr(v.data_venda, 6, 2) AS INTEGER) AS mes,\n    v.preco,\n    ve.marca,\n    ve.modelo,\n    c.pais,\n    c.regiao,\n    v.customer_id,\n    v.vehicle_id\nFROM vendas v\nJOIN veiculos ve ON ve.vehicle_id = v.vehicle_id\nJOIN clientes c ON c.customer_id = v.customer_id;"
+        },
+        {
+          "title": "RAG-DIO · tests/test_database.py — o total do SQL bate com o CSV",
+          "language": "python",
+          "href": "https://github.com/brenolrocha22/RAG-DIO/blob/main/tests/test_database.py#L32-L35",
+          "code": "def test_total_revenue_matches_csv(self) -> None:\n    revenue = sum((s.preco for s in self.sales), Decimal())\n    result = run_select(self.db_path, \"SELECT ROUND(SUM(preco), 2) FROM vendas\")\n    self.assertEqual(result.splitlines()[1], f\"{revenue:.2f}\")"
+        }
+      ],
+      "codeNote": "O teste soma o faturamento direto do CSV e confere com o SUM do SQL: os dois dão 59.835.220,02, o mesmo total do Excel e do Power BI."
+    },
+    {
+      "id": "fraude",
+      "title": "Fraude em cartão: acurácia não basta",
+      "tools": [
+        "Python",
+        "scikit-learn",
+        "XGBoost",
+        "SHAP"
+      ],
+      "dashboards": 0,
+      "question": "Como achar 0,17% de fraudes sem ser enganado pela acurácia?",
+      "shown": [
+        "Classificar tudo como normal acerta 99,8% e não acha nenhuma fraude.",
+        "AP 0,873 no XGBoost contra 0,709 na Regressão Logística.",
+        "V14 é a variável que mais pesa nas decisões (SHAP)."
+      ],
+      "reading": "Escolher o limiar na validação é decidir quantos alarmes falsos o negócio aceita para pegar mais fraudes.",
+      "images": [
+        {
+          "label": "Curvas ROC e PR",
+          "src": "/projects/deteccao-fraude-cartao/roc-pr.webp",
+          "alt": "Curvas ROC e precisão-recall: XGBoost com AP 0,873, acima da Regressão Logística (0,709)",
+          "width": 1290,
+          "height": 490,
+          "mat": "paper"
+        },
+        {
+          "label": "SHAP",
+          "src": "/projects/deteccao-fraude-cartao/shap-summary.webp",
+          "alt": "Resumo SHAP: V14, V4, V12 e V10 são as variáveis que mais pesam no modelo",
+          "width": 747,
+          "height": 620,
+          "mat": "paper"
+        },
+        {
+          "label": "Uma decisão",
+          "src": "/projects/deteccao-fraude-cartao/shap-waterfall.webp",
+          "alt": "Gráfico SHAP de uma transação: como cada variável empurra a previsão para fraude ou normal",
+          "width": 794,
+          "height": 640,
+          "mat": "paper"
+        }
+      ],
+      "project": "deteccao-fraude-cartao"
+    },
+    {
+      "id": "control",
+      "title": "Control: gastos sem dupla contagem",
+      "tools": [
+        "TypeScript",
+        "React"
+      ],
+      "dashboards": 0,
+      "question": "Quanto gastei e com quê, sem contar a fatura duas vezes?",
+      "shown": [
+        "Consumo de US$ 2.202,29 separado de US$ 3.103,50 em dívidas e transferências.",
+        "Maior categoria: Mercadorias em geral (US$ 589,40)."
+      ],
+      "reading": "Separar consumo de pagamento de fatura é regra de negócio, não detalhe de interface.",
+      "note": "Dados fictícios",
+      "images": [
+        {
+          "label": "Resumo",
+          "src": "/projects/control-assistente-financeiro/cover.webp",
+          "alt": "Control: consumo de US$ 2.202,29 separado de US$ 3.103,50 em dívidas e transferências",
+          "width": 1310,
+          "height": 900
+        }
+      ],
+      "project": "control-assistente-financeiro"
+    },
+    {
+      "id": "simulador-fii",
+      "title": "Simulador de FIIs",
+      "tools": [
+        "Excel"
+      ],
+      "dashboards": 0,
+      "compact": true,
+      "question": "Quanto acumulo investindo todo mês em fundos imobiliários?",
+      "shown": [
+        "R$ 500 por mês durante 10 anos a 0,80% ao mês chegam a R$ 100.108,73 e R$ 800,87 por mês em dividendos."
+      ],
+      "note": "Ilustrativo · não é recomendação",
+      "images": [
+        {
+          "label": "Cenário arrojado",
+          "src": "/projects/simulador-fundos-imobiliarios/arrojado.webp",
+          "alt": "Simulador em Excel: R$ 500 por mês por 10 anos resultam em R$ 100.108,73",
+          "width": 996,
+          "height": 766
+        }
+      ],
+      "project": "simulador-fundos-imobiliarios"
+    }
+  ]
+}

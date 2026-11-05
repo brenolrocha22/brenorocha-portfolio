@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { SectionLink } from "@/components/chrome/SectionLink";
+import { SectionTracker } from "@/components/chrome/SectionTracker";
 import { Container } from "@/components/layout/Container";
 import { ExternalLink } from "@/components/layout/ExternalLink";
+import { BackToProjects } from "@/components/project/BackToProjects";
 import { GithubStats } from "@/components/project/GithubStats";
 import { MetricList } from "@/components/project/MetricList";
 import { ProjectFacts } from "@/components/project/ProjectFacts";
 import { TableOfContents } from "@/components/project/TableOfContents";
 import {
   eyebrowClass,
-  pageTitleClass,
   ghostLinkClass,
+  pageTitleClass,
   primaryButtonClass,
   secondaryButtonClass,
 } from "@/components/project/styles";
-import { categoryLabels, projectCategoriesOf } from "@/lib/content/categories";
-import { getNextProject, getProject, getProjectSlugs, githubRepoUrl } from "@/lib/content/projects";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { typeLabels } from "@/lib/content/project-filters";
+import { parseGithubRepo } from "@/lib/content/project-links";
+import { getNextProject, getProject, getProjectSlugs } from "@/lib/content/projects";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { projectBreadcrumbJsonLd, projectJsonLd } from "@/lib/seo/project";
+import { cn } from "@/lib/utils";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -56,64 +62,62 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound();
 
   const nextProject = await getNextProject(project.slug);
-  const categories = projectCategoriesOf(project)
-    .map((category) => categoryLabels[category])
-    .join(" · ");
+  const repo = project.repoUrl ? parseGithubRepo(project.repoUrl) : null;
+  const cover = "typographic" in project.cover ? null : project.cover;
 
   return (
-    <article>
+    <article className="page-enter">
+      <SectionTracker fixed="projetos" />
       <JsonLd data={projectJsonLd(project)} />
       <JsonLd data={projectBreadcrumbJsonLd(project)} />
       <Container className="pt-10 pb-12 lg:pt-16">
         <nav aria-label="Trilha de navegação">
-          <ol className="flex flex-wrap items-center gap-2 text-small text-muted-foreground">
-            <li>
-              <Link
-                href="/projetos"
-                className="inline-flex min-h-11 items-center gap-1 transition-colors duration-(--duration-fast) hover:text-foreground"
-              >
-                <ArrowLeft aria-hidden="true" className="size-4" />
-                Projetos
-              </Link>
-            </li>
-            <li aria-hidden="true" className="hidden sm:block">
-              /
-            </li>
-            <li aria-current="page" className="hidden text-foreground sm:block">
-              {project.title}
-            </li>
-          </ol>
+          <BackToProjects className="inline-flex min-h-11 items-center gap-1 text-small text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground" />
         </nav>
 
-        <p className={`mt-6 ${eyebrowClass}`}>{categories}</p>
+        <p className={`mt-6 ${eyebrowClass}`}>{project.types.map((type) => typeLabels[type]).join(" · ")}</p>
         <h1 className={`mt-4 max-w-4xl ${pageTitleClass}`}>{project.title}</h1>
         <p className="mt-4 max-w-measure text-body-lg text-muted-foreground">{project.summary}</p>
 
-        {project.github || project.demoUrl ? (
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            {project.github ? (
-              <ExternalLink href={githubRepoUrl(project.github)} className={primaryButtonClass}>
-                Ver código
-              </ExternalLink>
-            ) : null}
-            {project.demoUrl ? (
-              <ExternalLink href={project.demoUrl} className={secondaryButtonClass}>
-                Ver demo
-              </ExternalLink>
-            ) : null}
-            {project.extraDemos.map((demo) => (
-              <ExternalLink key={demo.url} href={demo.url} className={secondaryButtonClass}>
-                Ver demo ({demo.label})
-              </ExternalLink>
-            ))}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          {project.demoUrl ? (
+            <ExternalLink href={project.demoUrl} className={primaryButtonClass}>
+              Abrir demo
+            </ExternalLink>
+          ) : null}
+          {project.extraDemos.map((demo) => (
+            <ExternalLink key={demo.url} href={demo.url} className={secondaryButtonClass}>
+              Abrir demo ({demo.label})
+            </ExternalLink>
+          ))}
+          {project.repoUrl ? (
+            <ExternalLink href={project.repoUrl} className={project.demoUrl ? secondaryButtonClass : primaryButtonClass}>
+              Ver código
+            </ExternalLink>
+          ) : null}
+        </div>
+
+        {cover ? (
+          <div
+            className={cn(
+              "mt-10 overflow-hidden rounded-lg border border-border",
+              cover.mat === "paper" ? "bg-paper p-4" : "bg-surface",
+            )}
+          >
+            <Image
+              src={cover.src}
+              alt={cover.alt}
+              width={cover.width}
+              height={cover.height}
+              sizes="(min-width: 1152px) 1088px, 100vw"
+              preload
+              className="mx-auto h-auto max-h-[70svh] w-auto"
+            />
           </div>
         ) : null}
 
         <div className="mt-10">
-          <ProjectFacts
-            project={project}
-            githubStats={project.github ? <GithubStats repo={project.github} /> : undefined}
-          />
+          <ProjectFacts project={project} githubStats={repo ? <GithubStats repo={repo} /> : undefined} />
         </div>
 
         <MetricList metrics={project.metrics} />
@@ -126,17 +130,42 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="max-w-measure">{project.content}</div>
       </Container>
 
+      {project.gallery.length > 0 ? (
+        <Container className="pb-16">
+          <h2 className="font-serif text-h1">Imagens</h2>
+          <ul className="mt-6 grid gap-6 md:grid-cols-2">
+            {project.gallery.map((image) => (
+              <li key={image.src}>
+                <figure className="overflow-hidden rounded-lg border border-border bg-surface">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    sizes="(min-width: 768px) 540px, 100vw"
+                    className="mx-auto h-auto max-h-[60svh] w-auto"
+                  />
+                  <figcaption className="border-t border-border px-4 py-3 text-small text-muted-foreground">
+                    {image.caption}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      ) : null}
+
       <Container className="pb-20">
         <div className="flex flex-col gap-6 rounded-lg border border-border bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <p className="font-medium">Gostou da abordagem?</p>
-            <Link href="/contato" className={primaryButtonClass}>
+            <SectionLink section="contato" className={primaryButtonClass}>
               Falar comigo
-            </Link>
+            </SectionLink>
           </div>
           {nextProject ? (
             <Link href={`/projetos/${nextProject.slug}`} className={ghostLinkClass}>
-              Próximo projeto: {nextProject.title}
+              Próximo estudo de caso: {nextProject.title}
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           ) : null}

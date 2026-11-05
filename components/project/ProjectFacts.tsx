@@ -1,8 +1,6 @@
 import type { ReactNode } from "react";
 import { ExternalLink } from "@/components/layout/ExternalLink";
-import { githubRepoUrl } from "@/lib/content/project-links";
-import type { ProjectSummary } from "@/lib/content/projects";
-import { ProjectAvailability } from "./ProjectAvailability";
+import type { ProjectFrontmatter as ProjectSummary } from "@/lib/content/schemas";
 import { TechBadge } from "./TechBadge";
 
 const statusLabels = {
@@ -34,9 +32,6 @@ export function ProjectFacts({ project, githubStats }: ProjectFactsProps) {
         Ficha técnica
       </h2>
       <dl className="divide-y divide-border">
-        <Row label="Disponível">
-          <ProjectAvailability project={project} />
-        </Row>
         {project.status ? <Row label="Status">{statusLabels[project.status]}</Row> : null}
         {project.tests ? <Row label="Testes">{project.tests}</Row> : null}
         <Row label="Stack">
@@ -48,13 +43,13 @@ export function ProjectFacts({ project, githubStats }: ProjectFactsProps) {
             ))}
           </ul>
         </Row>
-        {project.github ? (
+        {project.repoUrl ? (
           <Row label="GitHub">
             <ExternalLink
-              href={githubRepoUrl(project.github)}
+              href={project.repoUrl}
               className="min-h-11 font-mono text-accent underline-offset-4 hover:underline sm:min-h-0"
             >
-              {project.github.owner}/{project.github.repo}
+              {project.repoUrl.replace("https://github.com/", "")}
             </ExternalLink>
           </Row>
         ) : null}

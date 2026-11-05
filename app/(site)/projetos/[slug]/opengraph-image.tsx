@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { categoryLabels, projectCategoriesOf } from "@/lib/content/categories";
+import { typeLabels } from "@/lib/content/project-filters";
 import { getProject, getProjectSlugs } from "@/lib/content/projects";
 import { ogColors, ogSize } from "@/lib/seo/og";
 
@@ -15,11 +15,7 @@ export default async function ProjectOpengraphImage({ params }: { params: Promis
   const { slug } = await params;
   const project = await getProject(slug);
   const title = project?.title ?? "Projeto";
-  const eyebrow = project
-    ? projectCategoriesOf(project)
-        .map((category) => categoryLabels[category])
-        .join(" · ")
-    : "Projetos";
+  const eyebrow = project ? project.types.map((type) => typeLabels[type]).join(" · ") : "Projetos";
   const stack = project?.stack.slice(0, 5).join(" · ") ?? "";
 
   return new ImageResponse(
@@ -43,7 +39,7 @@ export default async function ProjectOpengraphImage({ params }: { params: Promis
 
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", fontSize: 68, lineHeight: 1.08, maxWidth: 1050 }}>{title}</div>
-          {project?.highlight ? (
+          {project?.proof ? (
             <div
               style={{
                 display: "flex",
@@ -55,7 +51,7 @@ export default async function ProjectOpengraphImage({ params }: { params: Promis
                 fontSize: 30,
               }}
             >
-              {project.highlight}
+              {project.proof}
             </div>
           ) : null}
         </div>

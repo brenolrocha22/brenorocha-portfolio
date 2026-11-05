@@ -24,6 +24,14 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-accent-line: var(--accent-line);
+  --color-paper: var(--paper);
+  --color-veil: var(--surface-veil);
+  --color-type-ia: var(--type-ia);
+  --color-type-dados: var(--type-dados);
+  --color-type-ml: var(--type-ml);
+  --color-type-web: var(--type-web);
+  --color-type-automacao: var(--type-automacao);
+  --color-type-planilhas: var(--type-planilhas);
 
   /* Fontes (variáveis definidas por next/font em app/layout.tsx) */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -70,6 +78,7 @@
 
   /* Motion */
   --ease-brand: var(--ease-brand-curve);
+  --ease-out-expo: var(--ease-out-expo);
 
   /* Largura de leitura */
   --container-measure: var(--measure);
@@ -115,6 +124,178 @@
   }
 }
 
+/*
+ * Fundo dinâmico por seção (motion-system §2, correção 8): a seção ativa fica em
+ * [data-section] no próprio elemento do fundo; cada blob transiciona só a sua cor
+ * (@property com inherits: false, sem filter: blur, sem grão).
+ */
+@property --bd-a {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #1f5fb4;
+}
+@property --bd-b {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #a9d2f5;
+}
+@property --bd-c {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0b1b3d;
+}
+
+@layer components {
+  .backdrop-blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+    transition:
+      --bd-a var(--duration-bg) var(--ease-in-out-soft),
+      --bd-b var(--duration-bg) var(--ease-in-out-soft),
+      --bd-c var(--duration-bg) var(--ease-in-out-soft);
+  }
+
+  .backdrop-blob-a {
+    width: 70vmax;
+    height: 70vmax;
+    top: -20vmax;
+    left: -15vmax;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--bd-a) 30%, transparent), transparent);
+    animation: backdrop-drift-a 28s ease-in-out infinite alternate;
+  }
+
+  .backdrop-blob-b {
+    width: 55vmax;
+    height: 55vmax;
+    top: 30vh;
+    right: -20vmax;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--bd-b) 14%, transparent), transparent);
+    animation: backdrop-drift-b 34s ease-in-out infinite alternate;
+  }
+
+  .backdrop-blob-c {
+    width: 90vmax;
+    height: 90vmax;
+    bottom: -45vmax;
+    left: 10vw;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--bd-c) 55%, transparent), transparent);
+    animation: backdrop-drift-c 41s ease-in-out infinite alternate;
+  }
+
+  [data-section="inicio"] .backdrop-blob-a { --bd-a: #1f5fb4; }
+  [data-section="inicio"] .backdrop-blob-b { --bd-b: #a9d2f5; }
+  [data-section="inicio"] .backdrop-blob-c { --bd-c: #0b1b3d; }
+  [data-section="dados"] .backdrop-blob-a { --bd-a: #138a7e; }
+  [data-section="dados"] .backdrop-blob-b { --bd-b: #7fc8d6; }
+  [data-section="dados"] .backdrop-blob-c { --bd-c: #062a2a; }
+  [data-section="projetos"] .backdrop-blob-a { --bd-a: #3a4fd6; }
+  [data-section="projetos"] .backdrop-blob-b { --bd-b: #7fc8d6; }
+  [data-section="projetos"] .backdrop-blob-c { --bd-c: #101a45; }
+  [data-section="trajetoria"] .backdrop-blob-a { --bd-a: #6a4bd0; }
+  [data-section="trajetoria"] .backdrop-blob-b { --bd-b: #a9d2f5; }
+  [data-section="trajetoria"] .backdrop-blob-c { --bd-c: #1a1240; }
+  /* Dourado com alpha menor (22%) */
+  [data-section="certificados"] .backdrop-blob-a { --bd-a: #a4822a; }
+  [data-section="certificados"] .backdrop-blob-b { --bd-b: #6fbf8e; }
+  [data-section="certificados"] .backdrop-blob-c { --bd-c: #1f1a0c; }
+  [data-section="tecnologias"] .backdrop-blob-a { --bd-a: #2a6fc0; }
+  [data-section="tecnologias"] .backdrop-blob-b { --bd-b: #7fc8d6; }
+  [data-section="tecnologias"] .backdrop-blob-c { --bd-c: #0c1a36; }
+  [data-section="contato"] .backdrop-blob-a { --bd-a: #4f8fe6; }
+  [data-section="contato"] .backdrop-blob-b { --bd-b: #c4e1fa; }
+  [data-section="contato"] .backdrop-blob-c { --bd-c: #0d2350; }
+
+  .portrait-fade-bottom {
+    mask-image: linear-gradient(to bottom, #000 72%, transparent);
+  }
+
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .hero-teaser {
+      animation: teaser-float 6s ease-in-out infinite alternate;
+    }
+  }
+
+  /* Spotlight do card (pointer: fine): posição escrita em --mx/--my sem re-render */
+  .card-spotlight {
+    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgb(169 210 245 / 0.08), transparent 70%);
+  }
+
+  /* Anel de "chamado" do botão de contato (uma vez por sessão) */
+  .fab-call {
+    animation: fab-call 1.2s var(--ease-out-expo) 2;
+  }
+
+  /* Lightbox <dialog> */
+  .lightbox[open] {
+    animation: lightbox-in var(--duration-base) var(--ease-out-expo);
+  }
+  .lightbox::backdrop {
+    background: rgb(3 6 14 / 0.85);
+  }
+
+  /* Estudo de caso: entrada com fade (sem View Transitions) */
+  .page-enter {
+    animation: page-enter 300ms var(--ease-out-expo);
+  }
+
+  /* Faixas com rolagem horizontal: fade nas bordas */
+  .scroll-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+  }
+}
+
+@keyframes backdrop-drift-a {
+  to {
+    transform: translate3d(6vw, 4vh, 0) scale(1.08);
+  }
+}
+@keyframes backdrop-drift-b {
+  to {
+    transform: translate3d(-5vw, -6vh, 0) scale(0.94);
+  }
+}
+@keyframes backdrop-drift-c {
+  to {
+    transform: translate3d(4vw, -3vh, 0);
+  }
+}
+@keyframes teaser-float {
+  from {
+    translate: 0 6px;
+  }
+  to {
+    translate: 0 -6px;
+  }
+}
+@keyframes tech-pulse {
+  50% {
+    box-shadow: var(--accent-glow-md);
+  }
+}
+@keyframes fab-call {
+  from {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
 @layer base {
   html {
     color-scheme: dark;
@@ -151,9 +332,21 @@
     outline-color: var(--accent);
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+
+    /* Fundo: cor por seção mantida, mas sem transição nem deriva */
+    .backdrop-blob {
+      transition: none !important;
+      animation: none !important;
     }
 
     *,
@@ -163,5 +356,11 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0ms !important;
     }
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .backdrop-blob {
+    opacity: 0.5;
   }
 }

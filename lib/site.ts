@@ -32,36 +32,27 @@ export function absoluteUrl(path = "/"): string {
   return new URL(path, `${siteConfig.url}/`).toString();
 }
 
-export type NavItem = {
-  href: string;
-  label: string;
-};
+/** One-page sections in DOM order (D23/D25 + Orquestrador: Dados before Projetos). */
+export const sections = [
+  { id: "inicio", label: "Início", index: "" },
+  { id: "dados", label: "Dados", index: "01" },
+  { id: "projetos", label: "Projetos", index: "02" },
+  { id: "trajetoria", label: "Trajetória", index: "03" },
+  { id: "certificados", label: "Certificados", index: "04" },
+  { id: "tecnologias", label: "Tecnologias", index: "05" },
+  { id: "contato", label: "Contato", index: "06" },
+] as const;
 
-/** Main navigation, in display order. "Contato" is rendered as the primary button. */
-export const navItems: readonly NavItem[] = [
-  { href: "/", label: "Início" },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/projetos", label: "Projetos" },
-  { href: "/solucoes", label: "Soluções" },
-  { href: "/tecnologias", label: "Tecnologias" },
-  { href: "/certificacoes", label: "Certificações" },
-  { href: "/contato", label: "Contato" },
-];
+export type SectionId = (typeof sections)[number]["id"];
 
-export const contactNavItem: NavItem = { href: "/contato", label: "Contato" };
+export const sectionIds: readonly SectionId[] = sections.map((section) => section.id);
 
-/** Links shown inline in the desktop header (brand link covers "Início", button covers "Contato"). */
-export const headerNavItems: readonly NavItem[] = navItems.filter(
-  (item) => item.href !== "/" && item.href !== contactNavItem.href,
-);
+/** Header links (the brand covers "Início"; "Contato" is the highlighted button). */
+export const navSections = sections.filter((section) => section.id !== "inicio" && section.id !== "contato");
 
-export function isActivePath(pathname: string, href: string): boolean {
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
+export function sectionLabel(id: SectionId | null): string {
+  return sections.find((section) => section.id === id)?.label ?? "";
 }
 
-/** Two-digit position of a route in the main navigation ("01" = Sobre), for numbered labels (D22). */
-export function navIndex(href: string): string {
-  const position = navItems.findIndex((item) => item.href === href);
-  return String(Math.max(position, 0)).padStart(2, "0");
-}
+/** Public repository of this site (footer, D5). */
+export const siteRepoUrl = "https://github.com/brenolrocha22/brenorocha-portfolio";

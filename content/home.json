@@ -1,63 +1,72 @@
 {
   "hero": {
-    "eyebrow": "Disponível · Recife/PE",
-    "lead": "Mais de 5 anos em vendas orientadas a metas, agora construindo projetos de dados e IA com testes e números conferíveis.",
-    "facts": [
-      {
-        "value": "985 vendas",
-        "label": "consultadas via SQL no RAG-DIO",
-        "href": "/projetos/rag-dio"
-      },
-      {
-        "value": "5+ anos",
-        "label": "vendas orientadas a metas, KPIs e CRM"
-      },
-      {
-        "value": "Inglês fluente",
-        "label": "atuação remota para empresa dos EUA"
-      }
-    ]
+    "eyebrow": "Disponível · Recife/PE · remoto ou híbrido",
+    "scrollHint": "Role para ver os dashboards",
+    "teaserCaption": "36,4% da receita via crédito",
+    "dados": {
+      "role": "Analista de Dados Júnior",
+      "alsoRole": "também Desenvolvedor Júnior",
+      "lead": "Trato bases e respondo perguntas de negócio com SQL, Python, Excel e Power BI.",
+      "chips": [
+        "sql",
+        "python",
+        "power-bi",
+        "excel",
+        "git-github",
+        "typescript"
+      ]
+    },
+    "dev": {
+      "role": "Desenvolvedor Júnior",
+      "alsoRole": "também Analista de Dados Júnior",
+      "lead": "Construo apps web e agentes com Python, TypeScript e React, com testes.",
+      "chips": [
+        "typescript",
+        "react",
+        "python",
+        "sql",
+        "docker",
+        "github-actions"
+      ]
+    },
+    "ctaPrimary": {
+      "label": "Explorar dashboards",
+      "section": "dados"
+    },
+    "ctaSecondary": {
+      "label": "Conhecer projetos",
+      "section": "projetos"
+    }
   },
-  "differential": {
-    "eyebrow": "Diferencial",
-    "title": "Entendo o problema antes do código",
-    "steps": [
-      {
-        "title": "Ouvir",
-        "text": "Mais de 5 anos em vendas com SPIN Selling: perguntar antes de propor e entender o que o cliente precisa."
-      },
-      {
-        "title": "Medir",
-        "text": "Python e SQL para tirar os números dos dados, em vez de suposições."
-      },
-      {
-        "title": "Entregar conferível",
-        "text": "No RAG-DIO e no Control, a IA não inventa números: os totais vêm de SQL ou de regras. Uso testes nos projetos de IA e front-end.",
-        "href": "/projetos/rag-dio",
-        "linkLabel": "Ver o RAG-DIO"
-      }
-    ]
-  },
-  "trajectory": {
-    "eyebrow": "Trajetória",
-    "title": "Do campo aos dados",
-    "milestones": [
-      {
-        "title": "Administração",
-        "text": "Bacharelado em Administração (UniFG, 2019): base em negócios, processos e gestão."
-      },
-      {
-        "title": "Vendas e atendimento",
-        "text": "2021–2024: propostas B2B com ROI e payback, base de contatos de 240 para 800 (+230%) no trade marketing e inside sales em inglês para empresa dos EUA. Motorista parceiro desde 2024."
-      },
-      {
-        "title": "Dados e IA",
-        "text": "2026: bootcamps da DIO e projetos práticos com Python, SQL e IA, documentados com problema, solução e limitações."
-      }
-    ]
-  },
-  "contact": {
-    "title": "Vamos conversar?",
-    "text": "Recrutamento ou projeto: me conte o problema e eu volto com uma proposta simples."
+  "sections": {
+    "dados": {
+      "label": "Dados",
+      "title": "Do dado à decisão.",
+      "subtitle": "Dashboards que publiquei: a pergunta de negócio, o que o dado mostrou e onde abrir."
+    },
+    "projetos": {
+      "label": "Projetos",
+      "title": "Projetos publicados, com código aberto.",
+      "subtitle": "Filtre por tipo, linguagem ou banco. Cada card mostra o problema, a prova e onde conferir."
+    },
+    "trajetoria": {
+      "label": "Trajetória",
+      "title": "De vendas para dados, estudando desde 2022.",
+      "subtitle": "Trabalho e estudo andaram juntos. O que vendas me deu, uso em dados."
+    },
+    "certificados": {
+      "label": "Certificados",
+      "title": "Certificados que dá para conferir."
+    },
+    "tecnologias": {
+      "label": "Tecnologias",
+      "title": "Ferramentas, cada uma ligada a um projeto.",
+      "subtitle": "Clique numa ferramenta com prova para ver os projetos que a usam."
+    },
+    "contato": {
+      "label": "Contato",
+      "title": "LET'S BUILD SOMETHING.",
+      "subtitle": "Vaga de Analista de Dados ou Desenvolvedor Júnior, ou um projeto: escolha o canal."
+    }
   }
 }

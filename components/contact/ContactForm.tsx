@@ -3,7 +3,7 @@
 import { Suspense, startTransition, useActionState, useEffect, useRef, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, AlertCircle } from "lucide-react";
-import { sendContact } from "@/app/(site)/contato/actions";
+import { sendContact } from "@/app/(site)/actions/contact";
 import { ExternalLink } from "@/components/layout/ExternalLink";
 import { primaryButtonClass } from "@/components/project/styles";
 import type { ContactContent } from "@/lib/content/contact";

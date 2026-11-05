@@ -6,7 +6,7 @@ import { ogSize } from "./og";
 const defaultImage = {
   url: "/opengraph-image",
   ...ogSize,
-  alt: "Breno Rocha: dados e IA generativa com Python",
+  alt: "Breno Rocha: Analista de Dados Júnior",
 };
 
 type PageMetadataInput = {

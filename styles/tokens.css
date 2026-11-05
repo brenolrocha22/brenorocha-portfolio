@@ -45,11 +45,30 @@
   /* Sombra (só no hover de card) */
   --elevation-card: 0 1px 0 0 var(--border) inset, 0 8px 24px -12px rgb(0 0 0 / 0.6);
 
-  /* Motion — refresh D19: tudo ≤ 200 ms, só cor/borda/opacidade/filtro */
+  /* Motion — v1.0 (D23/D25, docs/design/motion-system.md §1). Microinterações ≤ 200 ms. */
   --duration-fast: 120ms; /* cor, borda, opacidade */
-  --duration-base: 180ms; /* painéis */
-  --duration-slow: 200ms; /* teto absoluto */
+  --duration-base: 180ms; /* painéis, popover */
+  --duration-slow: 200ms; /* teto de microinteração */
+  --duration-reveal: 600ms; /* entrada de bloco ao rolar */
+  --duration-bg: 900ms; /* troca de cor do fundo por seção */
   --ease-brand-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --card-lift: -4px;
+
+  /* Cores por tipo de projeto (selo/ponto; o texto do selo continua --text) */
+  --type-ia: #a9d2f5;
+  --type-dados: #7fc8d6;
+  --type-ml: #c3a6f5;
+  --type-web: #8fb0ff;
+  --type-automacao: #d9b44a;
+  --type-planilhas: #6fbf8e;
+
+  /* Fundo de gráficos com fundo branco ("mat: paper") */
+  --paper: #f4f6fa;
+
+  /* Painéis sobre o fundo dinâmico: sem backdrop-filter (motion §2.4) */
+  --surface-veil: color-mix(in oklab, var(--surface) 90%, transparent);
 
   /* Linhas e grade técnica (decorativas) */
   --hairline: 1px;
@@ -89,6 +108,13 @@
   --fs-body: 1rem;
   --fs-small: 0.875rem;
   --fs-mono-xs: 0.75rem;
+}
+
+/* Telas estreitas: nome do hero ≤ 56 px (crítica v1.0, correção 3) */
+@media (max-width: 399.98px) {
+  :root {
+    --fs-hero-name: clamp(3rem, 15vw, 3.5rem);
+  }
 }
 
 /* Escala tipográfica — desktop (lg) */

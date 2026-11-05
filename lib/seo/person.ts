@@ -13,6 +13,7 @@ export function personJsonLd(profile: Profile) {
     "@id": personId(),
     name: profile.name,
     alternateName: profile.shortName,
+    jobTitle: "Analista de Dados Júnior",
     description: profile.tagline,
     url: absoluteUrl("/"),
     email: `mailto:${profile.email}`,

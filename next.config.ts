@@ -36,6 +36,17 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [{ protocol: "https", hostname: "avatars.githubusercontent.com" }],
   },
+  // v1.0 one-page (D25): old routes → anchors on the Home (308). Query strings pass through.
+  async redirects() {
+    return [
+      { source: "/sobre", destination: "/#trajetoria", permanent: true },
+      { source: "/tecnologias", destination: "/#tecnologias", permanent: true },
+      { source: "/certificacoes", destination: "/#certificados", permanent: true },
+      { source: "/solucoes", destination: "/#contato", permanent: true },
+      { source: "/contato", destination: "/#contato", permanent: true },
+      { source: "/projetos", destination: "/#projetos", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

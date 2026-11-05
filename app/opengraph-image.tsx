@@ -3,7 +3,7 @@ import { readPortraitDataUri } from "@/lib/content/portrait";
 import { getProfile } from "@/lib/content/profile";
 import { ogColors, ogGridBackground, ogSize } from "@/lib/seo/og";
 
-export const alt = "Breno Rocha: dados e IA generativa com Python";
+export const alt = "Breno Rocha: Analista de Dados Júnior, também Desenvolvedor Júnior";
 export const size = ogSize;
 export const contentType = "image/png";
 
@@ -69,21 +69,27 @@ export default async function OpengraphImage() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <div style={{ display: "flex", fontSize: 80, lineHeight: 1.05 }}>{profile.shortName}</div>
-            {profile.headline ? (
-              <div style={{ display: "flex", fontSize: photo ? 36 : 40, color: ogColors.accent }}>
-                {profile.headline}
-              </div>
-            ) : null}
-            <div
-              style={{
-                display: "flex",
-                fontSize: photo ? 30 : 32,
-                color: ogColors.muted,
-                maxWidth: photo ? 640 : 1000,
-                lineHeight: 1.3,
-              }}
-            >
-              {profile.tagline}
+            <div style={{ display: "flex", fontSize: photo ? 40 : 44, color: ogColors.accent }}>
+              Analista de Dados Júnior
+            </div>
+            <div style={{ display: "flex", fontSize: 28, color: ogColors.muted }}>também Desenvolvedor Júnior</div>
+            <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
+              {["SQL", "Python", "Power BI", "Excel"].map((chip) => (
+                <div
+                  key={chip}
+                  style={{
+                    display: "flex",
+                    padding: "6px 14px",
+                    borderRadius: 6,
+                    border: `1px solid ${ogColors.border}`,
+                    background: ogColors.surface,
+                    fontSize: 24,
+                    color: ogColors.text,
+                  }}
+                >
+                  {chip}
+                </div>
+              ))}
             </div>
           </div>
 

@@ -2,6 +2,31 @@
 
 Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-DD.
 
+## [1.0.0] — 2026-11-05
+
+### Estrutura
+- O site vira uma página única com âncoras: Início → Dados → Projetos → Trajetória → Certificados → Tecnologias → Contato. O menu rola suave até cada seção e marca a seção ativa.
+- Endereços antigos (/sobre, /projetos, /solucoes, /tecnologias, /certificacoes, /contato) redirecionam para a seção certa da página única. Os estudos de caso (/projetos/…) continuam, com botão "Todos os projetos" que volta ao filtro usado.
+- Endereço com `?foco=dev` destaca o perfil de Desenvolvedor Júnior; sem parâmetro, o destaque é Analista de Dados Júnior.
+
+### Conteúdo
+- Hero com o cargo "Analista de Dados Júnior" (também Desenvolvedor Júnior), stack principal, botões "Explorar dashboards" e "Conhecer projetos" e um recorte do dashboard Porsche.
+- Barra de provas com 4 números calculados do próprio conteúdo: 3 dashboards publicados, 198 h em certificados validados por código, estudando desde 2022 e 10 projetos públicos no GitHub.
+- Nova seção "Do dado à decisão": cada dashboard com a pergunta de negócio, o que o dado mostrou, a leitura e o bloco "Como calculei" com trechos reais do código (regras de tratamento do Porsche e a consulta SQL do RAG-DIO conferida por teste).
+- Projetos: 10 projetos públicos com filtros por tipo, linguagem, banco e selos (demo, testes, Docker), com imagens reais dos repositórios.
+- Trajetória em duas trilhas (trabalho e estudo), mostrando o estudo desde 2022.
+- Certificados separados em "validados por código" (com código e link de verificação), "com certificado", formação e outros cursos. Formação corrigida: Bacharel em Administração (UniFG), concluído em 2024.
+- Tecnologias ligadas aos projetos: clicar numa ferramenta filtra os projetos que a usam.
+- Contato no fim da página: e-mail, LinkedIn, GitHub e formulário.
+
+### Visual e movimento
+- Fundo que muda de cor conforme a seção, botão flutuante de contato, botão de voltar ao topo com progresso de leitura e trilho de seções em telas largas.
+- Cards com transição animada ao filtrar e leve inclinação com o mouse.
+- Tudo respeita a opção "reduzir movimento" do sistema e o conteúdo aparece mesmo sem JavaScript.
+
+### Correções
+- O formulário de contato só mostra "Mensagem enviada" depois que o serviço de e-mail confirma o envio.
+
 ## [0.4.0] — 2026-11-05
 
 ### Visual

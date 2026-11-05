@@ -3,10 +3,10 @@ import path from "node:path";
 import { cache, type ReactElement } from "react";
 import { z } from "zod";
 import { compileProjectMdx } from "./mdx";
-import { projectFrontmatterSchema, type ProjectFrontmatter } from "./schemas";
+import { projectFrontmatterSchema, type ProjectBadge, type ProjectFrontmatter } from "./schemas";
 import { extractToc, type TocItem } from "./toc";
 
-export { githubRepoUrl } from "./project-links";
+import { projectBadgesOf } from "./project-links";
 
 const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
 
@@ -16,7 +16,7 @@ export type Project = ProjectFrontmatter & {
 };
 
 /** Serializable card data (safe to pass to client components). */
-export type ProjectSummary = ProjectFrontmatter;
+export type ProjectSummary = ProjectFrontmatter & { badges: ProjectBadge[] };
 
 async function loadProjectFile(fileName: string): Promise<Project> {
   const relativePath = `content/projects/${fileName}`;
@@ -52,7 +52,7 @@ const loadAllProjects = cache(async (): Promise<Project[]> => {
   return projects.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, "pt-BR"));
 });
 
-/** Published projects (no drafts), ordered by `order`. */
+/** Published projects (no drafts), ordered by `order` (data focus). */
 export async function getProjects(): Promise<Project[]> {
   return (await loadAllProjects()).filter((project) => !project.draft);
 }
@@ -61,22 +61,22 @@ export async function getProjectSummaries(): Promise<ProjectSummary[]> {
   return (await getProjects()).map(toSummary);
 }
 
-/** Featured projects for the Home, in display order (`order` in the frontmatter). */
-export async function getFeaturedProjectSummaries(): Promise<ProjectSummary[]> {
-  return (await getProjects()).filter((project) => project.featured).map(toSummary);
+/** Projects with a case study page (/projetos/<slug>). */
+export async function getCaseStudies(): Promise<Project[]> {
+  return (await getProjects()).filter((project) => project.caseStudy);
 }
 
 export async function getProject(slug: string): Promise<Project | null> {
-  return (await getProjects()).find((project) => project.slug === slug) ?? null;
+  return (await getCaseStudies()).find((project) => project.slug === slug) ?? null;
 }
 
 export async function getProjectSlugs(): Promise<string[]> {
-  return (await getProjects()).map((project) => project.slug);
+  return (await getCaseStudies()).map((project) => project.slug);
 }
 
-/** Next project in display order (wraps around), for the "Próximo projeto" link. */
+/** Next case study in display order (wraps around), for the "Próximo projeto" link. */
 export async function getNextProject(slug: string): Promise<ProjectSummary | null> {
-  const projects = await getProjects();
+  const projects = await getCaseStudies();
   if (projects.length < 2) return null;
   const index = projects.findIndex((project) => project.slug === slug);
   if (index === -1) return null;
@@ -87,5 +87,5 @@ export async function getNextProject(slug: string): Promise<ProjectSummary | nul
 export function toSummary(project: Project): ProjectSummary {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { content, toc, ...summary } = project;
-  return summary;
+  return { ...summary, badges: projectBadgesOf(summary) };
 }

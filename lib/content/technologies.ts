@@ -1,7 +1,8 @@
 import technologiesData from "@/content/technologies.json";
 import { parseContent } from "./load";
 import { getProfile } from "./profile";
-import { githubRepoUrl } from "./project-links";
+import { githubRepoUrl, parseGithubRepo } from "./project-links";
+import { getProjectSummaries } from "./projects";
 import { resolveProjectRefs, type ProjectRef } from "./project-refs";
 import { technologiesSchema, type Skill, type SkillLevel } from "./schemas";
 
@@ -12,29 +13,11 @@ export type SkillView = Omit<Skill, "projects" | "repos"> & { projects: ProjectR
 export type SkillGroupView = { id: string; title: string; items: SkillView[] };
 export type TechnologiesView = { intro: string; groups: SkillGroupView[] };
 
-/** Label and marker per level (design system §3.6: text + shape, never color alone). */
-export const skillLevelMeta: Record<
-  SkillLevel,
-  { label: string; marker: string; description: string; className: string }
-> = {
-  projetos: {
-    label: "Uso em projetos",
-    marker: "●●●",
-    description: "aparece em projeto público, com link",
-    className: "text-success",
-  },
-  nocoes: {
-    label: "Noções",
-    marker: "●○○",
-    description: "declarado no currículo, ainda sem projeto público aqui",
-    className: "text-muted-foreground",
-  },
-  profissional: {
-    label: "Experiência profissional",
-    marker: "◆",
-    description: "prática de trabalho em vendas e atendimento, fora do GitHub",
-    className: "text-accent",
-  },
+/** Label and marker per level (text + shape, never color alone). */
+export const skillLevelMeta: Record<SkillLevel, { label: string; marker: string; className: string }> = {
+  projetos: { label: "uso em projetos", marker: "●", className: "text-accent" },
+  profissional: { label: "experiência profissional", marker: "◐", className: "text-data" },
+  nocoes: { label: "noções", marker: "○", className: "text-subtle" },
 };
 
 // Parsed once at module load: invalid content fails the build.
@@ -76,4 +59,36 @@ export function getTechnicalSkillNames(): string[] {
   return technologies.groups
     .filter((group) => (TECHNICAL_GROUP_IDS as readonly string[]).includes(group.id))
     .flatMap((group) => group.items.map((item) => item.name));
+}
+
+export type TechIndex = Record<string, { name: string; slugs: string[] }>;
+
+/**
+ * Technology id → projects (rendered on the page) that prove it: case-study slugs plus
+ * projects whose repository is listed in `repos`. Only technologies with ≥ 1 project.
+ */
+export async function getTechIndex(): Promise<TechIndex> {
+  const projects = await getProjectSummaries();
+  const slugByRepo = new Map(
+    projects.flatMap((project) => {
+      const repo = project.repoUrl ? parseGithubRepo(project.repoUrl) : null;
+      return repo ? [[repo.repo.toLowerCase(), project.slug] as const] : [];
+    }),
+  );
+  const known = new Set(projects.map((project) => project.slug));
+  const index: TechIndex = {};
+  for (const item of technologies.groups.flatMap((group) => group.items)) {
+    const slugs = new Set(item.projects.filter((slug) => known.has(slug)));
+    for (const repo of item.repos) {
+      const slug = slugByRepo.get(repo.toLowerCase());
+      if (slug) slugs.add(slug);
+    }
+    if (slugs.size > 0) index[item.id] = { name: item.name, slugs: [...slugs] };
+  }
+  return index;
+}
+
+/** Display name of a technology id (hero chips). */
+export function technologyName(id: string): string | undefined {
+  return technologies.groups.flatMap((group) => group.items).find((item) => item.id === id)?.name;
 }

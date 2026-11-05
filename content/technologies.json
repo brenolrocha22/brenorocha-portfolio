@@ -12,6 +12,9 @@
           "level": "projetos",
           "projects": [
             "rag-dio"
+          ],
+          "repos": [
+            "agente-whatsapp-cursos"
           ]
         },
         {
@@ -236,6 +239,9 @@
           "level": "projetos",
           "projects": [
             "control-assistente-financeiro"
+          ],
+          "repos": [
+            "dock-de-agentes"
           ]
         },
         {
@@ -245,6 +251,9 @@
           "level": "projetos",
           "projects": [
             "control-assistente-financeiro"
+          ],
+          "repos": [
+            "dock-de-agentes"
           ]
         },
         {

@@ -2,18 +2,26 @@
 title: "Chatbot RAG de vendas de carros"
 slug: "rag-dio"
 summary: "Agente com SQL somente leitura e RAG que responde sobre uma base real de 985 vendas (nomes anonimizados) sem deixar o modelo inventar números."
-category: "ia"
-extraCategories: ["dados"]
-featured: true
-order: 1
 stack: ["Python 3.12", "LlamaIndex", "ChromaDB", "FastEmbed", "SQLite", "Chainlit", "OpenRouter", "Docker", "Power BI"]
-highlight: "985 vendas · números via SQL"
 tests: "19 testes automatizados (unittest)"
-github: { owner: "brenolrocha22", repo: "RAG-DIO" }
 metrics:
   - { label: "Vendas na base", value: "985", source: "README e testes do repositório" }
   - { label: "Resumos pré-calculados indexados", value: "119", source: "README do repositório" }
   - { label: "Testes automatizados", value: "19", source: "suíte unittest do repositório" }
+cardTitle: "Chatbot RAG de vendas"
+problem: "Perguntas sobre vendas respondidas por chat sem a IA inventar números."
+proof: "Totais via SQL somente leitura · 19 testes"
+types: ["ia", "dados"]
+languages: ["python", "sql", "excel-dax"]
+storage: ["sqlite", "chromadb"]
+docker: true
+testsCount: 19
+order: 4
+orderDev: 2
+repoUrl: "https://github.com/brenolrocha22/RAG-DIO"
+caseStudy: true
+cover: {"typographic": true, "lines": ["consultar_sql → SELECT/WITH", "buscar_documentos → ChromaDB", "test_total_revenue_matches_csv ✓"]}
+gallery: [{"src": "/projects/rag-dio/powerbi.webp", "alt": "Relatório Power BI da base de vendas", "width": 934, "height": 538, "caption": "Power BI (PBIP): 985 vendas e 59.835.220,02 de faturamento"}, {"src": "/projects/rag-dio/python-charts.webp", "alt": "Gráficos gerados em Python", "width": 1235, "height": 707, "caption": "Os mesmos totais em gráficos gerados por Python"}]
 ---
 
 ## Problema

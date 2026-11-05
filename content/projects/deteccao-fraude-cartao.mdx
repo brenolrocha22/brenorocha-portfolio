@@ -2,18 +2,24 @@
 title: "Detecção de fraude em cartão de crédito"
 slug: "deteccao-fraude-cartao"
 summary: "Comparação de três modelos em 284.807 transações com 0,17% de fraude, limiar escolhido na validação e explicação das decisões com SHAP."
-category: "ml"
-extraCategories: ["dados"]
-featured: true
-order: 2
 stack: ["Python", "pandas", "NumPy", "scikit-learn", "XGBoost", "SHAP", "Matplotlib", "Jupyter"]
-highlight: "284.807 transações · 3 modelos comparados"
-github: { owner: "brenolrocha22", repo: "deteccao-fraude-cartao" }
 metrics:
   - { label: "Transações analisadas", value: "284.807", source: "README do repositório" }
   - { label: "Fraudes na base", value: "492 (0,17%)", source: "README do repositório" }
   - { label: "Modelos comparados", value: "3", source: "notebook do repositório" }
   - { label: "Falsos positivos do modelo principal", value: "204", source: "README do repositório (XGBoost com peso de classes)" }
+cardTitle: "Detecção de fraude em cartão"
+problem: "Achar 0,17% de fraudes sem ser enganado pela acurácia."
+proof: "284.807 transações · AP 0,873 com XGBoost"
+types: ["ml", "dados"]
+languages: ["python"]
+storage: ["arquivos"]
+order: 3
+orderDev: 8
+repoUrl: "https://github.com/brenolrocha22/deteccao-fraude-cartao"
+caseStudy: true
+cover: {"src": "/projects/deteccao-fraude-cartao/shap-summary.webp", "alt": "Resumo SHAP das variáveis que mais pesam no modelo de fraude", "width": 747, "height": 620, "fit": "contain", "mat": "paper"}
+gallery: [{"src": "/projects/deteccao-fraude-cartao/roc-pr.webp", "alt": "Curvas ROC e precisão-recall dos três modelos", "width": 1290, "height": 490, "caption": "ROC e precisão-recall: AP 0,873 no XGBoost"}, {"src": "/projects/deteccao-fraude-cartao/shap-waterfall.webp", "alt": "Explicação SHAP de uma transação", "width": 794, "height": 640, "caption": "SHAP de uma decisão: o peso de cada variável"}, {"src": "/projects/deteccao-fraude-cartao/importancia.webp", "alt": "Importância das variáveis", "width": 1288, "height": 490, "caption": "Importância das variáveis nos modelos de árvore"}]
 ---
 
 ## Problema

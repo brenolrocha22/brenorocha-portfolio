@@ -22,7 +22,7 @@ export default function NotFound() {
           Ir para o início
         </Link>
         <Link
-          href="/projetos"
+          href="/#projetos"
           className="inline-flex h-11 items-center rounded-md border border-border-strong px-5 font-medium text-foreground transition-colors duration-(--duration-fast) hover:bg-surface-2"
         >
           Ver projetos

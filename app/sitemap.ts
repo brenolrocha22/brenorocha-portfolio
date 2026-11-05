@@ -1,21 +1,16 @@
 import type { MetadataRoute } from "next";
-import { getProjects } from "@/lib/content/projects";
-import { absoluteUrl, navItems } from "@/lib/site";
+import { getCaseStudies } from "@/lib/content/projects";
+import { absoluteUrl } from "@/lib/site";
 
-/** No `lastModified` until projects have real dates (D15: never invent dates). */
+/** One-page site: the Home plus the case studies. No `lastModified` until there are real dates (D15). */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes: MetadataRoute.Sitemap = navItems.map((item) => ({
-    url: absoluteUrl(item.href),
-    changeFrequency: "monthly",
-    priority: item.href === "/" ? 1 : item.href === "/projetos" ? 0.9 : 0.7,
-  }));
-
-  const projects = await getProjects(); // drafts excluded
-  const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: absoluteUrl(`/projetos/${project.slug}`),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  return [...staticRoutes, ...projectRoutes];
+  const projects = await getCaseStudies(); // drafts excluded
+  return [
+    { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1 },
+    ...projects.map((project) => ({
+      url: absoluteUrl(`/projetos/${project.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
 }
