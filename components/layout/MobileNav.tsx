@@ -6,13 +6,15 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { contactNavItem, isActivePath, navItems } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { Monogram } from "./Monogram";
 
 const FOCUSABLE = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
 const linkItems = navItems.filter((item) => item.href !== contactNavItem.href);
 
-/** Full-screen mobile menu: focus trapped inside, Esc closes, focus returns to the toggle. */
+/**
+ * Full-screen mobile menu: focus trapped inside, Esc closes, focus returns to the toggle.
+ * The panel is navy inside the light header bar: `.on-dark` restores the light focus outline.
+ */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -66,7 +68,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen(true)}
-        className="inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors duration-(--duration-fast) hover:bg-surface-2"
+        className="inline-flex size-11 items-center justify-center rounded-sm text-accent-ink transition-colors duration-(--duration-fast) hover:bg-accent-hover"
       >
         <Menu aria-hidden="true" className="size-6" />
         <span className="sr-only">Abrir menu</span>
@@ -80,7 +82,7 @@ export function MobileNav() {
         aria-label="Menu de navegação"
         hidden={!open}
         onKeyDown={handleKeyDown}
-        className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background"
+        className="on-dark fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background text-foreground"
       >
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-5 md:px-8">
           <Link
@@ -88,8 +90,7 @@ export function MobileNav() {
             onClick={() => close(false)}
             className="inline-flex min-h-11 items-center gap-3 rounded-md"
           >
-            <Monogram />
-            <span className="font-medium">Breno Rocha</span>
+            <span className="font-serif text-[1.625rem] leading-none">Breno Rocha</span>
             <span className="sr-only"> — Início</span>
           </Link>
           <button
@@ -114,7 +115,7 @@ export function MobileNav() {
                     aria-current={active ? "page" : undefined}
                     onClick={() => close(false)}
                     className={cn(
-                      "flex min-h-12 items-center text-h2 font-medium decoration-2 underline-offset-8 transition-colors duration-(--duration-fast)",
+                      "flex min-h-12 items-center font-serif text-h1 font-normal decoration-2 underline-offset-8 transition-colors duration-(--duration-fast)",
                       active
                         ? "text-foreground underline decoration-accent"
                         : "text-muted-foreground hover:text-foreground",
@@ -130,7 +131,7 @@ export function MobileNav() {
             href={contactNavItem.href}
             aria-current={isActivePath(pathname, contactNavItem.href) ? "page" : undefined}
             onClick={() => close(false)}
-            className="mt-auto inline-flex h-12 items-center justify-center rounded-md bg-accent px-5 font-medium text-accent-ink transition-colors duration-(--duration-fast) hover:bg-accent-hover"
+            className="mt-auto inline-flex h-12 items-center justify-center rounded-sm bg-accent px-5 font-medium text-accent-ink transition-colors duration-(--duration-fast) hover:bg-accent-hover"
           >
             {contactNavItem.label}
           </Link>

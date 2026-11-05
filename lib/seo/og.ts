@@ -1,17 +1,21 @@
 /**
- * Design tokens for next/og images (docs/design/design-system.md §2). ImageResponse
+ * Design tokens for next/og images (D22 navy + light-blue palette). ImageResponse
  * cannot read CSS variables, so the values mirror styles/tokens.css.
  */
 export const ogColors = {
-  bg: "#0b0d0e",
-  surface: "#131618",
-  surface2: "#1a1e21",
-  border: "#262b2f",
-  text: "#e8e6e1",
-  muted: "#9ba1a6",
-  accent: "#e0a458",
-  gridLine: "rgba(232,230,225,0.06)",
-  accentLine: "rgba(224,164,88,0.4)",
+  bg: "#060b18",
+  surface: "#0c1428",
+  surface2: "#121d38",
+  border: "#1c2a4a",
+  text: "#eaf2fb",
+  muted: "#a3b4cc",
+  accent: "#a9d2f5",
+  accentInk: "#071022",
+  gridLine: "rgba(169,210,245,0.06)",
+  accentLine: "rgba(169,210,245,0.4)",
+  /** Blue veil over the photo (Satori has no CSS filters/blend modes: approximates the duotone). */
+  photoTint: "rgba(14,44,104,0.5)",
+  glow: "radial-gradient(ellipse 70% 70% at 80% 50%, rgba(80,140,220,0.22), transparent 70%)",
 } as const;
 
 /** Technical 1px grid (design-refresh §3) as inline styles for next/og. */

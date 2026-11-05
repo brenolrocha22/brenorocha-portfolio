@@ -59,3 +59,9 @@ export function isActivePath(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
+
+/** Two-digit position of a route in the main navigation ("01" = Sobre), for numbered labels (D22). */
+export function navIndex(href: string): string {
+  const position = navItems.findIndex((item) => item.href === href);
+  return String(Math.max(position, 0)).padStart(2, "0");
+}

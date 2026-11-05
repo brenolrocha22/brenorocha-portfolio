@@ -6,7 +6,7 @@ import { Hero } from "@/components/home/Hero";
 import { SectionHeading } from "@/components/home/SectionHeading";
 import { Trajectory } from "@/components/home/Trajectory";
 import { Container } from "@/components/layout/Container";
-import { ProjectGrid } from "@/components/project/ProjectGrid";
+import { ProjectList } from "@/components/project/ProjectList";
 import { ghostLinkClass } from "@/components/project/styles";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getHomeContent } from "@/lib/content/home";
@@ -34,13 +34,14 @@ export default async function HomePage() {
     <>
       <JsonLd data={personJsonLd(profile)} />
       <Hero content={home.hero} profile={profile} />
-      <Differential content={home.differential} />
+      <Differential index="01" content={home.differential} />
 
-      <section aria-labelledby="projetos-title" className="border-b border-border">
+      <section aria-labelledby="projetos-title">
         <Container className="py-20 lg:py-32">
           <SectionHeading
             id="projetos-title"
-            eyebrow={`Projetos em destaque · ${String(projects.length).padStart(2, "0")}`}
+            index="02"
+            eyebrow={`Projetos em destaque · 01–${String(projects.length).padStart(2, "0")}`}
             title="Problema real, números conferidos"
             action={
               <Link href="/projetos" className={ghostLinkClass}>
@@ -49,12 +50,12 @@ export default async function HomePage() {
               </Link>
             }
           />
-          <ProjectGrid projects={projects} headingLevel="h3" className="mt-10" />
+          <ProjectList projects={projects} headingLevel="h3" className="mt-12" />
         </Container>
       </section>
 
-      <Trajectory content={home.trajectory} />
-      <ContactCta content={home.contact} profile={profile} />
+      <Trajectory index="03" content={home.trajectory} />
+      <ContactCta index="04" content={home.contact} profile={profile} />
     </>
   );
 }

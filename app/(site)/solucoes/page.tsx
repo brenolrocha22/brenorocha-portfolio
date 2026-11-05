@@ -1,6 +1,7 @@
 import { ContactCta } from "@/components/home/ContactCta";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { navIndex } from "@/lib/site";
 import { SolutionCard } from "@/components/solutions/SolutionCard";
 import { getProfile } from "@/lib/content/profile";
 import { getSolutions } from "@/lib/content/solutions";
@@ -20,7 +21,7 @@ export default async function SolutionsPage() {
   return (
     <>
       <Container className="pt-16 lg:pt-24">
-        <PageHeader eyebrow={content.eyebrow} title={content.title} intro={content.intro} />
+        <PageHeader index={navIndex("/solucoes")} eyebrow={content.eyebrow} title={content.title} intro={content.intro} />
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {content.solutions.map((solution) => (
             <SolutionCard key={solution.id} solution={solution} />

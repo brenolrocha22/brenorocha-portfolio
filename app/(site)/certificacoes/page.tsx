@@ -2,7 +2,8 @@ import Link from "next/link";
 import { CertificationCard } from "@/components/certifications/CertificationCard";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { primaryButtonClass, secondaryButtonClass } from "@/components/project/styles";
+import { blockTitleClass, primaryButtonClass, secondaryButtonClass } from "@/components/project/styles";
+import { navIndex } from "@/lib/site";
 import { getCertifications, getCertificationsHeader } from "@/lib/content/certifications";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -20,11 +21,11 @@ export default function CertificationsPage() {
 
   return (
     <Container className="py-16 lg:py-24">
-      <PageHeader eyebrow="Certificações" title={header.title} intro={header.intro} />
+      <PageHeader index={navIndex("/certificacoes")} eyebrow="Certificações" title={header.title} intro={header.intro} />
 
       {validated.length > 0 ? (
         <section aria-labelledby="validaveis-title" className="mt-12">
-          <h2 id="validaveis-title" className="text-h2 font-semibold">
+          <h2 id="validaveis-title" className={blockTitleClass}>
             Com validação online
           </h2>
           <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -37,7 +38,7 @@ export default function CertificationsPage() {
 
       {others.length > 0 ? (
         <section aria-labelledby="outros-title" className="mt-16">
-          <h2 id="outros-title" className="text-h2 font-semibold">
+          <h2 id="outros-title" className={blockTitleClass}>
             Outros cursos
           </h2>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

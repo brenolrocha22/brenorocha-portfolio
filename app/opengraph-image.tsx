@@ -10,8 +10,8 @@ export const contentType = "image/png";
 const PHOTO_SIZE = 420;
 
 /**
- * Site OG image (design-refresh §4.4). With public/images/breno.jpg present, the photo
- * (in color: Satori does not apply CSS filters reliably) sits on the right; without it,
+ * Site OG image (D22 palette). With public/images/breno.jpg present, the photo sits on the
+ * right under a blue veil (Satori has no CSS filters/blend modes); without it,
  * the "BR" monogram stays next to the location line.
  */
 export default async function OpengraphImage() {
@@ -29,8 +29,9 @@ export default async function OpengraphImage() {
           justifyContent: "space-between",
           gap: 48,
           padding: 72,
-          background: ogColors.bg,
-          ...ogGridBackground,
+          backgroundColor: ogColors.bg,
+          backgroundImage: `${ogColors.glow}, ${ogGridBackground.backgroundImage}`,
+          backgroundSize: `100% 100%, ${ogGridBackground.backgroundSize}`,
           color: ogColors.text,
         }}
       >
@@ -90,20 +91,29 @@ export default async function OpengraphImage() {
         </div>
 
         {photo ? (
-          // eslint-disable-next-line @next/next/no-img-element -- next/og renders plain <img> only
-          <img
-            src={photo}
-            alt=""
-            width={PHOTO_SIZE}
-            height={PHOTO_SIZE}
-            style={{
-              width: PHOTO_SIZE,
-              height: PHOTO_SIZE,
-              borderRadius: 12,
-              border: `2px solid ${ogColors.accentLine}`,
-              objectFit: "cover",
-            }}
-          />
+          <div style={{ display: "flex", position: "relative", width: PHOTO_SIZE, height: PHOTO_SIZE }}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- next/og renders plain <img> only */}
+            <img
+              src={photo}
+              alt=""
+              width={PHOTO_SIZE}
+              height={PHOTO_SIZE}
+              style={{ width: PHOTO_SIZE, height: PHOTO_SIZE, borderRadius: 8, objectFit: "cover" }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: PHOTO_SIZE,
+                height: PHOTO_SIZE,
+                display: "flex",
+                borderRadius: 8,
+                background: ogColors.photoTint,
+                border: `2px solid ${ogColors.accentLine}`,
+              }}
+            />
+          </div>
         ) : null}
       </div>
     ),

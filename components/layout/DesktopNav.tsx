@@ -20,10 +20,9 @@ export function DesktopNav() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "inline-flex min-h-11 items-center px-3 text-small transition-colors duration-(--duration-fast)",
-                  "underline-offset-[10px] decoration-2",
-                  active
-                    ? "text-foreground underline decoration-accent"
-                    : "text-muted-foreground hover:text-foreground",
+                  "text-accent-ink underline-offset-[6px] decoration-2",
+                  // D22: dark ink on the light bar; active page underlined.
+                  active ? "underline" : "hover:underline hover:decoration-1",
                 )}
               >
                 {item.label}

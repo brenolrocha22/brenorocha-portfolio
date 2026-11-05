@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { navIndex } from "@/lib/site";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/project/styles";
 import { SkillGroup } from "@/components/skills/SkillGroup";
 import { SkillLegend } from "@/components/skills/SkillLegend";
@@ -18,7 +19,7 @@ export default async function TechnologiesPage() {
 
   return (
     <Container className="py-16 lg:py-24">
-      <PageHeader eyebrow="Tecnologias" title={title} intro={technologies.intro} />
+      <PageHeader index={navIndex("/tecnologias")} eyebrow="Tecnologias" title={title} intro={technologies.intro} />
 
       <div className="mt-10">
         <SkillLegend levels={usedSkillLevels(technologies)} />

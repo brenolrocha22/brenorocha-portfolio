@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <Container className="py-20 lg:py-32">
       <p className="font-mono text-mono-xs text-muted-foreground uppercase">Erro 404</p>
-      <h1 className="mt-3 text-h1 font-semibold">Página não encontrada</h1>
+      <h1 className="mt-4 font-serif text-title font-normal">Página não encontrada</h1>
       <p className="mt-4 max-w-measure text-body-lg text-muted-foreground">
         O endereço pode ter mudado ou não existe.
       </p>

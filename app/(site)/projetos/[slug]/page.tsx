@@ -10,6 +10,7 @@ import { ProjectFacts } from "@/components/project/ProjectFacts";
 import { TableOfContents } from "@/components/project/TableOfContents";
 import {
   eyebrowClass,
+  pageTitleClass,
   ghostLinkClass,
   primaryButtonClass,
   secondaryButtonClass,
@@ -85,7 +86,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </nav>
 
         <p className={`mt-6 ${eyebrowClass}`}>{categories}</p>
-        <h1 className="mt-3 max-w-4xl text-h1 font-semibold text-balance">{project.title}</h1>
+        <h1 className={`mt-4 max-w-4xl ${pageTitleClass}`}>{project.title}</h1>
         <p className="mt-4 max-w-measure text-body-lg text-muted-foreground">{project.summary}</p>
 
         {project.github || project.demoUrl ? (

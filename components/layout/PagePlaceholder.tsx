@@ -13,7 +13,7 @@ export function PagePlaceholder({ title, eyebrow }: PagePlaceholderProps) {
       {eyebrow ? (
         <p className="font-mono text-mono-xs text-muted-foreground uppercase">{eyebrow}</p>
       ) : null}
-      <h1 className="mt-3 max-w-4xl text-h1 font-semibold text-balance">{title}</h1>
+      <h1 className="mt-3 max-w-4xl font-serif text-title font-normal text-balance">{title}</h1>
       <p className="mt-6 font-mono text-mono-xs text-muted-foreground uppercase">
         Página em construção
       </p>

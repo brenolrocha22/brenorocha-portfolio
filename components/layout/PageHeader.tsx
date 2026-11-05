@@ -1,20 +1,24 @@
 import type { ReactNode } from "react";
-import { eyebrowClass } from "@/components/project/styles";
+import { pageTitleClass } from "@/components/project/styles";
+import { cn } from "@/lib/utils";
+import { SectionLabel } from "./SectionLabel";
 
 type PageHeaderProps = {
   eyebrow: string;
+  /** Two-digit index shown as "(01)" before the eyebrow (D22). */
+  index?: string;
   title: ReactNode;
   intro?: ReactNode;
   children?: ReactNode;
 };
 
-/** Eyebrow + H1 + intro shared by the inner pages. */
-export function PageHeader({ eyebrow, title, intro, children }: PageHeaderProps) {
+/** Numbered label + serif H1 + intro shared by the inner pages. */
+export function PageHeader({ eyebrow, index, title, intro, children }: PageHeaderProps) {
   return (
     <header>
-      <p className={eyebrowClass}>{eyebrow}</p>
-      <h1 className="mt-3 max-w-3xl text-h1 font-semibold text-balance">{title}</h1>
-      {intro ? <p className="mt-4 max-w-measure text-body-lg text-muted-foreground">{intro}</p> : null}
+      <SectionLabel index={index}>{eyebrow}</SectionLabel>
+      <h1 className={cn("mt-5 max-w-4xl", pageTitleClass)}>{title}</h1>
+      {intro ? <p className="mt-6 max-w-measure text-body-lg text-muted-foreground">{intro}</p> : null}
       {children}
     </header>
   );

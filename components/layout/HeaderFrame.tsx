@@ -13,15 +13,19 @@ function subscribe(onChange: () => void) {
 const getSnapshot = () => window.scrollY > SCROLL_THRESHOLD;
 const getServerSnapshot = () => false;
 
-/** Fixed header shell; shows the bottom border after the page scrolls past 8px. */
+/**
+ * Floating light-blue bar (D22): fixed, inset from the top and sides by --header-inset,
+ * dark ink text. Gains a soft shadow after the page scrolls past 8px. `.on-accent`
+ * switches the focus outline to navy so it stays visible on the light bar.
+ */
 export function HeaderFrame({ children }: { children: ReactNode }) {
   const scrolled = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 h-16 border-b bg-background/70 backdrop-blur-md transition-colors duration-(--duration-fast)",
-        scrolled ? "border-border" : "border-transparent",
+        "on-accent fixed inset-x-(--header-inset) top-(--header-inset) z-40 h-14 rounded-md bg-accent text-accent-ink transition-shadow duration-(--duration-fast)",
+        scrolled && "shadow-card",
       )}
     >
       {children}

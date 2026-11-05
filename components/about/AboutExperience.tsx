@@ -4,7 +4,7 @@ import type { AboutContent } from "@/lib/content/about";
 export function AboutExperience({ content }: { content: AboutContent["experience"] }) {
   return (
     <section aria-labelledby="experiencia-title">
-      <h2 id="experiencia-title" className="text-h2 font-semibold">
+      <h2 id="experiencia-title" className="font-serif text-h1 font-normal">
         {content.title}
       </h2>
       <ol className="mt-8 divide-y divide-border border-y border-border">

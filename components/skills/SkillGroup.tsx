@@ -35,7 +35,7 @@ export function SkillGroup({ group }: { group: SkillGroupView }) {
   const titleId = `grupo-${group.id}`;
   return (
     <section aria-labelledby={titleId} className="border-t border-border pt-8">
-      <h2 id={titleId} className="text-h2 font-semibold">
+      <h2 id={titleId} className="font-serif text-h1 font-normal">
         {group.title}
       </h2>
       <ul className="mt-6 divide-y divide-border rounded-lg border border-border bg-surface">

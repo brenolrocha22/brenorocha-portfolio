@@ -32,7 +32,8 @@ export default async function ProjectOpengraphImage({ params }: { params: Promis
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: ogColors.bg,
+          backgroundColor: ogColors.bg,
+          backgroundImage: ogColors.glow,
           color: ogColors.text,
         }}
       >

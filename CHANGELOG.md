@@ -2,6 +2,24 @@
 
 Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-DD.
 
+## [0.4.0] — 2026-11-05
+
+### Visual
+- Redesign "cinemático": nova paleta azul-marinho profundo com azul-claro no lugar de grafite e âmbar (contraste AA em todos os textos).
+- Header vira uma barra flutuante azul-clara, com recuo das bordas, o nome "Breno Rocha" em serif à esquerda e os links à direita.
+- Home: hero ocupa a primeira tela, com a foto tratada em tons de azul (duotone) e bordas que se fundem ao fundo, o nome "Breno Rocha" gigante em serif em 2 linhas e as áreas "Dados", "IA generativa" e "Python" empilhadas no canto da foto.
+- Home: o slogan vira texto de apoio (com "reais" em itálico), seguido da linha de apresentação e dos botões "Ver projetos" e "Falar comigo".
+- Status em estilo de metadado técnico ("DISPONÍVEL // RECIFE_PE") e faixa de provas numerada (01)(02)(03).
+- Seções com rótulos numerados, como "(02) Projetos em destaque", e títulos grandes em serif; o mesmo padrão nas páginas internas.
+- Projetos em lista numerada 01–05 (número grande, título em serif, número-prova e seta), separada por linhas finas, na Home e em /projetos.
+- Bloco final de contato com o título "Conecte-se com Breno Rocha".
+- Imagens de compartilhamento (Open Graph) com a nova paleta.
+- Foco do teclado continua visível, inclusive na barra azul-clara.
+
+### Conteúdo
+- A foto real do Breno entrou no site: hero da Home, /sobre e imagem de compartilhamento.
+- O nome "Breno Rocha" passa a ser o título principal da Home; o slogan continua logo abaixo.
+
 ## [0.3.0] — 2026-11-05
 
 ### Visual

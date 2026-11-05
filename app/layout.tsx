@@ -21,11 +21,10 @@ const geistMono = Geist_Mono({
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   weight: "400",
-  style: "italic",
+  // D22: display face for the hero name (Home H1/LCP), page titles and section titles.
+  style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
-  // Used only for one word of the Home H1: not worth a preload on every page.
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0d0e",
+  themeColor: "#060b18",
   colorScheme: "dark",
 };
 
@@ -65,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="flex min-h-dvh flex-col font-sans">
         <SkipLink />
         <Header />
-        <main id="conteudo" tabIndex={-1} className="flex-1 pt-16 focus:outline-none">
+        <main id="conteudo" tabIndex={-1} className="flex-1 pt-(--header-height) focus:outline-none">
           {children}
         </main>
         <Footer />

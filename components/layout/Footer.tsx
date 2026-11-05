@@ -4,7 +4,6 @@ import { navItems } from "@/lib/site";
 import { getProfile } from "@/lib/content/profile";
 import { Container } from "./Container";
 import { ExternalLink } from "./ExternalLink";
-import { Monogram } from "./Monogram";
 
 const footerLinkClass =
   "inline-flex min-h-11 items-center gap-2 text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground md:min-h-9";
@@ -17,10 +16,7 @@ export function Footer() {
     <footer className="mt-auto border-t border-border bg-surface">
       <Container className="grid gap-10 py-12 md:grid-cols-3 md:gap-8">
         <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <Monogram />
-            <span className="font-medium">{profile.shortName}</span>
-          </div>
+          <p className="font-serif text-h1 leading-none">{profile.shortName}</p>
           <p className="max-w-xs text-small text-muted-foreground">{profile.tagline}</p>
         </div>
 

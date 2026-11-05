@@ -1,32 +1,35 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { ExternalLink } from "@/components/layout/ExternalLink";
-import { primaryButtonClass } from "@/components/project/styles";
+import { SectionLabel } from "@/components/layout/SectionLabel";
+import { primaryButtonClass, sectionTitleClass } from "@/components/project/styles";
 import type { HomeContent } from "@/lib/content/home";
 import type { Profile } from "@/lib/content/profile";
+import { cn } from "@/lib/utils";
 
 type ContactCtaProps = {
   content: HomeContent["contact"];
   profile: Profile;
+  /** Two-digit section number, shown as "(04)". */
+  index?: string;
 };
 
 const textLinkClass =
-  "inline-flex min-h-11 items-center text-small text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground";
+  "inline-flex min-h-11 items-center text-small text-muted-foreground underline-offset-4 transition-colors duration-(--duration-fast) hover:text-foreground hover:underline";
 
-export function ContactCta({ content, profile }: ContactCtaProps) {
+/** Closing block (D22): numbered label, big serif title, existing contact links. */
+export function ContactCta({ content, profile, index }: ContactCtaProps) {
   return (
     <section aria-labelledby="contato-title" className="relative overflow-hidden">
-      {/* Same technical grid as the hero, fainter (decorative). */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-tech-grid opacity-50" />
+      <div aria-hidden="true" className="hero-glow pointer-events-none absolute inset-0 opacity-70" />
       <Container className="relative py-20 lg:py-32">
-        <div className="flex flex-col gap-6 rounded-lg border border-border bg-surface p-6 md:p-10 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <h2 id="contato-title" className="text-h2 font-semibold">
-              {content.title}
-            </h2>
-            <p className="mt-2 max-w-measure text-body text-muted-foreground">{content.text}</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+        <div className="border-t border-border pt-6">
+          <SectionLabel index={index}>{content.title}</SectionLabel>
+          <h2 id="contato-title" className={cn("mt-5 max-w-4xl", sectionTitleClass)}>
+            Conecte-se com <em className="text-accent">{profile.shortName}</em>
+          </h2>
+          <p className="mt-6 max-w-measure text-body-lg text-muted-foreground">{content.text}</p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
             <Link href="/contato" className={primaryButtonClass}>
               Falar comigo
             </Link>

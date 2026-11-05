@@ -4,31 +4,23 @@ import { hasPortraitPhoto, PORTRAIT_ALT, PORTRAIT_SRC } from "@/lib/content/port
 import { cn } from "@/lib/utils";
 
 /**
- * Frame sizes (design-refresh §4.3):
- * - hero-compact: 88px, inline with the name on mobile (no ticks, no caption);
- * - hero: 320px column on desktop (ticks + caption, preloaded: LCP);
- * - about: 160px mobile / 240px from md (ticks + caption).
+ * Frame sizes (D22). The source photo is 512px, so it is never shown full-bleed:
+ * - hero: up to 440px wide, square, edges fade into the navy (preloaded: LCP candidate);
+ * - about: 160px mobile / 240px from md, thin frame.
  */
 const variants = {
-  "hero-compact": {
-    frame: "size-22 rounded-md",
-    monogram: "text-h3",
-    sizes: "88px",
-    ticks: false,
+  hero: {
+    frame: "aspect-square w-full max-w-[440px]",
+    monogram: "text-hero-name",
+    sizes: "(min-width: 1024px) 440px, min(440px, 100vw)",
+    fade: true,
     caption: false,
   },
-  hero: {
-    frame: "size-80 rounded-(--photo-radius)",
-    monogram: "text-display",
-    sizes: "320px",
-    ticks: true,
-    caption: true,
-  },
   about: {
-    frame: "size-40 rounded-(--photo-radius) md:size-60",
-    monogram: "text-h1 md:text-display",
+    frame: "size-40 rounded-(--photo-radius) border border-border-strong md:size-60",
+    monogram: "text-title",
     sizes: "(min-width: 768px) 240px, 160px",
-    ticks: true,
+    fade: false,
     caption: true,
   },
 } as const;
@@ -36,28 +28,19 @@ const variants = {
 type PortraitProps = {
   variant: keyof typeof variants;
   className?: string;
-  /** Preload the photo (only the desktop hero, which is the LCP element). */
+  /** Preload the photo (only the hero, which is above the fold). */
   preload?: boolean;
 };
 
-const tickBase = "pointer-events-none absolute size-2.5 border-accent-line";
-
-/** Corner "crosshair" ticks: the only amber detail on the photo (decorative). */
-function CornerTicks() {
-  return (
-    <>
-      <span aria-hidden="true" className={cn(tickBase, "-top-px -left-px border-t border-l")} />
-      <span aria-hidden="true" className={cn(tickBase, "-top-px -right-px border-t border-r")} />
-      <span aria-hidden="true" className={cn(tickBase, "-bottom-px -left-px border-b border-l")} />
-      <span aria-hidden="true" className={cn(tickBase, "-right-px -bottom-px border-r border-b")} />
-    </>
-  );
+/** "BRENO_ROCHA // RECIFE_PE" style metadata caption. */
+function toMeta(value: string): string {
+  return value.toUpperCase().replace(/[\s/]+/g, "_");
 }
 
 /**
- * Breno's photo in a "field record" frame (design-refresh §4). Server component: when
- * public/images/breno.jpg does not exist at build time, the same frame shows the "BR" monogram.
- * The grayscale → color filter lives in app/globals.css (.portrait-photo).
+ * Breno's photo with the blue duotone treatment (D22, CSS only: grayscale + a blue
+ * "color" blend layer, see app/globals.css). Server component: when public/images/breno.jpg
+ * does not exist at build time, the same frame shows the "BR" monogram.
  */
 export function Portrait({ variant, className, preload = false }: PortraitProps) {
   const config = variants[variant];
@@ -65,47 +48,37 @@ export function Portrait({ variant, className, preload = false }: PortraitProps)
   const profile = getProfile();
 
   return (
-    <figure className={cn("portrait-scope shrink-0", className)}>
-      {/* Ticks sit on this wrapper: the frame clips its overflow, and the caption stays below. */}
-      <div className="relative w-fit">
-        <div
-          className={cn("relative overflow-hidden border border-border-strong bg-surface-2", config.frame)}
-          {...(hasPhoto ? {} : { role: "img", "aria-label": "Monograma de Breno Rocha" })}
-        >
-          {hasPhoto ? (
-            <>
-              <Image
-                src={PORTRAIT_SRC}
-                alt={PORTRAIT_ALT}
-                fill
-                sizes={config.sizes}
-                preload={preload}
-                loading={preload ? undefined : "eager"}
-                className="portrait-photo object-cover"
-              />
-              {/* Route A: softens the white shirt against the dark page. */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-linear-to-t from-background/40 to-transparent"
-              />
-            </>
-          ) : (
-            <span
-              aria-hidden="true"
-              className={cn(
-                "flex size-full items-center justify-center font-sans font-semibold text-foreground",
-                config.monogram,
-              )}
-            >
-              BR
-            </span>
-          )}
-        </div>
-        {config.ticks ? <CornerTicks /> : null}
+    <figure className={cn("shrink-0", className)}>
+      <div
+        className={cn("relative isolate overflow-hidden bg-surface-2", config.frame, config.fade && "portrait-fade")}
+        {...(hasPhoto ? {} : { role: "img", "aria-label": "Monograma de Breno Rocha" })}
+      >
+        {hasPhoto ? (
+          <>
+            <Image
+              src={PORTRAIT_SRC}
+              alt={PORTRAIT_ALT}
+              fill
+              sizes={config.sizes}
+              preload={preload}
+              loading={preload ? undefined : "eager"}
+              className="portrait-photo object-cover"
+            />
+            <span aria-hidden="true" className="portrait-tint pointer-events-none absolute inset-0" />
+            <span aria-hidden="true" className="portrait-tint-dark pointer-events-none absolute inset-0" />
+          </>
+        ) : (
+          <span
+            aria-hidden="true"
+            className={cn("flex size-full items-center justify-center font-serif text-accent", config.monogram)}
+          >
+            BR
+          </span>
+        )}
       </div>
       {config.caption ? (
-        <figcaption className="mt-2 font-mono text-mono-xs text-muted-foreground uppercase">
-          {profile.shortName} · {profile.location}
+        <figcaption className="mt-3 font-mono text-mono-xs text-muted-foreground">
+          {toMeta(profile.shortName)} {"//"} {toMeta(profile.location)}
         </figcaption>
       ) : null}
     </figure>

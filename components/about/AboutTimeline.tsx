@@ -4,7 +4,7 @@ import type { AboutContent } from "@/lib/content/about";
 export function AboutTimeline({ content }: { content: AboutContent["timeline"] }) {
   return (
     <section aria-labelledby="linha-do-tempo-title">
-      <h2 id="linha-do-tempo-title" className="text-h2 font-semibold">
+      <h2 id="linha-do-tempo-title" className="font-serif text-h1 font-normal">
         {content.title}
       </h2>
       <ol className="mt-10 grid gap-8 border-l border-border-strong pl-6 md:grid-cols-4 md:gap-6 md:border-t md:border-l-0 md:pt-8 md:pl-0">

@@ -5,7 +5,7 @@ import { categoryLabels, categoryOrder, projectCategoriesOf } from "@/lib/conten
 import type { ProjectCategory } from "@/lib/content/schemas";
 import type { ProjectSummary } from "@/lib/content/projects";
 import { cn } from "@/lib/utils";
-import { ProjectGrid } from "./ProjectGrid";
+import { ProjectList } from "./ProjectList";
 
 type Filter = ProjectCategory | "todos";
 
@@ -58,7 +58,7 @@ export function ProjectFilter({ projects }: { projects: ProjectSummary[] }) {
         {visible.length} {visible.length === 1 ? "projeto" : "projetos"}
       </p>
 
-      <ProjectGrid projects={visible} className="mt-6" />
+      <ProjectList projects={visible} className="mt-6" />
     </div>
   );
 }

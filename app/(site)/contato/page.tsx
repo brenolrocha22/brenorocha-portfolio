@@ -4,6 +4,7 @@ import { CopyEmailButton } from "@/components/contact/CopyEmailButton";
 import { Container } from "@/components/layout/Container";
 import { ExternalLink } from "@/components/layout/ExternalLink";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { navIndex } from "@/lib/site";
 import { getContactContent } from "@/lib/content/contact";
 import { getProfile } from "@/lib/content/profile";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -23,7 +24,7 @@ export default function ContactPage() {
 
   return (
     <Container className="py-16 lg:py-24">
-      <PageHeader eyebrow={content.eyebrow} title={content.title} intro={content.intro} />
+      <PageHeader index={navIndex("/contato")} eyebrow={content.eyebrow} title={content.title} intro={content.intro} />
 
       <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start lg:gap-12">
         {/* Mobile: direct channels first (fastest path); desktop: beside the form. */}

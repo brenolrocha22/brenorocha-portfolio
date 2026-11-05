@@ -1,23 +1,25 @@
 /*
- * Design tokens — "Relatório de campo" (docs/design/design-system.md §2).
+ * Design tokens — redesign "cinemático" (D22, docs/design/design-refresh.md):
+ * navy profundo + azul-claro no lugar de grafite + âmbar (D07/D19). Nomes mantidos.
+ * Base original: docs/design/design-system.md §2.
  * Fonte única de verdade. Componentes usam apenas as classes geradas em
  * app/globals.css (@theme inline); proibido hex/fonte literal em componente.
  * Tema único dark.
  */
 :root {
   /* Cores base */
-  --bg: #0b0d0e;
-  --surface: #131618;
-  --surface-2: #1a1e21;
-  --border: #262b2f;
-  --border-strong: #3a4146;
-  --text: #e8e6e1;
-  --text-muted: #9ba1a6;
-  --text-subtle: #7a8187; /* só texto >= 18px ou ícone */
-  --accent: #e0a458;
-  --accent-hover: #ebb878;
-  --accent-ink: #0b0d0e;
-  --data: #7fb7be;
+  --bg: #060b18;
+  --surface: #0c1428;
+  --surface-2: #121d38;
+  --border: #1c2a4a;
+  --border-strong: #2b3d66;
+  --text: #eaf2fb;
+  --text-muted: #a3b4cc;
+  --text-subtle: #7f92ad; /* 5,3:1 no surface-2; preferir texto pequeno em --text-muted */
+  --accent: #a9d2f5;
+  --accent-hover: #c4e1fa;
+  --accent-ink: #071022;
+  --data: #7fc8d6;
   --success: #6fbf8e;
   --warning: #d9b44a;
   --danger: #e5736b;
@@ -45,32 +47,41 @@
 
   /* Motion — refresh D19: tudo ≤ 200 ms, só cor/borda/opacidade/filtro */
   --duration-fast: 120ms; /* cor, borda, opacidade */
-  --duration-base: 180ms; /* foto grayscale → cor, painéis */
+  --duration-base: 180ms; /* painéis */
   --duration-slow: 200ms; /* teto absoluto */
   --ease-brand-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
 
   /* Linhas e grade técnica (decorativas) */
   --hairline: 1px;
   --grid-size: 48px;
-  --grid-line: rgb(232 230 225 / 0.045); /* --text a 4,5% */
+  --grid-line: rgb(169 210 245 / 0.05); /* --accent a 5% */
   --grid-mask: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
 
-  /* Âmbar contido: só em hover/foco de interativos, nunca no lugar do outline de foco */
-  --accent-line: rgb(224 164 88 / 0.4); /* contorno/cantos da foto */
-  --accent-glow-sm: 0 0 0 1px rgb(224 164 88 / 0.35), 0 0 16px -6px rgb(224 164 88 / 0.35);
-  --accent-glow-md: 0 0 0 1px rgb(224 164 88 / 0.45), 0 0 28px -8px rgb(224 164 88 / 0.4);
+  /* Azul-claro contido: hover/foco de interativos e detalhes finos */
+  --accent-line: rgb(169 210 245 / 0.4); /* contorno/cantos da foto */
+  --accent-glow-sm: 0 0 0 1px rgb(169 210 245 / 0.35), 0 0 16px -6px rgb(169 210 245 / 0.35);
+  --accent-glow-md: 0 0 0 1px rgb(169 210 245 / 0.45), 0 0 28px -8px rgb(169 210 245 / 0.4);
 
-  /* Foto (D20, rota A) */
-  --photo-radius: var(--rounded-lg);
-  --photo-filter-idle: grayscale(1) contrast(1.05) brightness(0.9);
-  --photo-filter-touch: saturate(0.9) brightness(0.95);
+  /* Foto (D22): duotone azul via CSS — cinza + camada azul em mix-blend-mode */
+  --photo-radius: var(--rounded-md);
+  --photo-filter: grayscale(1) contrast(1.15) brightness(0.9);
+  --photo-tint-light: #7fb0e6; /* multiply: o branco da foto vira este azul */
+  --photo-tint-dark: #0b1b3d; /* lighten: o preto da foto vira este navy */
+  --photo-mask: radial-gradient(closest-side, #000 40%, transparent 100%);
+  --hero-glow: radial-gradient(ellipse 60% 55% at 30% 45%, rgb(80 140 220 / 0.18), transparent 70%);
+
+  /* Header flutuante (D22) */
+  --header-inset: 10px;
 
   /* Layout */
-  --header-height: 64px;
+  --header-height: 76px; /* barra de 56px + recuo de 10px em cima e embaixo */
   --measure: 68ch;
 
   /* Escala tipográfica — mobile */
-  --fs-display: 2.125rem; /* slogan em ≤ 5 linhas a 360px */
+  --fs-display: 2.125rem;
+  --fs-hero-name: clamp(4rem, 19vw, 10rem); /* nome serif gigante (D22) */
+  --fs-title: 2.75rem; /* H1 serif das páginas internas (D22) */
+  --fs-section: 2.5rem; /* H2 serif das seções (D22) */
   --fs-h1: 2rem;
   --fs-h2: 1.5rem;
   --fs-h3: 1.25rem;
@@ -84,9 +95,12 @@
 @media (min-width: 1024px) {
   :root {
     --fs-display: 3.5rem;
+    --fs-title: 4.5rem;
+    --fs-section: 4rem;
     --fs-h1: 3rem;
     --fs-h2: 2rem;
     --fs-h3: 1.375rem;
     --fs-body-lg: 1.25rem;
+    --fs-hero-name: clamp(6rem, 12vw, 11rem);
   }
 }

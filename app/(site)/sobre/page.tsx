@@ -5,7 +5,9 @@ import { AboutTimeline } from "@/components/about/AboutTimeline";
 import { HowIWork } from "@/components/about/HowIWork";
 import { Portrait } from "@/components/home/Portrait";
 import { Container } from "@/components/layout/Container";
-import { eyebrowClass, primaryButtonClass, secondaryButtonClass } from "@/components/project/styles";
+import { SectionLabel } from "@/components/layout/SectionLabel";
+import { pageTitleClass, primaryButtonClass, secondaryButtonClass } from "@/components/project/styles";
+import { navIndex } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAboutContent } from "@/lib/content/about";
 import { getProfile } from "@/lib/content/profile";
@@ -26,11 +28,11 @@ export default function AboutPage() {
   return (
     <Container className="py-16 lg:py-24">
       <JsonLd data={personJsonLd(getProfile())} />
-      <header className="portrait-scope flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
+      <header className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
         <Portrait variant="about" />
         <div>
-          <p className={eyebrowClass}>{about.eyebrow}</p>
-          <h1 className="mt-3 max-w-3xl text-h1 font-semibold text-balance">{about.title}</h1>
+          <SectionLabel index={navIndex("/sobre")}>{about.eyebrow}</SectionLabel>
+          <h1 className={`mt-5 max-w-3xl ${pageTitleClass}`}>{about.title}</h1>
           <p className="mt-3 font-mono text-mono-xs text-muted-foreground uppercase">{about.subtitle}</p>
           <p className="mt-4 max-w-measure text-body-lg text-muted-foreground">{about.summary}</p>
         </div>

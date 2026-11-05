@@ -18,7 +18,7 @@ function H2({ children, className, ...props }: ComponentPropsWithoutRef<"h2">) {
   return (
     <h2
       id={slugifyHeading(textOf(children))}
-      className={cn("mt-12 text-h2 font-semibold first:mt-0", className)}
+      className={cn("mt-12 font-serif text-h1 font-normal first:mt-0", className)}
       {...props}
     >
       {children}
@@ -63,7 +63,7 @@ function InlineCode({ className, ...props }: ComponentPropsWithoutRef<"code">) {
   return (
     <code
       className={cn(
-        "rounded-sm border border-border bg-surface-2 px-1 py-0.5 font-mono text-[0.875em] text-foreground",
+        "rounded-sm border border-border bg-surface-2 px-1 py-0.5 font-mono [overflow-wrap:anywhere] text-[0.875em] text-foreground",
         className,
       )}
       {...props}
