@@ -2,7 +2,7 @@
   "hero": {
     "eyebrow": "Recife/PE · Em transição para tecnologia · Disponível para início imediato",
     "pitch": [
-      "Sou formado em Administração e trabalhei com vendas B2B, trade marketing e inside sales, inclusive 100% em inglês para uma empresa dos EUA, usando SPIN Selling e CRM (HubSpot).",
+      "Sou formado em Administração e tenho mais de 5 anos em vendas orientadas a metas, KPIs e CRM (HubSpot): B2B, trade marketing e inside sales, inclusive 100% em inglês para uma empresa dos EUA.",
       "Hoje construo soluções com Python, SQL e IA: chatbots que respondem com números vindos do banco, dashboards e modelos de dados.",
       "Antes de escrever código, entendo o cliente e o problema do negócio, como sempre fiz em campo."
     ],
@@ -12,13 +12,13 @@
         "label": "atuação remota para empresa dos EUA"
       },
       {
+        "value": "5+ anos",
+        "label": "vendas orientadas a metas, KPIs e CRM"
+      },
+      {
         "value": "985 vendas",
         "label": "consultadas via SQL no RAG-DIO",
         "href": "/projetos/rag-dio"
-      },
-      {
-        "value": "Administração",
-        "label": "formação"
       }
     ]
   },
@@ -28,7 +28,7 @@
     "steps": [
       {
         "title": "Ouvir",
-        "text": "Vendas B2B, SDR e inside sales com SPIN Selling: perguntar antes de propor e entender o que o cliente precisa."
+        "text": "Mais de 5 anos em vendas com SPIN Selling: perguntar antes de propor e entender o que o cliente precisa."
       },
       {
         "title": "Medir",

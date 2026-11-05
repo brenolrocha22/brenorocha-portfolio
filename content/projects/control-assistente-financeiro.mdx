@@ -7,14 +7,14 @@ featured: true
 order: 3
 status: "em-evolucao"
 stack: ["React 18", "Vite", "TypeScript", "GitHub Actions", "Lovable", "MCP"]
-highlight: "14 testes · motor de respostas determinístico"
-tests: "14 testes do motor de respostas"
+highlight: "24 testes · motor de respostas determinístico"
+tests: "24 testes do motor de respostas"
 github: { owner: "brenolrocha22", repo: "control-assistente-financeiro" }
 demoUrl: "https://brenolrocha22.github.io/control-assistente-financeiro/"
 extraDemos:
   - { label: "Lovable", url: "https://control-assistente.lovable.app" }
 metrics:
-  - { label: "Testes do motor de respostas", value: "14", source: "repositório" }
+  - { label: "Testes do motor de respostas", value: "24", source: "README do repositório" }
   - { label: "Transações na amostra local", value: "17 (fictícias)", source: "repositório" }
   - { label: "Plaid Sandbox via MCP", value: "14 contas · 48 transações", source: "currículo 2026" }
 ---
@@ -36,7 +36,7 @@ Um chat dentro de um app de banco fictício ("Control"). As respostas vêm de um
 
 1. A interface (React + Vite + TypeScript) envia a pergunta à camada de serviços (`dataSource.ts`).
 2. A camada de serviços lê o conjunto de dados local.
-3. O motor `answer.ts` monta a resposta em blocos, coberto por 14 testes.
+3. O motor `answer.ts` monta a resposta em blocos, coberto por 24 testes.
 
 O deploy no GitHub Pages é feito por GitHub Actions. O projeto usa MCP para consultar a documentação da Pluggy e o Plaid Sandbox (ambiente de testes de Open Finance), onde foram lidas 14 contas e 48 transações de teste; as credenciais ficam em variáveis de ambiente, fora do repositório.
 

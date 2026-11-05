@@ -16,7 +16,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { personJsonLd } from "@/lib/seo/person";
 
 const description =
-  "Breno Lins Rocha, de Recife/PE: Administração, vendas B2B e inside sales em inglês, e projetos com Python, SQL e IA. Disponível para início imediato.";
+  "Breno Lins Rocha, de Recife/PE: Administração, mais de 5 anos em vendas com metas, KPIs e CRM, e projetos com Python, SQL e IA. Disponível para início imediato.";
 
 export const metadata = pageMetadata({
   title: "Breno Rocha | Dados e IA generativa com Python",

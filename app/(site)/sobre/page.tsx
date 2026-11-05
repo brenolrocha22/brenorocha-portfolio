@@ -16,7 +16,7 @@ export const metadata = pageMetadata({
   title: "Sobre",
   socialTitle: "Sobre Breno Rocha",
   description:
-    "Breno Lins Rocha, de Recife/PE: Administração, vendas B2B e inside sales em inglês para empresa dos EUA, em transição para dados e IA. Disponível para início imediato.",
+    "Breno Lins Rocha, de Recife/PE: Administração, mais de 5 anos em vendas com metas, KPIs e CRM, inglês fluente, em transição para dados e IA. Disponível para início imediato.",
   path: "/sobre",
 });
 
