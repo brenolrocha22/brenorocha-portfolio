@@ -6,9 +6,13 @@ export function CertificationCard({ cert }: { cert: CertificationView }) {
   const meta = [
     cert.institution,
     cert.displayDate ? (
-      <time key="date" dateTime={cert.date}>
-        {cert.displayDate}
-      </time>
+      cert.inProgress || cert.endDate ? (
+        cert.displayDate
+      ) : (
+        <time key="date" dateTime={cert.date}>
+          {cert.displayDate}
+        </time>
+      )
     ) : null,
     cert.hours ? `${cert.hours} h` : null,
   ].filter(Boolean);

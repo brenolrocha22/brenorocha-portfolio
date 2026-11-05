@@ -68,6 +68,16 @@ export function ProjectFacts({ project, githubStats }: ProjectFactsProps) {
             </ExternalLink>
           </Row>
         ) : null}
+        {project.extraDemos.map((demo) => (
+          <Row key={demo.url} label={`Demo (${demo.label})`}>
+            <ExternalLink
+              href={demo.url}
+              className="min-h-11 break-all text-accent underline-offset-4 hover:underline sm:min-h-0"
+            >
+              {demo.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+            </ExternalLink>
+          </Row>
+        ))}
       </dl>
       {githubStats}
     </section>

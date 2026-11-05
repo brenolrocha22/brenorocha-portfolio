@@ -16,9 +16,26 @@
       "hours": 29,
       "code": "UNMMITMG"
     },
-    { "name": "Profissão Programador", "date": "2023", "hours": 110 },
-    { "name": "Power BI Expert", "date": "2022", "hours": 30 },
-    { "name": "HTML e CSS", "hours": 4 },
-    { "name": "Cursos de RAG e IA generativa", "institution": "DIO / Santander", "date": "2026" }
+    {
+      "name": "Santander — RAG e IA Generativa",
+      "institution": "DIO",
+      "date": "2026-10",
+      "inProgress": true
+    },
+    {
+      "name": "Accenture — Python para Análise e Automação de Dados",
+      "institution": "DIO",
+      "date": "2026-04",
+      "endDate": "2026-05"
+    },
+    { "name": "HTML e CSS", "institution": "Paulo Borges", "date": "2026", "hours": 4 },
+    {
+      "name": "Comunicação Empresarial, Técnicas de Vendas e Introdução à Bolsa",
+      "institution": "Prime Cursos",
+      "date": "2024"
+    },
+    { "name": "Profissão Programador", "institution": "Paulo Borges", "date": "2023", "hours": 110 },
+    { "name": "Power BI Expert na Prática", "institution": "Viscari Cursos", "date": "2022", "hours": 30 },
+    { "name": "Jornada Dev", "date": "2022", "hours": 6 }
   ]
 }

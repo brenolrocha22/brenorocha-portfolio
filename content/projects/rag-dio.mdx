@@ -1,7 +1,7 @@
 ---
 title: "Chatbot RAG de vendas de carros"
 slug: "rag-dio"
-summary: "Agente com SQL somente leitura e RAG que responde perguntas sobre uma base de 985 vendas sem deixar o modelo inventar números."
+summary: "Agente com SQL somente leitura e RAG que responde sobre uma base real de 985 vendas (nomes anonimizados) sem deixar o modelo inventar números."
 category: "ia"
 extraCategories: ["dados"]
 featured: true
@@ -31,10 +31,10 @@ O LLM escolhe a ferramenta e redige a resposta com as fontes, mas **não faz con
 
 ## Arquitetura
 
-1. A planilha original (XLSX) passa por `export_data.py`, que anonimiza os clientes e gera 3 CSVs.
-2. Os CSVs viram documentos indexados no ChromaDB, com embeddings locais (FastEmbed).
+1. A planilha original (XLSX), com vendas reais, passa por `export_data.py`, que anonimiza os nomes dos clientes e gera 3 CSVs: vendas, veículos e clientes.
+2. Os CSVs viram documentos de contexto indexados com LlamaIndex no ChromaDB, com embeddings locais (FastEmbed).
 3. Os mesmos CSVs alimentam o banco SQLite somente leitura.
-4. A interface em Chainlit envia a pergunta ao agente, que responde com as fontes usadas.
+4. A interface em Chainlit envia a pergunta ao agente, que usa o Llama 3.1 8B via OpenRouter e responde com as fontes usadas.
 
 O projeto roda com Docker e Docker Compose. Um relatório Power BI em formato PBIP (modelo TMDL e relatório PBIR, versionáveis no Git) usa a mesma base e mostra os mesmos totais: 985 vendas e faturamento de 59.835.220,02.
 

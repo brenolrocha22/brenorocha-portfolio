@@ -26,7 +26,7 @@ export const skillLevelMeta: Record<
   nocoes: {
     label: "Noções",
     marker: "●○○",
-    description: "o currículo declara como básico ou noções",
+    description: "declarado no currículo, ainda sem projeto público aqui",
     className: "text-muted-foreground",
   },
   profissional: {
@@ -68,8 +68,8 @@ export function usedSkillLevels(view: TechnologiesView): SkillLevel[] {
   return (Object.keys(skillLevelMeta) as SkillLevel[]).filter((level) => used.has(level));
 }
 
-/** Groups with technical skills (the others are sales/service practice and methods). */
-const TECHNICAL_GROUP_IDS = ["dados", "programacao", "ia"] as const;
+/** Groups with technical skills (the "negocio" group is sales/service practice and methods). */
+const TECHNICAL_GROUP_IDS = ["dados-bi", "python", "ia-generativa", "web-ferramentas"] as const;
 
 /** Names of the technical skills declared in content/technologies.json (used by the Person JSON-LD). */
 export function getTechnicalSkillNames(): string[] {

@@ -47,6 +47,10 @@ export const projectFrontmatterSchema = z
     github: z.object({ owner: z.string().min(1), repo: z.string().min(1) }).optional(),
     privateRepo: z.boolean().default(false),
     demoUrl: z.url().optional(),
+    /** Additional demos of the same project (e.g. another version), shown after `demoUrl`. */
+    extraDemos: z
+      .array(z.object({ label: z.string().min(2), url: z.url() }).strict())
+      .default([]),
     cover: z.object({ src: z.string().min(1), alt: z.string().min(5) }).optional(),
     metrics: z
       .array(
@@ -63,6 +67,10 @@ export const projectFrontmatterSchema = z
     draft: z.boolean().default(false),
   })
   .strict()
+  .refine((data) => data.extraDemos.length === 0 || Boolean(data.demoUrl), {
+    message: "extraDemos exige um demoUrl principal",
+    path: ["extraDemos"],
+  })
   .refine((data) => !(data.privateRepo && data.github), {
     message: "repositório privado não pode ter link do GitHub",
     path: ["github"],
@@ -129,6 +137,28 @@ export const aboutSchema = z
       )
       .min(1),
     howIWork: z.object({ title: z.string().min(2), steps: z.array(titledTextSchema).min(1) }),
+    /** Work history from the official 2026 résumé (D17): company, role and period only as stated there. */
+    experience: z
+      .object({
+        title: z.string().min(2),
+        items: z
+          .array(
+            z
+              .object({
+                role: z.string().min(2),
+                company: z.string().min(2),
+                /** "06/2024 – 12/2024", "2024 – atual"... exactly as in the résumé. */
+                period: z.string().min(4),
+                place: z.string().min(2),
+                text: z.string().min(10),
+              })
+              .strict(),
+          )
+          .min(1),
+        /** One-line summary of earlier roles. */
+        earlier: z.string().min(10).optional(),
+      })
+      .strict(),
     timeline: z.object({ title: z.string().min(2), milestones: z.array(titledTextSchema).min(1) }),
   })
   .strict();
@@ -185,7 +215,12 @@ export const certificationSchema = z
     name: z.string().min(3),
     /** Omitted while not confirmed (pending item 8). */
     institution: z.string().min(2).optional(),
+    /** Completion date, or start date when `endDate` or `inProgress` is set. */
     date: isoDateSchema.optional(),
+    /** End of a course that ran over a period (e.g. "2026-05"). */
+    endDate: isoDateSchema.optional(),
+    /** Course not finished yet: `date` is the start. */
+    inProgress: z.boolean().default(false),
     hours: z.number().positive().optional(),
     /** DIO validation code: builds https://www.dio.me/certificate/<code>. */
     code: z
@@ -194,6 +229,14 @@ export const certificationSchema = z
       .optional(),
   })
   .strict()
+  .refine((cert) => !(cert.inProgress && (cert.endDate || cert.code)), {
+    message: "curso em andamento não tem data de término nem código de validação",
+    path: ["inProgress"],
+  })
+  .refine((cert) => !cert.endDate || Boolean(cert.date), {
+    message: "endDate exige date (início)",
+    path: ["endDate"],
+  })
   .refine((cert) => !cert.code || cert.institution === "DIO", {
     message: "código de validação só é suportado para certificados da DIO",
     path: ["code"],

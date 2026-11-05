@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AboutExperience } from "@/components/about/AboutExperience";
 import { AboutNarrative } from "@/components/about/AboutNarrative";
 import { AboutTimeline } from "@/components/about/AboutTimeline";
 import { HowIWork } from "@/components/about/HowIWork";
@@ -15,7 +16,7 @@ export const metadata = pageMetadata({
   title: "Sobre",
   socialTitle: "Sobre Breno Rocha",
   description:
-    "Breno Lins Rocha, de Recife/PE: Administração, mais de 5 anos em vendas externas e transição para dados e IA. Disponível para início imediato.",
+    "Breno Lins Rocha, de Recife/PE: Administração, vendas B2B e inside sales em inglês para empresa dos EUA, em transição para dados e IA. Disponível para início imediato.",
   path: "/sobre",
 });
 
@@ -42,6 +43,10 @@ export default function AboutPage() {
         <div className="lg:col-span-4">
           <HowIWork content={about.howIWork} />
         </div>
+      </div>
+
+      <div className="mt-20">
+        <AboutExperience content={about.experience} />
       </div>
 
       <div className="mt-20">

@@ -24,7 +24,7 @@ Responder três perguntas de negócio a partir de uma base crua de vendas:
 
 ## Solução
 
-Um pipeline em Python (`sanitize_porsche.py`, `prepare_base.py` e `build_html.py`) trata a base e gera um **dashboard em um único arquivo HTML**, com:
+Um agente em Python trata a base crua de 100 vendas seguindo um **schema de regras**: registros que não passam com segurança nas regras são marcados como `INVALID`, em vez de corrigidos no chute. O pipeline (`sanitize_porsche.py`, `prepare_base.py` e `build_html.py`) gera um **dashboard em um único arquivo HTML** que responde às três perguntas (faturamento por família, dependência de crédito e receita não entregue), com:
 
 - filtros interativos;
 - link compartilhável que guarda os filtros na URL (por exemplo, `?familia=911&estado=CA`);

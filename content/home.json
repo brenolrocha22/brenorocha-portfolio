@@ -2,14 +2,24 @@
   "hero": {
     "eyebrow": "Recife/PE · Em transição para tecnologia · Disponível para início imediato",
     "pitch": [
-      "Sou formado em Administração e passei mais de 5 anos em vendas externas, usando SPIN Selling e CRM (HubSpot).",
+      "Sou formado em Administração e trabalhei com vendas B2B, trade marketing e inside sales, inclusive 100% em inglês para uma empresa dos EUA, usando SPIN Selling e CRM (HubSpot).",
       "Hoje construo soluções com Python, SQL e IA: chatbots que respondem com números vindos do banco, dashboards e modelos de dados.",
       "Antes de escrever código, entendo o cliente e o problema do negócio, como sempre fiz em campo."
     ],
     "facts": [
-      { "value": "5+ anos", "label": "vendas externas" },
-      { "value": "985 vendas", "label": "consultadas via SQL no RAG-DIO", "href": "/projetos/rag-dio" },
-      { "value": "Administração", "label": "formação" }
+      {
+        "value": "Inglês fluente",
+        "label": "atuação remota para empresa dos EUA"
+      },
+      {
+        "value": "985 vendas",
+        "label": "consultadas via SQL no RAG-DIO",
+        "href": "/projetos/rag-dio"
+      },
+      {
+        "value": "Administração",
+        "label": "formação"
+      }
     ]
   },
   "differential": {
@@ -18,7 +28,7 @@
     "steps": [
       {
         "title": "Ouvir",
-        "text": "Mais de 5 anos em vendas externas com SPIN Selling: perguntar antes de propor e entender o que o cliente precisa."
+        "text": "Vendas B2B, SDR e inside sales com SPIN Selling: perguntar antes de propor e entender o que o cliente precisa."
       },
       {
         "title": "Medir",
@@ -38,15 +48,15 @@
     "milestones": [
       {
         "title": "Administração",
-        "text": "Formação em Administração: base em negócios, processos e gestão."
+        "text": "Bacharelado em Administração (UniFG, 2019): base em negócios, processos e gestão."
       },
       {
         "title": "Vendas e atendimento",
-        "text": "Mais de 5 anos em vendas externas, com SPIN Selling e CRM HubSpot, e atendimento ao cliente como motorista de aplicativo."
+        "text": "2021–2024: propostas B2B com ROI e payback, base de contatos de 240 para 800 (+230%) no trade marketing e inside sales em inglês para empresa dos EUA. Motorista parceiro desde 2024."
       },
       {
         "title": "Dados e IA",
-        "text": "Transição para tecnologia: projetos práticos com Python, SQL e IA, documentados com problema, solução e limitações."
+        "text": "2026: bootcamps da DIO e projetos práticos com Python, SQL e IA, documentados com problema, solução e limitações."
       }
     ]
   },

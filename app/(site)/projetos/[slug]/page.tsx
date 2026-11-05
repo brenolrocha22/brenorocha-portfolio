@@ -100,6 +100,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 Ver demo
               </ExternalLink>
             ) : null}
+            {project.extraDemos.map((demo) => (
+              <ExternalLink key={demo.url} href={demo.url} className={secondaryButtonClass}>
+                Ver demo ({demo.label})
+              </ExternalLink>
+            ))}
           </div>
         ) : null}
 

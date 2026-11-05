@@ -23,7 +23,9 @@ export function projectJsonLd(project: Project) {
   return {
     ...base,
     codeRepository: githubRepoUrl(project.github),
-    ...(project.demoUrl ? { sameAs: [project.demoUrl] } : {}),
+    ...(project.demoUrl
+      ? { sameAs: [project.demoUrl, ...project.extraDemos.map((demo) => demo.url)] }
+      : {}),
   };
 }
 

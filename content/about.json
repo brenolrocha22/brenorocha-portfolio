@@ -1,20 +1,24 @@
 {
   "eyebrow": "Sobre",
   "title": "Do campo de vendas aos dados.",
-  "subtitle": "Administração · mais de 5 anos em vendas externas · em transição para dados e IA",
-  "summary": "Tenho anos de atendimento ao cliente em vendas e como motorista de aplicativo: escuta ativa, calma sob pressão e foco em resolver. Hoje construo projetos práticos com SQL, Python e IA, documentados com problema, solução e limitações.",
+  "subtitle": "Administração · vendas B2B e inside sales · inglês fluente · em transição para dados e IA",
+  "summary": "Trabalhei com vendas B2B, trade marketing e inside sales, inclusive em inglês para uma empresa dos EUA, e sigo no atendimento como motorista parceiro. Hoje construo projetos práticos com SQL, Python e IA, documentados com problema, solução e limitações.",
   "narrative": [
     {
       "title": "Origem",
-      "text": "Sou formado em Administração e passei mais de 5 anos em vendas externas. Usava SPIN Selling na negociação e o CRM HubSpot para registrar contatos, gerir o pipeline e fazer follow-up."
+      "text": "Sou formado em Administração pela UniFG (2019). Em vendas, usei SPIN Selling na negociação e o CRM HubSpot para registrar contatos, gerir o pipeline e fazer follow-up."
     },
     {
-      "title": "Atendimento sob pressão",
-      "text": "Também trabalhei como motorista de aplicativo, com atendimento diário, pontualidade e decisões rápidas sob pressão."
+      "title": "Vendas com números",
+      "text": "Em campo, montei propostas de energia solar com ROI e payback e ampliei uma base de contatos de 240 para 800 (+230%). Como SDR e inside sales, qualifiquei leads por critérios objetivos e trabalhei com metas de conversão."
+    },
+    {
+      "title": "Inglês no dia a dia",
+      "text": "Tenho inglês fluente: atendi clientes 100% em inglês como inside sales remoto para uma empresa da Flórida (EUA) e, antes, recebi hóspedes internacionais na hotelaria."
     },
     {
       "title": "Virada",
-      "text": "Comecei a construir projetos com SQL, Python e IA. Em 2026 concluí os bootcamps da DIO Bradesco — Agentes de IA do Zero à Prática e Reclame AQUI — Dados e IA na Prática.",
+      "text": "Comecei a construir projetos com SQL, Python e IA. Em 2026 concluí os bootcamps da DIO Bradesco — Agentes de IA do Zero à Prática e Reclame AQUI — Dados e IA na Prática, e sigo no Santander — RAG e IA Generativa.",
       "href": "/certificacoes",
       "linkLabel": "Ver certificações"
     },
@@ -26,7 +30,7 @@
     },
     {
       "title": "Agora",
-      "text": "Estou em transição para tecnologia, em Recife/PE, disponível para início imediato."
+      "text": "Estou em Recife/PE, disponível para início imediato, para trabalho remoto ou híbrido, com disponibilidade para viagens e mudança."
     }
   ],
   "howIWork": {
@@ -38,13 +42,54 @@
       { "title": "Documentar", "text": "Registrar o que foi feito e o que ainda falta." }
     ]
   },
+  "experience": {
+    "title": "Experiência",
+    "items": [
+      {
+        "role": "Motorista parceiro (autônomo)",
+        "company": "Uber",
+        "period": "2024 – atual",
+        "place": "Recife/PE",
+        "text": "Atendimento diário ao cliente, pontualidade e decisões rápidas sob pressão."
+      },
+      {
+        "role": "Inside Sales Representative",
+        "company": "My Cleaning Angel",
+        "period": "06/2024 – 12/2024",
+        "place": "Remoto · Flórida, EUA",
+        "text": "Atendimento e vendas 100% em inglês. Orçamentos a partir dos dados do imóvel, pipeline e metas de conversão no HubSpot, comunicação com a equipe pelo Slack."
+      },
+      {
+        "role": "Consultor de Vendas / SDR",
+        "company": "Estante Mágica",
+        "period": "04/2023 – 10/2023",
+        "place": "Remoto · São Paulo",
+        "text": "Qualificação de escolas por critérios objetivos, funil e cadência de contatos no CRM, negociação com SPIN Selling."
+      },
+      {
+        "role": "Promotor de Trade Marketing",
+        "company": "Jokerman Non Traditional Media",
+        "period": "07/2021 – 12/2022",
+        "place": "Recife/PE",
+        "text": "Carteira de lojas (Juntos Somos Mais). Base de contatos ampliada de 240 para 800 (+230%); a equipe Nordeste recebeu o prêmio Best Team in Brazil."
+      },
+      {
+        "role": "Consultor Externo de Vendas B2B",
+        "company": "EngeSol Energia Solar",
+        "period": "01/2021 – 06/2021",
+        "place": "Recife/PE",
+        "text": "Análise de faturas de energia e propostas com cálculo de ROI e payback."
+      }
+    ],
+    "earlier": "Antes: recepcionista no Mercure Navegantes (Accor), 2014–2015, atendendo hóspedes internacionais em inglês, e assistente administrativo na Vivo, 2014."
+  },
   "timeline": {
     "title": "Linha do tempo",
     "milestones": [
-      { "title": "Administração", "text": "Formação em Administração." },
-      { "title": "Vendas externas", "text": "Mais de 5 anos, com SPIN Selling e CRM HubSpot." },
-      { "title": "Motorista de aplicativo", "text": "Atendimento diário ao cliente." },
-      { "title": "Dados e IA", "text": "Projetos com Python, SQL e IA, publicados no GitHub." }
+      { "title": "Administração", "text": "Bacharelado em Administração, UniFG, concluído em 2019." },
+      { "title": "Vendas B2B e SDR", "text": "2021–2023: energia solar, trade marketing e SDR, com SPIN Selling e CRM." },
+      { "title": "Inside sales em inglês", "text": "2024: vendas remotas para empresa dos EUA; motorista parceiro desde 2024." },
+      { "title": "Dados e IA", "text": "2026: bootcamps da DIO e projetos com Python, SQL e IA no GitHub." }
     ]
   }
 }

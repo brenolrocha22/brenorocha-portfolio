@@ -19,6 +19,7 @@ export function personJsonLd(profile: Profile) {
     sameAs: [profile.linkedin, profile.github],
     // Only skills declared in content/technologies.json (no invented competencies).
     knowsAbout: getTechnicalSkillNames(),
+    knowsLanguage: ["pt-BR", "en"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Recife",
