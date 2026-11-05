@@ -40,8 +40,8 @@ export default async function HomePage() {
         <Container className="py-20 lg:py-32">
           <SectionHeading
             id="projetos-title"
-            eyebrow="Projetos em destaque"
-            title="Projetos com problema real e números conferidos"
+            eyebrow={`Projetos em destaque · ${String(projects.length).padStart(2, "0")}`}
+            title="Problema real, números conferidos"
             action={
               <Link href="/projetos" className={ghostLinkClass}>
                 Ver todos os projetos

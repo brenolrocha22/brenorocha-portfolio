@@ -8,7 +8,7 @@ function TocLinks({ items }: { items: TocItem[] }) {
         <li key={item.id}>
           <a
             href={`#${item.id}`}
-            className="inline-flex min-h-9 items-center text-small text-muted-foreground transition-colors duration-150 hover:text-foreground"
+            className="inline-flex min-h-9 items-center text-small text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground"
           >
             {item.title}
           </a>
@@ -29,7 +29,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
           Nesta página
           <ChevronDown
             aria-hidden="true"
-            className="size-4 transition-transform duration-150 group-open:rotate-180"
+            className="size-4 transition-transform duration-(--duration-fast) group-open:rotate-180"
           />
         </summary>
         <nav aria-label="Nesta página" className="px-4 pb-3">

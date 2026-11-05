@@ -7,7 +7,7 @@ import { ExternalLink } from "./ExternalLink";
 import { Monogram } from "./Monogram";
 
 const footerLinkClass =
-  "inline-flex min-h-11 items-center gap-2 text-muted-foreground transition-colors duration-150 hover:text-foreground md:min-h-9";
+  "inline-flex min-h-11 items-center gap-2 text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground md:min-h-9";
 
 export function Footer() {
   const profile = getProfile();

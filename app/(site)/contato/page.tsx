@@ -15,7 +15,7 @@ const description =
 export const metadata = pageMetadata({ title, description, path: "/contato" });
 
 const channelLinkClass =
-  "inline-flex min-h-11 items-center text-body text-foreground underline-offset-4 transition-colors duration-150 hover:text-accent hover:underline";
+  "inline-flex min-h-11 items-center text-body text-foreground underline-offset-4 transition-colors duration-(--duration-fast) hover:text-accent hover:underline";
 
 export default function ContactPage() {
   const content = getContactContent();

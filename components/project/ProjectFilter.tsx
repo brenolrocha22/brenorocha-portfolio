@@ -42,7 +42,7 @@ export function ProjectFilter({ projects }: { projects: ProjectSummary[] }) {
               aria-pressed={pressed}
               onClick={() => setActive(option.value)}
               className={cn(
-                "inline-flex h-11 shrink-0 items-center rounded-md border px-4 text-small transition-colors duration-150",
+                "inline-flex h-11 shrink-0 items-center rounded-md border px-4 text-small transition-colors duration-(--duration-fast)",
                 pressed
                   ? "border-accent bg-accent text-accent-ink"
                   : "border-border-strong text-muted-foreground hover:bg-surface-2 hover:text-foreground",

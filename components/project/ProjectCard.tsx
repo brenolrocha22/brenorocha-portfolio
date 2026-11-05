@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { ExternalLink } from "@/components/layout/ExternalLink";
 import { categoryLabels, projectCategoriesOf } from "@/lib/content/categories";
 import { githubRepoUrl } from "@/lib/content/project-links";
@@ -23,11 +23,14 @@ export function ProjectCard({ project, className, headingLevel = "h2" }: Project
   const href = `/projetos/${project.slug}`;
   const shownStack = project.stack.slice(0, MAX_BADGES);
   const hiddenCount = project.stack.length - shownStack.length;
+  // "985 vendas · números via SQL" → proof number + mono caption (design-refresh P1.9).
+  const [proof, ...proofRest] = project.highlight?.split(" · ") ?? [];
+  const proofCaption = proofRest.join(" · ");
 
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors duration-150 hover:border-border-strong hover:bg-surface-2 hover:shadow-card",
+        "group relative flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-[border-color,background-color,box-shadow] duration-(--duration-fast) hover:border-accent/40 hover:bg-surface-2 hover:shadow-glow-sm",
         className,
       )}
     >
@@ -38,7 +41,7 @@ export function ProjectCard({ project, className, headingLevel = "h2" }: Project
             alt={project.cover.alt}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-150 group-hover:scale-[1.02] motion-reduce:transform-none"
+            className="object-cover"
           />
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-3 text-subtle">
@@ -49,13 +52,19 @@ export function ProjectCard({ project, className, headingLevel = "h2" }: Project
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-mono-xs uppercase">
-          <span className="text-muted-foreground">
-            {projectCategoriesOf(project)
-              .map((category) => categoryLabels[category])
-              .join(" · ")}
-          </span>
-          <ProjectAvailability project={project} />
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-1 flex-wrap items-center justify-between gap-2 font-mono text-mono-xs uppercase">
+            <span className="text-muted-foreground">
+              {projectCategoriesOf(project)
+                .map((category) => categoryLabels[category])
+                .join(" · ")}
+            </span>
+            <ProjectAvailability project={project} />
+          </div>
+          <ArrowUpRight
+            aria-hidden="true"
+            className="size-4 shrink-0 text-muted-foreground transition-colors duration-(--duration-fast) group-hover:text-accent"
+          />
         </div>
 
         <Heading className="text-h3 font-semibold">
@@ -67,14 +76,16 @@ export function ProjectCard({ project, className, headingLevel = "h2" }: Project
           </Link>
         </Heading>
 
-        <p className="text-small text-muted-foreground">{project.summary}</p>
-
-        {project.highlight ? (
-          <p className="font-mono text-small text-data">
-            <span aria-hidden="true">▸ </span>
-            {project.highlight}
+        {proof ? (
+          <p className="flex flex-col gap-0.5 font-mono">
+            <span className="text-h3 font-medium text-foreground">{proof}</span>
+            {proofCaption ? (
+              <span className="text-mono-xs text-muted-foreground uppercase">{proofCaption}</span>
+            ) : null}
           </p>
         ) : null}
+
+        <p className="line-clamp-2 text-small text-muted-foreground">{project.summary}</p>
 
         <ul className="flex flex-wrap gap-2" aria-label="Tecnologias principais">
           {shownStack.map((tech) => (
@@ -92,19 +103,16 @@ export function ProjectCard({ project, className, headingLevel = "h2" }: Project
           ) : null}
         </ul>
 
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-x-4 pt-2">
-          <span aria-hidden="true" className="inline-flex min-h-11 items-center gap-1 text-small font-medium text-accent">
-            Ver estudo de caso <ArrowRight className="size-4" />
-          </span>
-          {project.github ? (
+        {project.github ? (
+          <div className="mt-auto flex justify-end pt-2">
             <ExternalLink
               href={githubRepoUrl(project.github)}
-              className="relative z-10 min-h-11 text-small text-muted-foreground transition-colors duration-150 hover:text-foreground"
+              className="relative z-10 min-h-11 text-small text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground"
             >
               GitHub<span className="sr-only">: {project.title}</span>
             </ExternalLink>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </article>
   );

@@ -1,24 +1,20 @@
 {
   "hero": {
-    "eyebrow": "Recife/PE · Em transição para tecnologia · Disponível para início imediato",
-    "pitch": [
-      "Sou formado em Administração e tenho mais de 5 anos em vendas orientadas a metas, KPIs e CRM (HubSpot): B2B, trade marketing e inside sales, inclusive 100% em inglês para uma empresa dos EUA.",
-      "Hoje construo soluções com Python, SQL e IA: chatbots que respondem com números vindos do banco, dashboards e modelos de dados.",
-      "Antes de escrever código, entendo o cliente e o problema do negócio, como sempre fiz em campo."
-    ],
+    "eyebrow": "Disponível · Recife/PE",
+    "lead": "Mais de 5 anos em vendas orientadas a metas, agora construindo projetos de dados e IA com testes e números conferíveis.",
     "facts": [
       {
-        "value": "Inglês fluente",
-        "label": "atuação remota para empresa dos EUA"
+        "value": "985 vendas",
+        "label": "consultadas via SQL no RAG-DIO",
+        "href": "/projetos/rag-dio"
       },
       {
         "value": "5+ anos",
         "label": "vendas orientadas a metas, KPIs e CRM"
       },
       {
-        "value": "985 vendas",
-        "label": "consultadas via SQL no RAG-DIO",
-        "href": "/projetos/rag-dio"
+        "value": "Inglês fluente",
+        "label": "atuação remota para empresa dos EUA"
       }
     ]
   },

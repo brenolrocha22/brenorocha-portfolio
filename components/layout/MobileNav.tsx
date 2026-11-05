@@ -66,7 +66,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen(true)}
-        className="inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors duration-150 hover:bg-surface-2"
+        className="inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors duration-(--duration-fast) hover:bg-surface-2"
       >
         <Menu aria-hidden="true" className="size-6" />
         <span className="sr-only">Abrir menu</span>
@@ -96,7 +96,7 @@ export function MobileNav() {
             ref={closeRef}
             type="button"
             onClick={() => close(true)}
-            className="inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors duration-150 hover:bg-surface-2"
+            className="inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors duration-(--duration-fast) hover:bg-surface-2"
           >
             <X aria-hidden="true" className="size-6" />
             <span className="sr-only">Fechar menu</span>
@@ -114,7 +114,7 @@ export function MobileNav() {
                     aria-current={active ? "page" : undefined}
                     onClick={() => close(false)}
                     className={cn(
-                      "flex min-h-12 items-center text-h2 font-medium decoration-2 underline-offset-8 transition-colors duration-150",
+                      "flex min-h-12 items-center text-h2 font-medium decoration-2 underline-offset-8 transition-colors duration-(--duration-fast)",
                       active
                         ? "text-foreground underline decoration-accent"
                         : "text-muted-foreground hover:text-foreground",
@@ -130,7 +130,7 @@ export function MobileNav() {
             href={contactNavItem.href}
             aria-current={isActivePath(pathname, contactNavItem.href) ? "page" : undefined}
             onClick={() => close(false)}
-            className="mt-auto inline-flex h-12 items-center justify-center rounded-md bg-accent px-5 font-medium text-accent-ink transition-colors duration-150 hover:bg-accent-hover"
+            className="mt-auto inline-flex h-12 items-center justify-center rounded-md bg-accent px-5 font-medium text-accent-ink transition-colors duration-(--duration-fast) hover:bg-accent-hover"
           >
             {contactNavItem.label}
           </Link>

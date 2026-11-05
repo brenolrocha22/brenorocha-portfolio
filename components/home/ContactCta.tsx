@@ -11,12 +11,14 @@ type ContactCtaProps = {
 };
 
 const textLinkClass =
-  "inline-flex min-h-11 items-center text-small text-muted-foreground transition-colors duration-150 hover:text-foreground";
+  "inline-flex min-h-11 items-center text-small text-muted-foreground transition-colors duration-(--duration-fast) hover:text-foreground";
 
 export function ContactCta({ content, profile }: ContactCtaProps) {
   return (
-    <section aria-labelledby="contato-title">
-      <Container className="py-20 lg:py-32">
+    <section aria-labelledby="contato-title" className="relative overflow-hidden">
+      {/* Same technical grid as the hero, fainter (decorative). */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-tech-grid opacity-50" />
+      <Container className="relative py-20 lg:py-32">
         <div className="flex flex-col gap-6 rounded-lg border border-border bg-surface p-6 md:p-10 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 id="contato-title" className="text-h2 font-semibold">

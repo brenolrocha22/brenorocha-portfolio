@@ -24,7 +24,7 @@ export function Header() {
           <DesktopNav />
           <NavLink
             href={contactNavItem.href}
-            className="hidden h-11 items-center rounded-md bg-accent px-5 text-small font-medium text-accent-ink transition-colors duration-150 hover:bg-accent-hover lg:inline-flex"
+            className="hidden h-11 items-center rounded-md bg-accent px-5 text-small font-medium text-accent-ink transition-colors duration-(--duration-fast) hover:bg-accent-hover lg:inline-flex"
             activeClassName="underline decoration-2 underline-offset-4"
           >
             {contactNavItem.label}

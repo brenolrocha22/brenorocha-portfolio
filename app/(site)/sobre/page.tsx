@@ -26,8 +26,8 @@ export default function AboutPage() {
   return (
     <Container className="py-16 lg:py-24">
       <JsonLd data={personJsonLd(getProfile())} />
-      <header className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
-        <Portrait />
+      <header className="portrait-scope flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
+        <Portrait variant="about" />
         <div>
           <p className={eyebrowClass}>{about.eyebrow}</p>
           <h1 className="mt-3 max-w-3xl text-h1 font-semibold text-balance">{about.title}</h1>

@@ -29,7 +29,7 @@ const labelClass = "text-small font-medium text-foreground";
 // Border uses the `subtle` token: 4.60:1 against the card (surface) and 4.25:1 against
 // the field (surface-2), above the 3:1 WCAG 1.4.11 asks for control boundaries.
 const controlClass =
-  "w-full rounded-md border border-subtle bg-surface-2 px-3 text-body text-foreground transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent aria-[invalid=true]:border-danger";
+  "w-full rounded-md border border-subtle bg-surface-2 px-3 text-body text-foreground transition-colors duration-(--duration-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent aria-[invalid=true]:border-danger";
 const errorClass = "text-small text-danger";
 
 type SubjectSelectProps = { subjects: ContactFormProps["subjects"]; defaultValue: ContactSubject };

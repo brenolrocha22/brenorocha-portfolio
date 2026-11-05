@@ -28,7 +28,7 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex size-11 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors duration-150 hover:bg-surface-2 hover:text-foreground"
+        className="inline-flex size-11 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors duration-(--duration-fast) hover:bg-surface-2 hover:text-foreground"
         aria-label="Copiar e-mail"
       >
         {copied ? (

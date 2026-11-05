@@ -2,6 +2,25 @@
 
 Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-DD.
 
+## [0.3.0] — 2026-11-05
+
+### Visual
+- Visual mais limpo e direto, com a mesma paleta e as mesmas fontes.
+- Home: hero mais curto, com status "Disponível · Recife/PE", nome e área, slogan, uma linha de apoio e dois botões.
+- Home: faixa com 3 provas abaixo dos botões (985 vendas do RAG-DIO, 5+ anos em vendas, inglês fluente).
+- Grade técnica de linhas finas no hero e no bloco de contato, no lugar dos pontos.
+- Foto do Breno no hero, em /sobre e na imagem de compartilhamento (Open Graph), com moldura e cantos âmbar. A foto entra assim que o arquivo `public/images/breno.jpg` for adicionado; até lá, aparece o monograma "BR".
+- Com mouse, a foto fica em cinza e ganha cor ao passar o cursor; em telas de toque, fica sempre colorida.
+- Cards de projeto: número-prova em destaque (ex.: "985 vendas"), resumo em 2 linhas e seta no canto.
+- Diferencial sem caixas, separado por linhas finas.
+- Botões com cantos mais retos e brilho âmbar discreto no hover; header com fundo mais translúcido.
+- Animações mais curtas (até 200 ms) e desligadas com "reduzir movimento".
+
+### Conteúdo
+- Home: os 3 parágrafos de apresentação viraram uma linha: "Mais de 5 anos em vendas orientadas a metas, agora construindo projetos de dados e IA com testes e números conferíveis."
+- Home: links de GitHub e LinkedIn saem do hero (seguem no rodapé e em /contato).
+- Home: seção de projetos com o título "Problema real, números conferidos" e a contagem de destaques.
+
 ## [0.2.0] — 2026-11-04
 
 ### Conteúdo

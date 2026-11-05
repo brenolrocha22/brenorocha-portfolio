@@ -11,11 +11,11 @@ export function Differential({ content }: { content: HomeContent["differential"]
     <section aria-labelledby="diferencial-title" className="border-b border-border">
       <Container className="py-20 lg:py-32">
         <SectionHeading id="diferencial-title" eyebrow={content.eyebrow} title={content.title} />
-        <ol className="mt-10 grid gap-6 md:grid-cols-3">
+        <ol className="mt-10 grid gap-10 md:grid-cols-3 md:gap-8">
           {content.steps.map((step, index) => (
             <li
               key={step.title}
-              className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"
+              className="flex flex-col gap-3 border-t border-border pt-6"
             >
               <span aria-hidden="true" className="font-mono text-mono-xs text-accent">
                 {String(index + 1).padStart(2, "0")}

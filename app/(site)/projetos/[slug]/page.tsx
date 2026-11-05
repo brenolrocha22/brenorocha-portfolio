@@ -69,7 +69,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <li>
               <Link
                 href="/projetos"
-                className="inline-flex min-h-11 items-center gap-1 transition-colors duration-150 hover:text-foreground"
+                className="inline-flex min-h-11 items-center gap-1 transition-colors duration-(--duration-fast) hover:text-foreground"
               >
                 <ArrowLeft aria-hidden="true" className="size-4" />
                 Projetos

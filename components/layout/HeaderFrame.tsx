@@ -20,7 +20,7 @@ export function HeaderFrame({ children }: { children: ReactNode }) {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 h-16 border-b bg-background/80 backdrop-blur-sm transition-colors duration-150",
+        "fixed inset-x-0 top-0 z-40 h-16 border-b bg-background/70 backdrop-blur-md transition-colors duration-(--duration-fast)",
         scrolled ? "border-border" : "border-transparent",
       )}
     >

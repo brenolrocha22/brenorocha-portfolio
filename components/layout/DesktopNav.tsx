@@ -19,7 +19,7 @@ export function DesktopNav() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "inline-flex min-h-11 items-center px-3 text-small transition-colors duration-150",
+                  "inline-flex min-h-11 items-center px-3 text-small transition-colors duration-(--duration-fast)",
                   "underline-offset-[10px] decoration-2",
                   active
                     ? "text-foreground underline decoration-accent"

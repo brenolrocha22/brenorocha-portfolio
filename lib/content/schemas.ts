@@ -84,7 +84,8 @@ export const homeSchema = z
   .object({
     hero: z.object({
       eyebrow: z.string().min(5),
-      pitch: z.array(z.string().min(10)).min(1).max(3),
+      /** One factual support line under the H1 (design-refresh P1.3). */
+      lead: z.string().min(20).max(140),
       facts: z
         .array(
           z.object({

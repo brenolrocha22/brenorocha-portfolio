@@ -23,6 +23,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-accent-line: var(--accent-line);
 
   /* Fontes (variáveis definidas por next/font em app/layout.tsx) */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -55,12 +56,45 @@
   --radius-md: var(--rounded-md);
   --radius-lg: var(--rounded-lg);
   --shadow-card: var(--elevation-card);
+  --shadow-glow-sm: var(--accent-glow-sm);
+  --shadow-glow-md: var(--accent-glow-md);
 
   /* Motion */
   --ease-brand: var(--ease-brand-curve);
 
   /* Largura de leitura */
   --container-measure: var(--measure);
+}
+
+/* Grade técnica de linhas 1px com máscara radial (design-refresh §3). Decorativa: usar com aria-hidden. */
+@utility bg-tech-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) var(--hairline), transparent var(--hairline)),
+    linear-gradient(to bottom, var(--grid-line) var(--hairline), transparent var(--hairline));
+  background-size: var(--grid-size) var(--grid-size);
+  mask-image: var(--grid-mask);
+}
+
+@layer components {
+  /*
+   * Foto (D20, rota A): em toque fica colorida; com mouse fica em cinza e ganha cor
+   * no hover/foco do bloco. prefers-reduced-motion zera a transição (reset abaixo).
+   */
+  .portrait-photo {
+    filter: var(--photo-filter-touch);
+    transition: filter var(--duration-base) var(--ease-brand-curve);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .portrait-photo {
+      filter: var(--photo-filter-idle);
+    }
+
+    .portrait-scope:hover .portrait-photo,
+    .portrait-scope:focus-within .portrait-photo {
+      filter: none;
+    }
+  }
 }
 
 @layer base {
