@@ -184,6 +184,13 @@
       "note": "Dados fictícios",
       "images": [
         {
+          "label": "Chat",
+          "src": "/projects/control-assistente-financeiro/chat-alimentacao.webp",
+          "alt": "Chat do Control: US$ 516,33 com alimentação em 3 transações confirmadas, pendente fora do total (dados fictícios)",
+          "width": 1310,
+          "height": 641
+        },
+        {
           "label": "Resumo",
           "src": "/projects/control-assistente-financeiro/cover.webp",
           "alt": "Control: consumo de US$ 2.202,29 separado de US$ 3.103,50 em dívidas e transferências",

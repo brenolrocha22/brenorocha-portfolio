@@ -24,7 +24,7 @@ export function DualTimeline({ items }: { items: Item[] }) {
   const fill = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <ol ref={ref} className="relative grid gap-6 pl-8 lg:pl-0">
+    <ol ref={ref} className="relative grid gap-6 overflow-x-clip pl-8 lg:pl-0">
       <span aria-hidden="true" className="absolute top-0 bottom-0 left-2.5 w-px bg-border lg:left-1/2" />
       <m.span
         aria-hidden="true"

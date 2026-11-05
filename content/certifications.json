@@ -8,7 +8,11 @@
       "code": "2009438A5FD56C1F13142260",
       "verifyProvider": "e-certificado",
       "level": "validado",
-      "thumb": { "src": "/certificates/profissao-programador.webp", "width": 960, "height": 679 },
+      "thumb": {
+        "src": "/certificates/profissao-programador.webp",
+        "width": 960,
+        "height": 679
+      },
       "topics": "front-end, back-end, arquitetura e padrões de projeto, cloud"
     },
     {
@@ -19,7 +23,11 @@
       "code": "MYGBSMWQ",
       "verifyProvider": "dio",
       "level": "validado",
-      "thumb": { "src": "/certificates/bradesco-agentes-ia.webp", "width": 960, "height": 680 }
+      "thumb": {
+        "src": "/certificates/bradesco-agentes-ia.webp",
+        "width": 960,
+        "height": 680
+      }
     },
     {
       "name": "Reclame AQUI — Dados e IA na Prática",
@@ -29,7 +37,11 @@
       "code": "UNMMITMG",
       "verifyProvider": "dio",
       "level": "validado",
-      "thumb": { "src": "/certificates/reclame-aqui-dados-ia.webp", "width": 960, "height": 680 }
+      "thumb": {
+        "src": "/certificates/reclame-aqui-dados-ia.webp",
+        "width": 960,
+        "height": 680
+      }
     },
     {
       "name": "HTML e CSS",
@@ -39,7 +51,11 @@
       "code": "3086508A3703FC0513142260",
       "verifyProvider": "e-certificado",
       "level": "validado",
-      "thumb": { "src": "/certificates/html-css.webp", "width": 960, "height": 679 }
+      "thumb": {
+        "src": "/certificates/html-css.webp",
+        "width": 960,
+        "height": 679
+      }
     },
     {
       "name": "Power BI Expert na Prática",
@@ -47,22 +63,24 @@
       "date": "2022-03-23",
       "hours": 30,
       "level": "com-certificado",
-      "thumb": { "src": "/certificates/power-bi-expert.webp", "width": 960, "height": 679 }
+      "thumb": {
+        "src": "/certificates/power-bi-expert.webp",
+        "width": 960,
+        "height": 679
+      }
     },
-    { "name": "Jornada Dev", "date": "2022", "hours": 6, "level": "com-certificado" },
+    {
+      "name": "Jornada Dev",
+      "date": "2022",
+      "hours": 6,
+      "level": "com-certificado"
+    },
     {
       "name": "Santander — RAG e IA Generativa",
       "institution": "DIO",
       "date": "2026-10",
       "inProgress": true,
       "level": "andamento"
-    },
-    {
-      "name": "Accenture — Python para Análise e Automação de Dados",
-      "institution": "DIO",
-      "date": "2026-04",
-      "endDate": "2026-05",
-      "level": "outro"
     },
     {
       "name": "Comunicação Empresarial, Técnicas de Vendas e Introdução à Bolsa",

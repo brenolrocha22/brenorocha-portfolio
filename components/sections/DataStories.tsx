@@ -88,9 +88,9 @@ function HowICalculated({ story }: { story: DataStory }) {
           className="size-4 transition-transform duration-(--duration-fast) group-open:rotate-180"
         />
       </summary>
-      <div className="grid gap-4 border-t border-border px-4 py-4">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 border-t border-border px-4 py-4">
         {story.code.map((block) => (
-          <figure key={block.href}>
+          <figure key={block.href} className="min-w-0">
             <figcaption className="flex flex-wrap items-center justify-between gap-2 font-mono text-mono-xs text-muted-foreground">
               {block.title}
               <a
@@ -327,9 +327,10 @@ export function DataStories({ stories }: { stories: DataStoryView[] }) {
                 className="lg:flex lg:min-h-[75svh] lg:items-center"
               >
                 <article
+                  id={`dados-${story.id}`}
                   aria-label={story.title}
                   className={cn(
-                    "w-full rounded-lg border border-border bg-veil p-5 transition-[border-color,box-shadow] duration-(--duration-base) lg:border-l-[3px]",
+                    "w-full scroll-mt-[calc(var(--header-height)+24px)] rounded-lg border border-border bg-veil p-5 transition-[border-color,box-shadow] duration-(--duration-base) lg:border-l-[3px]",
                     isActive ? "lg:border-l-accent lg:shadow-glow-sm" : "lg:border-l-transparent",
                   )}
                 >
@@ -348,7 +349,10 @@ export function DataStories({ stories }: { stories: DataStoryView[] }) {
         <ul className="mt-14 grid gap-6 md:grid-cols-2">
           {compact.map((story) => (
             <li key={story.id}>
-              <article aria-label={story.title} className="h-full overflow-hidden rounded-lg border border-border bg-veil">
+              <article
+                id={`dados-${story.id}`}
+                aria-label={story.title}
+                className="h-full scroll-mt-[calc(var(--header-height)+24px)] overflow-hidden rounded-lg border border-border bg-veil">
                 <button type="button" onClick={() => open(story, 0)} className="block w-full">
                   {story.images[0] ? <Frame image={story.images[0]} sizes="(min-width: 768px) 50vw, 100vw" /> : null}
                   <span className="sr-only">Ver imagem inteira: {story.title}</span>

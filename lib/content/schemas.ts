@@ -132,7 +132,22 @@ export const homeSchema = z
       .object({
         eyebrow: z.string().min(5),
         scrollHint: z.string().min(5),
-        teaserCaption: z.string().min(5),
+        /** Hero carousel: real prints, each one linking to its story/project. */
+        slides: z
+          .array(
+            z
+              .object({
+                src: z.string().regex(/^\/projects\/[a-z0-9-]+\/[a-z0-9-]+\.webp$/),
+                width: z.number().int().positive(),
+                height: z.number().int().positive(),
+                alt: z.string().min(10),
+                caption: z.string().min(5).max(60),
+                href: z.string().regex(/^(#[a-z0-9-]+|\/[a-z0-9\-/]*)$/),
+              })
+              .strict(),
+          )
+          .min(1)
+          .max(5),
         ctaPrimary: z.object({ label: z.string().min(3), section: z.enum(["dados", "projetos"]) }).strict(),
         ctaSecondary: z.object({ label: z.string().min(3), section: z.enum(["dados", "projetos"]) }).strict(),
         dados: focusCopySchema,

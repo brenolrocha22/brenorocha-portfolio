@@ -210,11 +210,6 @@
     mask-image: linear-gradient(to bottom, #000 72%, transparent);
   }
 
-  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-    .hero-teaser {
-      animation: teaser-float 6s ease-in-out infinite alternate;
-    }
-  }
 
   /* Spotlight do card (pointer: fine): posição escrita em --mx/--my sem re-render */
   .card-spotlight {
@@ -258,14 +253,6 @@
 @keyframes backdrop-drift-c {
   to {
     transform: translate3d(4vw, -3vh, 0);
-  }
-}
-@keyframes teaser-float {
-  from {
-    translate: 0 6px;
-  }
-  to {
-    translate: 0 -6px;
   }
 }
 @keyframes tech-pulse {

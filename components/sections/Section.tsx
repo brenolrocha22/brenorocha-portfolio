@@ -21,7 +21,7 @@ export function Section({ id, copy, children, aside, className }: SectionProps) 
   const titleId = `${id}-title`;
 
   return (
-    <section id={id} aria-labelledby={titleId} className={cn("py-20 lg:py-28", className)}>
+    <section id={id} aria-labelledby={titleId} className={cn("scroll-mt-(--header-height) py-20 lg:py-28", className)}>
       <Container>
         <Reveal className="flex flex-wrap items-end justify-between gap-6 border-t border-border pt-6">
           <div>

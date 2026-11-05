@@ -20,11 +20,15 @@ Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-
 - Contato no fim da página: e-mail, LinkedIn, GitHub e formulário.
 
 ### Visual e movimento
+- Hero: a janela de dashboard sai de cima do rosto e vira um carrossel ao lado do retrato, com 3 telas reais (dashboard Porsche, Power BI de vendas e o chat do Control). Cada tela leva à história ou ao projeto correspondente; troca a cada 4 segundos, pausa com o mouse ou o foco e tem botão de pausar. No celular, o carrossel aparece em largura total depois dos botões.
 - Fundo que muda de cor conforme a seção, botão flutuante de contato, botão de voltar ao topo com progresso de leitura e trilho de seções em telas largas.
 - Cards com transição animada ao filtrar e leve inclinação com o mouse.
 - Tudo respeita a opção "reduzir movimento" do sistema e o conteúdo aparece mesmo sem JavaScript.
 
 ### Correções
+- Um curso que não foi concluído saiu das certificações e da trajetória.
+- Navegar pelo menu ou por link não deixa mais o topo da seção escondido atrás do cabeçalho.
+- O print do chat do Control ("Quanto gastei com alimentação?") entrou no card e na história do Control.
 - O formulário de contato só mostra "Mensagem enviada" depois que o serviço de e-mail confirma o envio.
 
 ## [0.4.0] — 2026-11-05
@@ -75,7 +79,7 @@ Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-
 - Certificações com instituição e período:
   - Profissão Programador e HTML e CSS: Paulo Borges.
   - Power BI Expert na Prática: Viscari Cursos.
-  - Novos: Santander RAG e IA Generativa (em andamento) e Accenture Python para Análise e Automação de Dados.
+  - Novo: Santander RAG e IA Generativa (em andamento).
 - Projetos:
   - RAG-DIO: base real de 985 vendas, com nomes anonimizados.
   - Control: 24 testes, MCP com Plaid Sandbox e demo no Lovable.

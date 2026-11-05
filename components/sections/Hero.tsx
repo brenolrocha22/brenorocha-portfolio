@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { SectionLink } from "@/components/chrome/SectionLink";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/BrandIcons";
 import { Container } from "@/components/layout/Container";
@@ -9,12 +8,12 @@ import type { HomeContent } from "@/lib/content/home";
 import type { Profile } from "@/lib/content/profile";
 import type { Focus, ProofTile } from "@/lib/content/proof";
 import { technologyName } from "@/lib/content/technologies";
+import { HeroCarousel } from "./HeroCarousel";
 import { HeroMotion, RoleUnderline, ScrollHint } from "./HeroMotion";
 import { ProofBar } from "./ProofBar";
 
 const PORTRAIT = { src: "/images/breno-studio-3.jpg", width: 260, height: 533 };
 const PORTRAIT_ALT = "Retrato em preto e branco de Breno Rocha";
-const TEASER = { src: "/projects/porsche-sales-dashboard/cover.webp", width: 1400, height: 875 };
 
 const iconButtonClass =
   "inline-flex size-11 items-center justify-center rounded-sm border border-border-strong bg-veil text-foreground transition-colors duration-(--duration-fast) hover:border-accent hover:text-accent";
@@ -25,28 +24,6 @@ type HeroProps = {
   focus: Focus;
   tiles: ProofTile[];
 };
-
-function DashboardTeaser({ caption, className, sizes }: { caption: string; className?: string; sizes: string }) {
-  return (
-    <SectionLink
-      section="dados"
-      className={`group block overflow-hidden rounded-md border border-accent-line bg-surface shadow-card ${className ?? ""}`}
-    >
-      <Image
-        src={TEASER.src}
-        width={TEASER.width}
-        height={TEASER.height}
-        sizes={sizes}
-        alt="Recorte do dashboard de vendas Porsche: 36,4% da receita via crédito"
-        className="aspect-[16/10] w-full object-cover object-top transition-transform duration-(--duration-reveal) ease-out-expo group-hover:scale-[1.03]"
-      />
-      <span className="flex items-center justify-between gap-2 border-t border-border px-3 py-2 font-mono text-mono-xs text-data">
-        {caption}
-        <ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
-      </span>
-    </SectionLink>
-  );
-}
 
 /**
  * #inicio (spec §4.0 + correção 3): role, stack, contact and a dashboard proof in the first
@@ -62,7 +39,7 @@ export function Hero({ content, profile, focus, tiles }: HeroProps) {
     <section id="inicio" aria-labelledby="hero-title" className="relative overflow-x-clip">
       <Container className="relative flex flex-col gap-8 pt-6 pb-10 lg:min-h-[calc(100svh-var(--header-height))] lg:gap-10 lg:pt-10">
         <div className="grid flex-1 items-center gap-y-8 lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <div className="flex items-center gap-4">
               <div className="relative size-[72px] shrink-0 overflow-hidden rounded-full border border-accent-line lg:hidden">
                 <Image
@@ -139,17 +116,16 @@ export function Hero({ content, profile, focus, tiles }: HeroProps) {
               </div>
             </HeroMotion>
 
-            {/* Mobile/tablet: dashboard proof right after the CTAs. */}
-            <DashboardTeaser
-              caption={content.teaserCaption}
-              sizes="(max-width: 1024px) 100vw, 1px"
-              className="mt-8 lg:hidden"
-            />
+            {/* Mobile/tablet: carousel full width right after the CTAs (covers nothing). */}
+            <HeroCarousel slides={content.slides} sizes="(max-width: 1024px) 100vw, 1px" className="mt-8 lg:hidden" />
           </div>
 
-          {/* Desktop visual: native-size portrait (never upscaled) + dashboard teaser. */}
-          <div className="relative hidden justify-self-end lg:col-span-5 lg:block">
-            <figure className="relative w-[260px]">
+          {/* Desktop visual: carousel BESIDE the native-size portrait (touches its edge, never the face). */}
+          <div className="relative hidden items-end justify-end lg:col-span-6 lg:flex">
+            <div className="relative z-10 -mr-3 mb-12 w-[300px] shrink-0">
+              <HeroCarousel slides={content.slides} sizes="300px" />
+            </div>
+            <figure className="relative w-[260px] shrink-0">
               <div className="relative overflow-hidden rounded-md portrait-fade-bottom">
                 <Image
                   src={PORTRAIT.src}
@@ -165,9 +141,6 @@ export function Hero({ content, profile, focus, tiles }: HeroProps) {
               <span aria-hidden="true" className="absolute -top-2 -left-2 size-6 border-t border-l border-accent-line" />
               <span aria-hidden="true" className="absolute -top-2 -right-2 size-6 border-t border-r border-accent-line" />
             </figure>
-            <div className="hero-teaser absolute bottom-10 -left-36 w-[280px] -rotate-2">
-              <DashboardTeaser caption={content.teaserCaption} sizes="280px" />
-            </div>
           </div>
         </div>
 

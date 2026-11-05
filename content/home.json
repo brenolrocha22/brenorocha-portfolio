@@ -2,7 +2,6 @@
   "hero": {
     "eyebrow": "Disponível · Recife/PE · remoto ou híbrido",
     "scrollHint": "Role para ver os dashboards",
-    "teaserCaption": "36,4% da receita via crédito",
     "dados": {
       "role": "Analista de Dados Júnior",
       "alsoRole": "também Desenvolvedor Júnior",
@@ -36,7 +35,33 @@
     "ctaSecondary": {
       "label": "Conhecer projetos",
       "section": "projetos"
-    }
+    },
+    "slides": [
+      {
+        "src": "/projects/porsche-sales-dashboard/cover.webp",
+        "width": 1400,
+        "height": 875,
+        "alt": "Dashboard Porsche: 36,4% da receita via crédito e 39,6% entregue",
+        "caption": "36,4% da receita via crédito",
+        "href": "#dados-porsche"
+      },
+      {
+        "src": "/projects/rag-dio/powerbi.webp",
+        "width": 934,
+        "height": 538,
+        "alt": "Relatório Power BI de vendas de veículos: R$ 59,8 mi em 985 vendas",
+        "caption": "R$ 59,8 mi em 985 vendas",
+        "href": "#dados-vendas-veiculos"
+      },
+      {
+        "src": "/projects/control-assistente-financeiro/chat-alimentacao.webp",
+        "width": 1310,
+        "height": 641,
+        "alt": "Chat do Control respondendo: US$ 516,33 com alimentação em 3 transações (dados fictícios)",
+        "caption": "Chat: gastos sem dupla contagem",
+        "href": "/projetos/control-assistente-financeiro"
+      }
+    ]
   },
   "sections": {
     "dados": {
