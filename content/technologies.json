@@ -1,0 +1,113 @@
+{
+  "intro": "Tudo o que está aqui foi declarado no meu currículo. O nível mostra onde há prova: \"uso em projetos\" leva ao projeto público que comprova; \"noções\" é o que o próprio currículo chama de básico ou de noções.",
+  "groups": [
+    {
+      "id": "dados",
+      "title": "Dados",
+      "items": [
+        {
+          "id": "sql",
+          "name": "SQL básico",
+          "detail": "SELECT, WHERE, JOIN, GROUP BY",
+          "level": "nocoes"
+        },
+        {
+          "id": "excel",
+          "name": "Excel",
+          "level": "projetos",
+          "repos": ["dashboard-vendas-excel", "organizador-imposto-de-renda", "simulador-fundos-imobiliarios"]
+        },
+        {
+          "id": "power-bi",
+          "name": "Power BI",
+          "level": "projetos",
+          "projects": ["rag-dio"],
+          "repos": ["dashboard-vendas-excel"]
+        }
+      ]
+    },
+    {
+      "id": "programacao",
+      "title": "Programação",
+      "items": [
+        {
+          "id": "python",
+          "name": "Python",
+          "level": "projetos",
+          "projects": ["rag-dio", "deteccao-fraude-cartao", "casa-em-dia", "porsche-sales-dashboard"]
+        },
+        {
+          "id": "javascript",
+          "name": "JavaScript básico",
+          "level": "nocoes"
+        },
+        {
+          "id": "html-css",
+          "name": "HTML e CSS",
+          "level": "projetos",
+          "projects": ["casa-em-dia", "porsche-sales-dashboard"]
+        },
+        {
+          "id": "git-github",
+          "name": "Git e GitHub",
+          "level": "projetos",
+          "projects": ["rag-dio", "casa-em-dia", "porsche-sales-dashboard"]
+        },
+        {
+          "id": "docker",
+          "name": "Docker",
+          "level": "projetos",
+          "projects": ["rag-dio", "casa-em-dia"]
+        }
+      ]
+    },
+    {
+      "id": "ia",
+      "title": "IA",
+      "items": [
+        {
+          "id": "ia-generativa",
+          "name": "IA generativa",
+          "level": "projetos",
+          "projects": ["rag-dio"]
+        },
+        {
+          "id": "rag",
+          "name": "RAG",
+          "detail": "LlamaIndex, ChromaDB",
+          "level": "projetos",
+          "projects": ["rag-dio"]
+        },
+        {
+          "id": "agentes",
+          "name": "Agentes de IA",
+          "level": "projetos",
+          "projects": ["rag-dio"]
+        },
+        {
+          "id": "engenharia-de-prompt",
+          "name": "Engenharia de prompt",
+          "level": "projetos",
+          "repos": ["agente-whatsapp-cursos"]
+        }
+      ]
+    },
+    {
+      "id": "atendimento",
+      "title": "Atendimento e negócio",
+      "items": [
+        { "id": "spin-selling", "name": "SPIN Selling", "detail": "em negociação", "level": "profissional" },
+        { "id": "hubspot", "name": "CRM (HubSpot)", "detail": "registro e acompanhamento de contatos", "level": "profissional" },
+        { "id": "pipeline", "name": "Pipeline de vendas e follow-up", "level": "profissional" },
+        { "id": "telefone-whatsapp", "name": "Atendimento por telefone e WhatsApp", "level": "profissional" }
+      ]
+    },
+    {
+      "id": "metodos",
+      "title": "Métodos",
+      "items": [
+        { "id": "scrum", "name": "Scrum e métodos ágeis", "level": "nocoes" }
+      ]
+    }
+  ]
+}

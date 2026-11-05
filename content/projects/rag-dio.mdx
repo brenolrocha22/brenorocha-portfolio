@@ -1,0 +1,51 @@
+---
+title: "Chatbot RAG de vendas de carros"
+slug: "rag-dio"
+summary: "Agente com SQL somente leitura e RAG que responde perguntas sobre uma base de 985 vendas sem deixar o modelo inventar números."
+category: "ia"
+extraCategories: ["dados"]
+featured: true
+order: 1
+stack: ["Python 3.12", "LlamaIndex", "ChromaDB", "FastEmbed", "SQLite", "Chainlit", "OpenRouter", "Docker", "Power BI"]
+highlight: "985 vendas · números via SQL"
+tests: "19 testes automatizados (unittest)"
+github: { owner: "brenolrocha22", repo: "RAG-DIO" }
+metrics:
+  - { label: "Vendas na base", value: "985", source: "README e testes do repositório" }
+  - { label: "Resumos pré-calculados indexados", value: "119", source: "README do repositório" }
+  - { label: "Testes automatizados", value: "19", source: "suíte unittest do repositório" }
+---
+
+## Problema
+
+Um RAG "ingênuo" sobre uma tabela de vendas devolve só algumas linhas parecidas com a pergunta e não calcula totais. Quando alguém pergunta "quanto foi vendido?", o modelo tende a inventar o número.
+
+## Solução
+
+Um agente com **duas ferramentas**, cada uma para um tipo de pergunta:
+
+- `consultar_sql`: consulta um banco SQLite aberto em **modo somente leitura**, que aceita apenas `SELECT` e `WITH`. Totais, médias e contagens saem do SQL, não do modelo.
+- `buscar_documentos`: busca semântica (RAG) no ChromaDB, para vendas específicas e para 119 resumos pré-calculados.
+
+O LLM escolhe a ferramenta e redige a resposta com as fontes, mas **não faz contas**.
+
+## Arquitetura
+
+1. A planilha original (XLSX) passa por `export_data.py`, que anonimiza os clientes e gera 3 CSVs.
+2. Os CSVs viram documentos indexados no ChromaDB, com embeddings locais (FastEmbed).
+3. Os mesmos CSVs alimentam o banco SQLite somente leitura.
+4. A interface em Chainlit envia a pergunta ao agente, que responde com as fontes usadas.
+
+O projeto roda com Docker e Docker Compose. Um relatório Power BI em formato PBIP (modelo TMDL e relatório PBIR, versionáveis no Git) usa a mesma base e mostra os mesmos totais: 985 vendas e faturamento de 59.835.220,02.
+
+## Resultados
+
+- Números rastreáveis: cada total vem de uma consulta SQL que pode ser conferida.
+- 19 testes automatizados conferem o comportamento crítico, entre eles: o total de faturamento bate com o CSV (`test_total_revenue_matches_csv`), a conexão é somente leitura (`test_connection_is_read_only`) e comandos diferentes de `SELECT` são rejeitados (`test_rejects_statements_other_than_select`).
+- A anonimização dos clientes também é coberta por teste.
+
+## Limitações
+
+- Não há demo online: o chatbot precisa de uma chave da OpenRouter para rodar.
+- Ainda não há integração contínua (CI) executando os testes.
+- O README é longo e concentra muita informação em um só arquivo.

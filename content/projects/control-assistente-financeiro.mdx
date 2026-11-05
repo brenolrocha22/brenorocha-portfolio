@@ -1,0 +1,51 @@
+---
+title: "Control: assistente financeiro por chat"
+slug: "control-assistente-financeiro"
+summary: "Chat em um app de banco fictício com motor de respostas determinístico e testado: responde sobre saldo e gastos sem inventar valores."
+category: "web"
+featured: true
+order: 3
+status: "em-evolucao"
+stack: ["React 18", "Vite", "TypeScript", "GitHub Actions", "Lovable", "MCP"]
+highlight: "14 testes · motor de respostas determinístico"
+tests: "14 testes do motor de respostas"
+github: { owner: "brenolrocha22", repo: "control-assistente-financeiro" }
+demoUrl: "https://brenolrocha22.github.io/control-assistente-financeiro/"
+metrics:
+  - { label: "Testes do motor de respostas", value: "14", source: "repositório" }
+  - { label: "Transações na amostra local", value: "17 (fictícias)", source: "repositório" }
+---
+
+## Problema
+
+Consultar saldo e gastos sem navegar por telas de extrato, e sem que a "IA" invente valores.
+
+## Solução
+
+Um chat dentro de um app de banco fictício ("Control"). As respostas vêm de um **motor determinístico**, não de um modelo de linguagem:
+
+- separa dinheiro disponível, dívida e limite;
+- distingue consumo de pagamento de fatura, para não contar o mesmo gasto duas vezes;
+- recusa pedidos fora do escopo, como Pix e conversão;
+- avisa quando encontra um termo que não conhece.
+
+## Arquitetura
+
+1. A interface (React + Vite + TypeScript) envia a pergunta à camada de serviços (`dataSource.ts`).
+2. A camada de serviços lê o conjunto de dados local.
+3. O motor `answer.ts` monta a resposta em blocos, coberto por 14 testes.
+
+O deploy no GitHub Pages é feito por GitHub Actions. O projeto usa MCP para consultar a documentação da Pluggy e o Plaid Sandbox; as credenciais ficam em variáveis de ambiente, fora do repositório.
+
+## Resultados
+
+- Demo pública funcionando no GitHub Pages.
+- Evidências de funcionamento documentadas em `docs/evidencias` no repositório.
+- Aviso explícito de que todos os dados são fictícios.
+
+## Limitações
+
+- É somente leitura e usa uma amostra local de 17 transações fictícias.
+- A "IA" é um motor de regras, não um modelo de linguagem (o README deixa isso claro).
+- Esta é a Etapa 1: a Etapa 2, com backend no Plaid Sandbox, ainda não foi feita.
+- Existe também uma versão no Lovable que diverge da versão do repositório (a divergência está documentada).

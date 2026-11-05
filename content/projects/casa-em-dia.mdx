@@ -1,0 +1,43 @@
+---
+title: "Casa em Dia: finanças da casa"
+slug: "casa-em-dia"
+summary: "App web local para fechar o mês da casa: calendário financeiro, projeção de caixa, recorrências, custos do carro por km e valor da hora."
+category: "web"
+featured: true
+order: 4
+stack: ["Python", "SQLite", "JavaScript", "HTML", "CSS", "Docker"]
+highlight: "Uso real · servidor Python só com a biblioteca padrão"
+github: { owner: "brenolrocha22", repo: "CASA-EM-DIA" }
+---
+
+## Problema
+
+Fechar o mês da casa (receitas, despesas, custos do carro e horas de trabalho) em uma ferramenta própria, gratuita e que roda no próprio computador.
+
+## Solução
+
+Um dashboard web com:
+
+- calendário financeiro e projeção de caixa;
+- lançamentos recorrentes e exportação para calendário (`.ics`);
+- custos de dirigir por aplicativo (Uber) por km rodado e cálculo do valor da hora.
+
+É um app de **uso pessoal real**, publicado com licença MIT.
+
+## Arquitetura
+
+1. Servidor em Python (`server.py`) usando só a biblioteca padrão, sem frameworks.
+2. Banco SQLite guardado em um volume Docker.
+3. Front-end em JavaScript, HTML e CSS puros, sem bibliotecas.
+4. Dockerfile e Docker Compose para rodar o app em contêiner.
+
+## Privacidade
+
+- Por padrão, o servidor aceita conexões apenas de `127.0.0.1` (a própria máquina).
+- O repositório não contém dados do usuário, e as capturas de tela têm os valores borrados.
+
+## Limitações
+
+- Não há testes automatizados.
+- Não há demo pública: o app foi feito para rodar localmente.
+- Não há autenticação nem HTTPS (o README avisa sobre isso).

@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "eyebrow": "Recife/PE · Em transição para tecnologia · Disponível para início imediato",
+    "pitch": [
+      "Sou formado em Administração e passei mais de 5 anos em vendas externas, usando SPIN Selling e CRM (HubSpot).",
+      "Hoje construo soluções com Python, SQL e IA: chatbots que respondem com números vindos do banco, dashboards e modelos de dados.",
+      "Antes de escrever código, entendo o cliente e o problema do negócio, como sempre fiz em campo."
+    ],
+    "facts": [
+      { "value": "5+ anos", "label": "vendas externas" },
+      { "value": "985 vendas", "label": "consultadas via SQL no RAG-DIO", "href": "/projetos/rag-dio" },
+      { "value": "Administração", "label": "formação" }
+    ]
+  },
+  "differential": {
+    "eyebrow": "Diferencial",
+    "title": "Entendo o problema antes do código",
+    "steps": [
+      {
+        "title": "Ouvir",
+        "text": "Mais de 5 anos em vendas externas com SPIN Selling: perguntar antes de propor e entender o que o cliente precisa."
+      },
+      {
+        "title": "Medir",
+        "text": "Python e SQL para tirar os números dos dados, em vez de suposições."
+      },
+      {
+        "title": "Entregar conferível",
+        "text": "No RAG-DIO e no Control, a IA não inventa números: os totais vêm de SQL ou de regras. Uso testes nos projetos de IA e front-end.",
+        "href": "/projetos/rag-dio",
+        "linkLabel": "Ver o RAG-DIO"
+      }
+    ]
+  },
+  "trajectory": {
+    "eyebrow": "Trajetória",
+    "title": "Do campo aos dados",
+    "milestones": [
+      {
+        "title": "Administração",
+        "text": "Formação em Administração: base em negócios, processos e gestão."
+      },
+      {
+        "title": "Vendas e atendimento",
+        "text": "Mais de 5 anos em vendas externas, com SPIN Selling e CRM HubSpot, e atendimento ao cliente como motorista de aplicativo."
+      },
+      {
+        "title": "Dados e IA",
+        "text": "Transição para tecnologia: projetos práticos com Python, SQL e IA, documentados com problema, solução e limitações."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Vamos conversar?",
+    "text": "Recrutamento ou projeto: me conte o problema e eu volto com uma proposta simples."
+  }
+}

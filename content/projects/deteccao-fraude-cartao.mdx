@@ -1,0 +1,45 @@
+---
+title: "Detecção de fraude em cartão de crédito"
+slug: "deteccao-fraude-cartao"
+summary: "Comparação de três modelos em 284.807 transações com 0,17% de fraude, limiar escolhido na validação e explicação das decisões com SHAP."
+category: "ml"
+extraCategories: ["dados"]
+featured: true
+order: 2
+stack: ["Python", "pandas", "NumPy", "scikit-learn", "XGBoost", "SHAP", "Matplotlib", "Jupyter"]
+highlight: "284.807 transações · 3 modelos comparados"
+github: { owner: "brenolrocha22", repo: "deteccao-fraude-cartao" }
+metrics:
+  - { label: "Transações analisadas", value: "284.807", source: "README do repositório" }
+  - { label: "Fraudes na base", value: "492 (0,17%)", source: "README do repositório" }
+  - { label: "Modelos comparados", value: "3", source: "notebook do repositório" }
+  - { label: "Falsos positivos do modelo principal", value: "204", source: "README do repositório (XGBoost com peso de classes)" }
+---
+
+## Problema
+
+A base tem 284.807 transações e apenas 492 fraudes (0,17%). Nesse cenário a acurácia engana: um modelo que classifica tudo como "normal" acerta 99,8% e não encontra nenhuma fraude.
+
+## Solução
+
+- Comparação de três modelos: **Regressão Logística**, **Random Forest** e **XGBoost**, testando peso de classes, undersampling e oversampling para lidar com o desbalanceamento.
+- O limiar de decisão é escolhido no conjunto de validação (maior precisão mantendo recall de pelo menos 85%) e só depois aplicado no teste.
+- **SHAP** explica quais variáveis mais pesam nas decisões do modelo (V14, V4, V12 e V10).
+
+## Metodologia
+
+- Divisão estratificada 60/20/20 entre treino, validação e teste.
+- Escalonamento ajustado apenas no treino, para não vazar informação do teste.
+- AUC-PR como métrica de comparação, mais adequada que a acurácia para classes raras.
+- O README discute o custo de negócio de cada escolha: detectar mais fraudes significa gerar mais alarmes falsos.
+
+## Resultados
+
+O modelo principal do estudo é o **XGBoost com peso de classes**, que registra **204 falsos positivos**.
+
+Para comparação, o repositório também avalia a variante **XGBoost com oversampling**: ela detecta **89,8% das fraudes do teste (88 de 98)** com **156 falsos positivos** em 56.864 transações normais. A tabela de undersampling × oversampling no README mostra essa troca entre detectar fraudes e gerar alarmes.
+
+## Limitações
+
+- O projeto é um notebook único: não há script ou pipeline reprodutível separado.
+- Não há testes automatizados.

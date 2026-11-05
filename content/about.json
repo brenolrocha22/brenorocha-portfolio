@@ -1,0 +1,50 @@
+{
+  "eyebrow": "Sobre",
+  "title": "Do campo de vendas aos dados.",
+  "subtitle": "Administração · mais de 5 anos em vendas externas · em transição para dados e IA",
+  "summary": "Tenho anos de atendimento ao cliente em vendas e como motorista de aplicativo: escuta ativa, calma sob pressão e foco em resolver. Hoje construo projetos práticos com SQL, Python e IA, documentados com problema, solução e limitações.",
+  "narrative": [
+    {
+      "title": "Origem",
+      "text": "Sou formado em Administração e passei mais de 5 anos em vendas externas. Usava SPIN Selling na negociação e o CRM HubSpot para registrar contatos, gerir o pipeline e fazer follow-up."
+    },
+    {
+      "title": "Atendimento sob pressão",
+      "text": "Também trabalhei como motorista de aplicativo, com atendimento diário, pontualidade e decisões rápidas sob pressão."
+    },
+    {
+      "title": "Virada",
+      "text": "Comecei a construir projetos com SQL, Python e IA. Em 2026 concluí os bootcamps da DIO Bradesco — Agentes de IA do Zero à Prática e Reclame AQUI — Dados e IA na Prática.",
+      "href": "/certificacoes",
+      "linkLabel": "Ver certificações"
+    },
+    {
+      "title": "Como trabalho",
+      "text": "Gosto de descobrir a causa de um problema, explicar a solução de forma simples e registrar o que foi feito. Escrevo testes nos projetos de IA e front-end.",
+      "href": "/projetos",
+      "linkLabel": "Ver projetos"
+    },
+    {
+      "title": "Agora",
+      "text": "Estou em transição para tecnologia, em Recife/PE, disponível para início imediato."
+    }
+  ],
+  "howIWork": {
+    "title": "Como trabalho",
+    "steps": [
+      { "title": "Ouvir", "text": "Perguntar antes de propor, como no SPIN Selling." },
+      { "title": "Achar a causa", "text": "Descobrir o que de fato gera o problema." },
+      { "title": "Explicar simples", "text": "Mostrar a solução sem jargão." },
+      { "title": "Documentar", "text": "Registrar o que foi feito e o que ainda falta." }
+    ]
+  },
+  "timeline": {
+    "title": "Linha do tempo",
+    "milestones": [
+      { "title": "Administração", "text": "Formação em Administração." },
+      { "title": "Vendas externas", "text": "Mais de 5 anos, com SPIN Selling e CRM HubSpot." },
+      { "title": "Motorista de aplicativo", "text": "Atendimento diário ao cliente." },
+      { "title": "Dados e IA", "text": "Projetos com Python, SQL e IA, publicados no GitHub." }
+    ]
+  }
+}

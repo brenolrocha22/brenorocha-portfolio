@@ -1,0 +1,20 @@
+{
+  "eyebrow": "Contato",
+  "title": "Vamos conversar?",
+  "intro": "Vaga, projeto ou dúvida sobre algum trabalho: escreva pelo formulário ou use um dos canais diretos.",
+  "channelsTitle": "Canais diretos",
+  "availability": "Recife/PE · disponível para início imediato",
+  "subjects": [
+    { "value": "vaga", "label": "Vaga/recrutamento" },
+    { "value": "solucao", "label": "Projeto/solução" },
+    { "value": "outro", "label": "Outro" }
+  ],
+  "messages": {
+    "success": "Mensagem enviada. Obrigado pelo contato!",
+    "unavailable": "O envio pelo formulário está indisponível no momento. Sua mensagem não foi enviada: escreva direto para o e-mail ou chame no LinkedIn.",
+    "rateLimited": "Você enviou várias mensagens em pouco tempo. Aguarde alguns minutos ou use o e-mail direto.",
+    "error": "Não foi possível enviar agora. Tente de novo em instantes ou use o e-mail direto.",
+    "invalid": "Revise os campos destacados e tente de novo.",
+    "expired": "Sua mensagem não foi enviada porque a página ficou aberta por muito tempo. O texto foi mantido: confira e clique em “Enviar mensagem” de novo."
+  }
+}

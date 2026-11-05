@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# env files (secrets never versioned)
+.env*.local
+.env
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+
+# third-party IDE snapshots (not project content)
+/.snapshots/
+
+# Documentos internos do projeto (ficam só na máquina local)
+/docs/
+/specs/
+/.claude/
+/CLAUDE.md
+

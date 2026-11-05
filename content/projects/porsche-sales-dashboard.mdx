@@ -1,0 +1,44 @@
+---
+title: "Dashboard de vendas Porsche"
+slug: "porsche-sales-dashboard"
+summary: "Pipeline em Python que trata a base de vendas e gera um dashboard em HTML único, com filtros, link compartilhável e painel de qualidade do dado."
+category: "dados"
+featured: true
+order: 5
+stack: ["Python", "HTML", "JavaScript", "JSON", "Excel (XLSX)", "GitHub Pages"]
+highlight: "3 perguntas de negócio · demo online"
+github: { owner: "brenolrocha22", repo: "porsche-sales-dashboard" }
+demoUrl: "https://brenolrocha22.github.io/porsche-sales-dashboard/"
+metrics:
+  - { label: "Perguntas de negócio respondidas", value: "3", source: "README do repositório" }
+  - { label: "Linhas de dados", value: "100", source: "base de laboratório da DIO" }
+---
+
+## Problema
+
+Responder três perguntas de negócio a partir de uma base crua de vendas:
+
+1. Quais famílias de modelos sustentam a receita?
+2. Quanto as vendas dependem de crédito?
+3. Quanto da receita ainda não foi entregue?
+
+## Solução
+
+Um pipeline em Python (`sanitize_porsche.py`, `prepare_base.py` e `build_html.py`) trata a base e gera um **dashboard em um único arquivo HTML**, com:
+
+- filtros interativos;
+- link compartilhável que guarda os filtros na URL (por exemplo, `?familia=911&estado=CA`);
+- painel de qualidade do dado.
+
+Os nomes de pessoas são removidos antes de a base ser embutida na página. O prompt usado no processo está documentado no repositório.
+
+## Arquitetura
+
+1. `data/`: base bruta, base tratada e base final em JSON.
+2. `agents/`: scripts Python de tratamento e geração.
+3. `src/dashboard.template.html`: modelo que vira o `index.html` publicado no GitHub Pages.
+
+## Limitações
+
+- A base tem apenas 100 linhas de dados de laboratório da DIO.
+- Não há testes automatizados do tratamento.

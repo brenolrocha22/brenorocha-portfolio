@@ -1,0 +1,39 @@
+{
+  "eyebrow": "Soluções",
+  "title": "Problemas que já resolvi, com o projeto que comprova.",
+  "intro": "Cada solução abaixo é um tipo de problema que já enfrentei em um projeto público. O link leva ao estudo de caso, com o que funcionou e o que ainda falta.",
+  "solutions": [
+    {
+      "id": "assistente-com-dados",
+      "title": "Assistente que responde com dados do banco",
+      "problem": "Perguntas sobre vendas, saldo ou gastos respondidas por chat, sem a IA inventar números.",
+      "approach": "Os totais vêm de consultas SQL ou de regras com testes; o modelo de linguagem só conversa.",
+      "projects": ["rag-dio", "control-assistente-financeiro"]
+    },
+    {
+      "id": "dashboards-e-analise",
+      "title": "Dashboards e análise de dados",
+      "problem": "Uma base crua de vendas que precisa responder perguntas de negócio de forma visual.",
+      "approach": "Tratamento da base com Python e painel com filtros (HTML ou Power BI), com os mesmos totais da origem.",
+      "projects": ["porsche-sales-dashboard", "rag-dio"]
+    },
+    {
+      "id": "modelos-de-classificacao",
+      "title": "Modelos de classificação e risco",
+      "problem": "Separar casos raros (como fraudes) de uma massa de casos normais, sabendo o custo de cada erro.",
+      "approach": "Comparação de modelos, limiar escolhido na validação e explicação das decisões.",
+      "projects": ["deteccao-fraude-cartao"]
+    },
+    {
+      "id": "apps-de-organizacao",
+      "title": "Apps de organização pessoal e financeira",
+      "problem": "Fechar o mês da casa (receitas, despesas, custos do carro, horas de trabalho) em uma ferramenta própria.",
+      "approach": "App web local com banco SQLite e Docker, pensado para o uso real do dia a dia.",
+      "projects": ["casa-em-dia"]
+    }
+  ],
+  "cta": {
+    "title": "Tem um problema parecido?",
+    "text": "Me conte o problema e eu volto com uma proposta simples."
+  }
+}

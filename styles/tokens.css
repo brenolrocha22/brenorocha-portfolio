@@ -1,0 +1,76 @@
+/*
+ * Design tokens — "Relatório de campo" (docs/design/design-system.md §2).
+ * Fonte única de verdade. Componentes usam apenas as classes geradas em
+ * app/globals.css (@theme inline); proibido hex/fonte literal em componente.
+ * Tema único dark.
+ */
+:root {
+  /* Cores base */
+  --bg: #0b0d0e;
+  --surface: #131618;
+  --surface-2: #1a1e21;
+  --border: #262b2f;
+  --border-strong: #3a4146;
+  --text: #e8e6e1;
+  --text-muted: #9ba1a6;
+  --text-subtle: #7a8187; /* só texto >= 18px ou ícone */
+  --accent: #e0a458;
+  --accent-hover: #ebb878;
+  --accent-ink: #0b0d0e;
+  --data: #7fb7be;
+  --success: #6fbf8e;
+  --warning: #d9b44a;
+  --danger: #e5736b;
+
+  /* Aliases no padrão shadcn/ui (mesma fonte de verdade) */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --primary: var(--accent);
+  --primary-foreground: var(--accent-ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--text-muted);
+  --input: var(--border-strong);
+  --ring: var(--accent);
+  --destructive: var(--danger);
+
+  /* Raio */
+  --rounded-sm: 4px;
+  --rounded-md: 8px;
+  --rounded-lg: 12px;
+
+  /* Sombra (só no hover de card) */
+  --elevation-card: 0 1px 0 0 var(--border) inset, 0 8px 24px -12px rgb(0 0 0 / 0.6);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --ease-brand-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Layout */
+  --header-height: 64px;
+  --measure: 68ch;
+
+  /* Escala tipográfica — mobile */
+  --fs-display: 2.5rem;
+  --fs-h1: 2rem;
+  --fs-h2: 1.5rem;
+  --fs-h3: 1.25rem;
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-mono-xs: 0.75rem;
+}
+
+/* Escala tipográfica — desktop (lg) */
+@media (min-width: 1024px) {
+  :root {
+    --fs-display: 4rem;
+    --fs-h1: 3rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.375rem;
+    --fs-body-lg: 1.25rem;
+  }
+}

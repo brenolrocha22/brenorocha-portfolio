@@ -1,0 +1,24 @@
+{
+  "title": "Certificados com dados conferíveis.",
+  "intro": "Os certificados da DIO têm código público: o link abre a página de validação. Nos demais, mostro só o que está confirmado.",
+  "certifications": [
+    {
+      "name": "Bradesco — Agentes de IA do Zero à Prática",
+      "institution": "DIO",
+      "date": "2026-11-04",
+      "hours": 55,
+      "code": "MYGBSMWQ"
+    },
+    {
+      "name": "Reclame AQUI — Dados e IA na Prática",
+      "institution": "DIO",
+      "date": "2026-10-29",
+      "hours": 29,
+      "code": "UNMMITMG"
+    },
+    { "name": "Profissão Programador", "date": "2023", "hours": 110 },
+    { "name": "Power BI Expert", "date": "2022", "hours": 30 },
+    { "name": "HTML e CSS", "hours": 4 },
+    { "name": "Cursos de RAG e IA generativa", "institution": "DIO / Santander", "date": "2026" }
+  ]
+}
