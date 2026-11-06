@@ -5,7 +5,7 @@ Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-
 ## [1.0.0] — 2026-11-05
 
 ### Estrutura
-- O site vira uma página única com âncoras: Início → Dados → Projetos → Trajetória → Certificados → Tecnologias → Contato. O menu rola suave até cada seção e marca a seção ativa.
+- O site vira uma página única com âncoras: Início → Dados → Projetos → Trajetória → Certificados → Tecnologias → Contato. O menu rola suave até cada seção e marca a seção ativa; as abas do menu aparecem só com o nome, sem numeração.
 - Endereços antigos (/sobre, /projetos, /solucoes, /tecnologias, /certificacoes, /contato) redirecionam para a seção certa da página única. Os estudos de caso (/projetos/…) continuam, com botão "Todos os projetos" que volta ao filtro usado.
 - Endereço com `?foco=dev` destaca o perfil de Desenvolvedor Júnior; sem parâmetro, o destaque é Analista de Dados Júnior.
 

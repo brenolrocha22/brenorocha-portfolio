@@ -84,9 +84,6 @@ export function SiteNav({ email, linkedin, github }: SiteNavProps) {
                     isActive ? "font-semibold" : "hover:underline hover:decoration-1 hover:underline-offset-[6px]",
                   )}
                 >
-                  <span aria-hidden="true" className="font-mono text-mono-xs">
-                    {section.index}
-                  </span>
                   {section.label}
                 </SectionLink>
               </li>
@@ -168,9 +165,6 @@ export function SiteNav({ email, linkedin, github }: SiteNavProps) {
                     active === section.id ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  <span aria-hidden="true" className="w-8 font-mono text-mono-xs text-accent">
-                    {section.index}
-                  </span>
                   {section.label}
                 </SectionLink>
               </li>
