@@ -10,7 +10,7 @@ Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-
 - Endereço com `?foco=dev` destaca o perfil de Desenvolvedor Júnior; sem parâmetro, o destaque é Analista de Dados Júnior.
 
 ### Conteúdo
-- Hero com o cargo "Analista de Dados Júnior" (também Desenvolvedor Júnior), stack principal, botões "Explorar dashboards" e "Conhecer projetos" e um recorte do dashboard Porsche.
+- Hero com o cargo "Analista de Dados Júnior" (também Desenvolvedor Júnior), stack principal, botões "Explorar dashboards" e "Conhecer projetos" e um carrossel com telas reais dos dashboards.
 - Barra de provas com 4 números calculados do próprio conteúdo: 3 dashboards publicados, 198 h em certificados validados por código, estudando desde 2022 e 10 projetos públicos no GitHub.
 - Nova seção "Do dado à decisão": cada dashboard com a pergunta de negócio, o que o dado mostrou, a leitura e o bloco "Como calculei" com trechos reais do código (regras de tratamento do Porsche e a consulta SQL do RAG-DIO conferida por teste).
 - Projetos: 10 projetos públicos com filtros por tipo, linguagem, banco e selos (demo, testes, Docker), com imagens reais dos repositórios.
@@ -20,7 +20,10 @@ Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-
 - Contato no fim da página: e-mail, LinkedIn, GitHub e formulário.
 
 ### Visual e movimento
-- Hero: a janela de dashboard sai de cima do rosto e vira um carrossel ao lado do retrato, com 3 telas reais (dashboard Porsche, Power BI de vendas e o chat do Control). Cada tela leva à história ou ao projeto correspondente; troca a cada 4 segundos, pausa com o mouse ou o foco e tem botão de pausar. No celular, o carrossel aparece em largura total depois dos botões.
+- Hero: a janela de dashboard sai de cima do rosto e vira um carrossel maior e legível ao lado do retrato, com 3 telas reais (dashboard Porsche, Power BI de vendas e o chat do Control). Cada tela tem legenda com pergunta e resultado (ex.: "Quanto da receita ainda não foi entregue? → 55,5%") e leva à história ou ao projeto correspondente; troca a cada 4 segundos, pausa com o mouse ou o foco e tem botão de pausar.
+- Hero mais compacto no computador: nome um pouco menor e os 4 indicadores dentro da primeira tela.
+- No celular, o carrossel aparece logo depois do nome, do cargo e dos botões; o texto de apoio e as ferramentas vêm em seguida.
+- Com `?foco=dev`, o botão principal vira "Conhecer projetos" e o carrossel começa pelo chat do Control.
 - Fundo que muda de cor conforme a seção, botão flutuante de contato, botão de voltar ao topo com progresso de leitura e trilho de seções em telas largas.
 - Cards com transição animada ao filtrar e leve inclinação com o mouse.
 - Tudo respeita a opção "reduzir movimento" do sistema e o conteúdo aparece mesmo sem JavaScript.
@@ -29,6 +32,11 @@ Mudanças publicadas em https://brenorocha.vercel.app. Datas no formato AAAA-MM-
 - Um curso que não foi concluído saiu das certificações e da trajetória.
 - Navegar pelo menu ou por link não deixa mais o topo da seção escondido atrás do cabeçalho.
 - O print do chat do Control ("Quanto gastei com alimentação?") entrou no card e na história do Control.
+- Quem usa "reduzir movimento" não tem mais erro ao carregar a página.
+- O texto do hero aparece já no primeiro carregamento, sem esperar animação (carrega mais rápido no celular).
+- O botão flutuante de contato não cobre mais o carrossel: ele só aparece depois do hero.
+- Filtros de projetos: "Todos" só fica marcado quando não há nenhum filtro ativo.
+- Cargo-alvo igual em todo lugar (imagem de compartilhamento, dados estruturados e rodapé): Analista de Dados Júnior, também Desenvolvedor Júnior.
 - O formulário de contato só mostra "Mensagem enviada" depois que o serviço de e-mail confirma o envio.
 
 ## [0.4.0] — 2026-11-05

@@ -3,13 +3,13 @@
 import { useRef, type PointerEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { m, useMotionValue, useReducedMotion, useSpring } from "motion/react";
+import { m, useMotionValue, useSpring } from "motion/react";
 import { ArrowUpRight, Container as ContainerIcon, FlaskConical, Radio } from "lucide-react";
 import { badgeLabels, languageLabels, typeLabels } from "@/lib/content/project-filters";
 import type { ProjectSummary } from "@/lib/content/projects";
 import type { ProjectBadge, ProjectType } from "@/lib/content/schemas";
 import { SPRING_SOFT } from "@/lib/motion";
-import { useMediaQuery } from "@/lib/use-copy";
+import { useMediaQuery, usePrefersReducedMotion } from "@/lib/use-copy";
 import { cn } from "@/lib/utils";
 
 export type ProjectCardData = Pick<
@@ -87,7 +87,7 @@ function Cover({ project, large }: { project: ProjectCardData; large: boolean })
 export function ProjectCard({ project, large = false }: { project: ProjectCardData; large?: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const fine = useMediaQuery("(hover: hover) and (pointer: fine)");
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const tilt = fine && !reduced;
   const rotateX = useSpring(useMotionValue(0), SPRING_SOFT);
   const rotateY = useSpring(useMotionValue(0), SPRING_SOFT);

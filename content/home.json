@@ -13,6 +13,19 @@
         "excel",
         "git-github",
         "typescript"
+      ],
+      "ctaPrimary": {
+        "label": "Explorar dashboards",
+        "section": "dados"
+      },
+      "ctaSecondary": {
+        "label": "Conhecer projetos",
+        "section": "projetos"
+      },
+      "slideOrder": [
+        0,
+        1,
+        2
       ]
     },
     "dev": {
@@ -26,15 +39,20 @@
         "sql",
         "docker",
         "github-actions"
+      ],
+      "ctaPrimary": {
+        "label": "Conhecer projetos",
+        "section": "projetos"
+      },
+      "ctaSecondary": {
+        "label": "Explorar dashboards",
+        "section": "dados"
+      },
+      "slideOrder": [
+        2,
+        0,
+        1
       ]
-    },
-    "ctaPrimary": {
-      "label": "Explorar dashboards",
-      "section": "dados"
-    },
-    "ctaSecondary": {
-      "label": "Conhecer projetos",
-      "section": "projetos"
     },
     "slides": [
       {
@@ -42,7 +60,7 @@
         "width": 1400,
         "height": 875,
         "alt": "Dashboard Porsche: 36,4% da receita via crédito e 39,6% entregue",
-        "caption": "36,4% da receita via crédito",
+        "caption": "Quanto da receita ainda não foi entregue? → 55,5%",
         "href": "#dados-porsche"
       },
       {
@@ -50,7 +68,7 @@
         "width": 934,
         "height": 538,
         "alt": "Relatório Power BI de vendas de veículos: R$ 59,8 mi em 985 vendas",
-        "caption": "R$ 59,8 mi em 985 vendas",
+        "caption": "Qual marca mais fatura? → Honda, R$ 11,8 mi",
         "href": "#dados-vendas-veiculos"
       },
       {
@@ -58,7 +76,7 @@
         "width": 1310,
         "height": 641,
         "alt": "Chat do Control respondendo: US$ 516,33 com alimentação em 3 transações (dados fictícios)",
-        "caption": "Chat: gastos sem dupla contagem",
+        "caption": "Quanto gastei com alimentação? → US$ 516,33",
         "href": "/projetos/control-assistente-financeiro"
       }
     ]

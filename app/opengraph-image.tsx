@@ -17,6 +17,8 @@ const PHOTO_SIZE = 420;
 export default async function OpengraphImage() {
   const profile = getProfile();
   const photo = await readPortraitDataUri();
+  // profile.headline = "Analista de Dados Júnior · também Desenvolvedor Júnior"
+  const [role = profile.shortName, alsoRole] = (profile.headline ?? "").split(" · ");
 
   return new ImageResponse(
     (
@@ -70,9 +72,9 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <div style={{ display: "flex", fontSize: 80, lineHeight: 1.05 }}>{profile.shortName}</div>
             <div style={{ display: "flex", fontSize: photo ? 40 : 44, color: ogColors.accent }}>
-              Analista de Dados Júnior
+              {role}
             </div>
-            <div style={{ display: "flex", fontSize: 28, color: ogColors.muted }}>também Desenvolvedor Júnior</div>
+            {alsoRole ? <div style={{ display: "flex", fontSize: 28, color: ogColors.muted }}>{alsoRole}</div> : null}
             <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
               {["SQL", "Python", "Power BI", "Excel"].map((chip) => (
                 <div

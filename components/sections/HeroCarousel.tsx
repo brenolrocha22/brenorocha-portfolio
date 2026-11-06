@@ -3,9 +3,9 @@
 import { useEffect, useId, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useReducedMotion } from "motion/react";
 import { ArrowUpRight, Pause, Play } from "lucide-react";
 import type { HomeContent } from "@/lib/content/home";
+import { usePrefersReducedMotion } from "@/lib/use-copy";
 import { cn } from "@/lib/utils";
 
 type Slide = HomeContent["hero"]["slides"][number];
@@ -36,7 +36,7 @@ export function HeroCarousel({ slides, sizes, className }: { slides: Slide[]; si
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const id = useId();
 
   const rotating = !reduced && !userPaused && !hovered && !focused && slides.length > 1;
@@ -67,7 +67,7 @@ export function HeroCarousel({ slides, sizes, className }: { slides: Slide[]; si
     <section
       aria-roledescription="carousel"
       aria-label="Dashboards e projetos em destaque"
-      className={cn("@container relative", className)}
+      className={cn("relative", className)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setFocused(true)}
@@ -106,17 +106,17 @@ export function HeroCarousel({ slides, sizes, className }: { slides: Slide[]; si
             );
           })}
         </div>
-        <div className="flex flex-col gap-0.5 border-t border-border px-3 py-2 @sm:flex-row @sm:items-center @sm:justify-between @sm:gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 border-t border-border px-3 py-1.5">
           {current ? (
             <SlideLink
               slide={current}
-              className="inline-flex min-h-9 min-w-0 items-center gap-1.5 font-mono text-mono-xs text-data hover:text-accent"
+              className="inline-flex min-h-11 min-w-0 flex-1 basis-64 items-center gap-1.5 text-small font-medium text-data hover:text-accent"
             >
-              <span className="truncate">{current.caption}</span>
+              <span>{current.caption}</span>
               <ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
             </SlideLink>
           ) : null}
-          <div className="-ml-2 flex shrink-0 items-center @sm:ml-0">
+          <div className="ml-auto flex shrink-0 items-center">
             {slides.map((slide, slideIndex) => (
               <button
                 key={slide.src}
@@ -136,12 +136,12 @@ export function HeroCarousel({ slides, sizes, className }: { slides: Slide[]; si
                 />
               </button>
             ))}
-            {slides.length > 1 && !reduced ? (
+            {slides.length > 1 ? (
               <button
                 type="button"
                 onClick={() => setUserPaused((value) => !value)}
                 aria-label={userPaused ? "Retomar rotação automática" : "Pausar rotação automática"}
-                className="ml-1 inline-flex size-8 items-center justify-center rounded-sm text-muted-foreground hover:text-foreground"
+                className="ml-1 inline-flex size-8 items-center justify-center rounded-sm text-muted-foreground hover:text-foreground motion-reduce:hidden"
               >
                 {userPaused ? <Play aria-hidden="true" className="size-3.5" /> : <Pause aria-hidden="true" className="size-3.5" />}
               </button>

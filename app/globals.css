@@ -216,6 +216,19 @@
     background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgb(169 210 245 / 0.08), transparent 70%);
   }
 
+  /*
+   * Entrada do hero só com CSS e só com transform: o conteúdo já sai visível no HTML do
+   * servidor (sem opacity: 0), então não atrasa o LCP nem depende de hidratação.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-rise {
+      animation: hero-rise 600ms var(--ease-out-expo) both;
+    }
+    .hero-underline {
+      animation: hero-underline 600ms var(--ease-out-expo) 300ms both;
+    }
+  }
+
   /* Anel de "chamado" do botão de contato (uma vez por sessão) */
   .fab-call {
     animation: fab-call 1.2s var(--ease-out-expo) 2;
@@ -253,6 +266,16 @@
 @keyframes backdrop-drift-c {
   to {
     transform: translate3d(4vw, -3vh, 0);
+  }
+}
+@keyframes hero-rise {
+  from {
+    transform: translateY(12px);
+  }
+}
+@keyframes hero-underline {
+  from {
+    transform: scaleX(0);
   }
 }
 @keyframes tech-pulse {

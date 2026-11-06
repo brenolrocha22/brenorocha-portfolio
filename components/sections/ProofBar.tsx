@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { animate, m, useInView, useReducedMotion } from "motion/react";
+import { animate, useInView } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import type { ProofTile } from "@/lib/content/proof";
-import { EASE_OUT_EXPO, STAGGER } from "@/lib/motion";
+import { EASE_OUT_EXPO } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/lib/use-copy";
 
 const numberFormatter = new Intl.NumberFormat("pt-BR");
 
@@ -19,7 +20,7 @@ const format = (tile: ProofTile, value: number) => (tile.countUp ? numberFormatt
 function Counter({ tile }: { tile: ProofTile }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const [display, setDisplay] = useState<number | null>(null);
   const armed = useRef<boolean | null>(null);
 
@@ -56,19 +57,11 @@ function Counter({ tile }: { tile: ProofTile }) {
 export function ProofBar({ tiles }: { tiles: ProofTile[] }) {
   return (
     <ul aria-label="Provas em números" className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-4">
-      {tiles.map((tile, index) => (
-        <m.li
-          key={tile.id}
-          data-reveal=""
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.4, ease: EASE_OUT_EXPO, delay: index * STAGGER }}
-          className="relative bg-veil"
-        >
+      {tiles.map((tile) => (
+        <li key={tile.id} className="relative bg-veil">
           <a
             href={tile.href}
-            className="group flex h-full min-h-28 flex-col justify-between gap-2 p-4 transition-colors duration-(--duration-fast) hover:bg-surface-2 md:p-5"
+            className="group flex h-full min-h-28 flex-col justify-between gap-2 p-4 lg:min-h-24 lg:py-3 transition-colors duration-(--duration-fast) hover:bg-surface-2 md:p-5"
           >
             <span className="font-serif text-h1 leading-none text-foreground">
               <span className="sr-only">
@@ -83,7 +76,7 @@ export function ProofBar({ tiles }: { tiles: ProofTile[] }) {
               <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 text-accent" />
             </span>
           </a>
-        </m.li>
+        </li>
       ))}
     </ul>
   );

@@ -39,7 +39,7 @@ export async function sendContact(
   formData: FormData,
 ): Promise<ContactActionState> {
   // 1. Honeypot: humans never see this field.
-  const honeypot = formData.get("website");
+  const honeypot = formData.get("hp_ref_x7");
   if (typeof honeypot === "string" && honeypot.trim() !== "") return silentSuccess();
 
   // 2. Time trap: elapsed time measured on the client (no clock skew between machines).

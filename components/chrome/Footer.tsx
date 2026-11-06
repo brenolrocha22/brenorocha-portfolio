@@ -11,11 +11,12 @@ export function Footer() {
     <footer className="mt-auto border-t border-border bg-surface">
       <Container className="flex flex-col gap-2 py-6 font-mono text-mono-xs text-muted-foreground sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
         <p>
-          © {year} {profile.name} · {profile.location}
+          © {year} {profile.name} · {profile.headline ? `${profile.headline.split(" · ")[0]} · ` : ""}
+          {profile.location}
         </p>
         <ExternalLink
           href={siteRepoUrl}
-          className="min-h-11 text-foreground underline-offset-4 hover:text-accent hover:underline sm:min-h-0"
+          className="min-h-11 text-foreground underline-offset-4 hover:text-accent hover:underline sm:min-h-6"
         >
           Código deste site
         </ExternalLink>

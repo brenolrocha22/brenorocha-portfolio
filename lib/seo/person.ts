@@ -13,7 +13,8 @@ export function personJsonLd(profile: Profile) {
     "@id": personId(),
     name: profile.name,
     alternateName: profile.shortName,
-    jobTitle: "Analista de Dados Júnior",
+    // Target role = first part of the headline ("Analista de Dados Júnior · também …").
+    jobTitle: profile.headline?.split(" · ")[0] ?? "Analista de Dados Júnior",
     description: profile.tagline,
     url: absoluteUrl("/"),
     email: `mailto:${profile.email}`,

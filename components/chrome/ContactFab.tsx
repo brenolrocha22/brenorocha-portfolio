@@ -8,7 +8,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons/BrandIcons";
 import { useActiveSection } from "@/lib/active-section";
 import { SectionLink } from "./SectionLink";
 import { SPRING_SOFT } from "@/lib/motion";
-import { useCopy, useMediaQuery } from "@/lib/use-copy";
+import { useCopy } from "@/lib/use-copy";
 import { cn } from "@/lib/utils";
 
 type ContactFabProps = { email: string; linkedin: string; github: string };
@@ -18,12 +18,11 @@ const itemClass =
   "flex min-h-11 w-full items-center gap-3 rounded-sm px-3 text-left text-small text-foreground transition-colors duration-(--duration-fast) hover:bg-surface-2";
 
 /**
- * Floating contact button (mobile and desktop). Mobile: always, except while #contato is on
- * screen. Desktop: after leaving the hero (which already lists the channels), never on #contato.
+ * Floating contact button (mobile and desktop): shown after leaving the hero, hidden while
+ * #contato is on screen.
  */
 export function ContactFab({ email, linkedin, github }: ContactFabProps) {
   const active = useActiveSection();
-  const desktop = useMediaQuery("(min-width: 1024px)");
   const [open, setOpen] = useState(false);
   const [calling, setCalling] = useState(false);
   const { copy, feedback, copied } = useCopy("E-mail copiado.");
@@ -33,7 +32,9 @@ export function ContactFab({ email, linkedin, github }: ContactFabProps) {
 
   const onHome = usePathname() === "/";
   const pastHero = !onHome || (active !== null && active !== "inicio");
-  const visible = active !== "contato" && (!desktop || pastHero);
+  // Hidden over the hero at every width (it already lists the channels and, on mobile, the
+  // FAB would cover the carousel) and over #contato.
+  const visible = active !== "contato" && pastHero;
 
   // One "call" per session, 8 s after load, if the visitor has not interacted yet.
   useEffect(() => {

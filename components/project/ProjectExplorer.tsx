@@ -107,15 +107,16 @@ export function ProjectExplorer({ projects, focus, initial, techIndex }: Project
           className="scroll-fade-x -mx-5 flex gap-2 overflow-x-auto px-5 py-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:[mask-image:none]"
         >
           {[null, ...types].map((type: ProjectType | null) => {
-            const active = filters.tipo === type && (type !== null || !filters.tech);
-            const count = countWith({ ...filters, tipo: type });
+            // "Todos" is pressed only when nothing is filtered; clicking it clears every filter.
+            const active = type === null ? isAll : filters.tipo === type;
+            const count = type === null ? projects.length : countWith({ ...filters, tipo: type });
             return (
               <button
                 key={type ?? "todos"}
                 type="button"
                 aria-pressed={active}
                 disabled={count === 0}
-                onClick={() => update({ ...filters, tipo: type, tech: type === null ? null : filters.tech })}
+                onClick={() => update(type === null ? emptyFilters : { ...filters, tipo: type })}
                 className={cn(
                   chipBase,
                   active ? "border-accent text-accent-ink" : "border-border-strong bg-veil text-foreground hover:border-accent",

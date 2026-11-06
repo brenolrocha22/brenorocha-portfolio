@@ -1,13 +1,22 @@
 {
   "eyebrow": "Contato",
-  "title": "Vamos conversar?",
+  "title": "LET'S BUILD SOMETHING.",
   "intro": "Vaga, projeto ou dúvida sobre algum trabalho: escreva pelo formulário ou use um dos canais diretos.",
   "channelsTitle": "Canais diretos",
   "availability": "Recife/PE · início imediato · remoto, híbrido, viagens ou mudança",
   "subjects": [
-    { "value": "vaga", "label": "Vaga/recrutamento" },
-    { "value": "solucao", "label": "Projeto/solução" },
-    { "value": "outro", "label": "Outro" }
+    {
+      "value": "vaga",
+      "label": "Vaga/recrutamento"
+    },
+    {
+      "value": "solucao",
+      "label": "Projeto/solução"
+    },
+    {
+      "value": "outro",
+      "label": "Outro"
+    }
   ],
   "messages": {
     "success": "Mensagem enviada. Obrigado pelo contato!",

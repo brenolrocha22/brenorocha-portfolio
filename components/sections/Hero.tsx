@@ -9,9 +9,9 @@ import type { Profile } from "@/lib/content/profile";
 import type { Focus, ProofTile } from "@/lib/content/proof";
 import { technologyName } from "@/lib/content/technologies";
 import { HeroCarousel } from "./HeroCarousel";
-import { HeroMotion, RoleUnderline, ScrollHint } from "./HeroMotion";
 import { ProofBar } from "./ProofBar";
 
+/** Native size of breno-studio-3.jpg (260×533): shown at 200 px on desktop, never upscaled. */
 const PORTRAIT = { src: "/images/breno-studio-3.jpg", width: 260, height: 533 };
 const PORTRAIT_ALT = "Retrato em preto e branco de Breno Rocha";
 
@@ -26,20 +26,23 @@ type HeroProps = {
 };
 
 /**
- * #inicio (spec §4.0 + correção 3): role, stack, contact and a dashboard proof in the first
- * screen. Desktop: text 7 col / portrait 5 col with the dashboard teaser over its corner.
- * Mobile: the portrait becomes a 72 px avatar and the teaser goes full width after the CTAs.
+ * #inicio. Desktop 1440×900: text (5 col) · a legible dashboard carousel (~430 px) beside a
+ * smaller native-resolution portrait (7 col), and the 4 proof numbers inside the first fold.
+ * Mobile: name, role and CTAs, then the carousel full width, then lead and stack chips.
+ * Nothing here is hidden in the server HTML: the entrance animation is CSS transform only
+ * (no opacity), so it never delays the LCP and needs no hydration.
  */
 export function Hero({ content, profile, focus, tiles }: HeroProps) {
   const copy = content[focus];
   const [firstName, ...rest] = profile.shortName.split(" ");
   const lastName = rest.join(" ");
+  const slides = copy.slideOrder.flatMap((index) => (content.slides[index] ? [content.slides[index]] : []));
 
   return (
     <section id="inicio" aria-labelledby="hero-title" className="relative overflow-x-clip">
-      <Container className="relative flex flex-col gap-8 pt-6 pb-10 lg:min-h-[calc(100svh-var(--header-height))] lg:gap-10 lg:pt-10">
-        <div className="grid flex-1 items-center gap-y-8 lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-6">
+      <Container className="relative flex flex-col gap-8 pt-6 pb-10 lg:gap-6 lg:pt-4 lg:pb-8">
+        <div className="grid items-center gap-y-8 lg:grid-cols-12 lg:gap-x-8">
+          <div className="lg:col-span-5">
             <div className="flex items-center gap-4">
               <div className="relative size-[72px] shrink-0 overflow-hidden rounded-full border border-accent-line lg:hidden">
                 <Image
@@ -62,39 +65,31 @@ export function Hero({ content, profile, focus, tiles }: HeroProps) {
             <h1
               id="hero-title"
               tabIndex={-1}
-              className="mt-6 font-serif text-hero-name font-normal text-foreground focus:outline-none"
+              className="mt-4 font-serif text-hero-name font-normal text-foreground focus:outline-none"
             >
               <span className="block">{firstName}</span>
               {lastName ? <span className="block">{lastName}</span> : null}
             </h1>
 
-            <p className="mt-6 text-h2 font-medium text-foreground">
-              <RoleUnderline>{copy.role}</RoleUnderline>
+            <p className="mt-5 text-h2 font-medium text-foreground">
+              <span className="relative inline-block">
+                {copy.role}
+                <span
+                  aria-hidden="true"
+                  className="hero-underline absolute inset-x-0 -bottom-1 h-0.5 origin-left bg-accent"
+                />
+              </span>
             </p>
             <p className="mt-1 text-body text-muted-foreground">{copy.alsoRole}</p>
 
-            <HeroMotion>
-              <p className="max-w-xl text-body-lg text-muted-foreground">{copy.lead}</p>
-
-              <ul aria-label="Stack principal" className="flex flex-wrap gap-2">
-                {copy.chips.map((id) => (
-                  <li key={id}>
-                    <a
-                      href={`#tech-${id}`}
-                      className="inline-flex min-h-9 items-center rounded-sm border border-border-strong bg-veil px-3 font-mono text-mono-xs text-foreground uppercase transition-colors duration-(--duration-fast) hover:border-accent hover:text-accent"
-                    >
-                      {technologyName(id) ?? id}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <SectionLink section={content.ctaPrimary.section} className={primaryButtonClass}>
-                  {content.ctaPrimary.label}
+            {/* DOM order = mobile reading order; desktop reorders lead/chips before the CTAs. */}
+            <div className="mt-6 flex flex-col gap-6 lg:gap-5">
+              <div className="hero-rise order-1 flex flex-wrap items-center gap-3 lg:order-3">
+                <SectionLink section={copy.ctaPrimary.section} className={primaryButtonClass}>
+                  {copy.ctaPrimary.label}
                 </SectionLink>
-                <SectionLink section={content.ctaSecondary.section} className={secondaryButtonClass}>
-                  {content.ctaSecondary.label}
+                <SectionLink section={copy.ctaSecondary.section} className={secondaryButtonClass}>
+                  {copy.ctaSecondary.label}
                 </SectionLink>
                 <span className="flex gap-2">
                   <CopyButton
@@ -114,27 +109,42 @@ export function Hero({ content, profile, focus, tiles }: HeroProps) {
                   </a>
                 </span>
               </div>
-            </HeroMotion>
 
-            {/* Mobile/tablet: carousel full width right after the CTAs (covers nothing). */}
-            <HeroCarousel slides={content.slides} sizes="(max-width: 1024px) 100vw, 1px" className="mt-8 lg:hidden" />
+              {/* Mobile/tablet: the dashboard carousel right after name, role and CTAs. */}
+              <HeroCarousel slides={slides} sizes="(max-width: 1024px) 100vw, 1px" className="order-2 lg:hidden" />
+
+              <p className="hero-rise order-3 max-w-xl text-body-lg text-muted-foreground lg:order-1">{copy.lead}</p>
+
+              <ul aria-label="Stack principal" className="hero-rise order-4 flex flex-wrap gap-2 lg:order-2">
+                {copy.chips.map((id) => (
+                  <li key={id}>
+                    <a
+                      href={`#tech-${id}`}
+                      className="inline-flex min-h-9 items-center rounded-sm border border-border-strong bg-veil px-3 font-mono text-mono-xs text-foreground uppercase transition-colors duration-(--duration-fast) hover:border-accent hover:text-accent"
+                    >
+                      {technologyName(id) ?? id}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Desktop visual: carousel BESIDE the native-size portrait (touches its edge, never the face). */}
-          <div className="relative hidden items-end justify-end lg:col-span-6 lg:flex">
-            <div className="relative z-10 -mr-3 mb-12 w-[300px] shrink-0">
-              <HeroCarousel slides={content.slides} sizes="300px" />
+          {/* Desktop: a legible carousel BESIDE the portrait (it touches the photo's edge, never the face). */}
+          <div className="relative hidden items-end justify-end lg:col-span-7 lg:flex">
+            <div className="hero-rise relative z-10 -mr-3 mb-8 w-[432px] shrink-0">
+              <HeroCarousel slides={slides} sizes="432px" />
             </div>
-            <figure className="relative w-[260px] shrink-0">
-              <div className="relative overflow-hidden rounded-md portrait-fade-bottom">
+            <figure className="relative w-[200px] shrink-0">
+              <div className="portrait-fade-bottom relative overflow-hidden rounded-md">
                 <Image
                   src={PORTRAIT.src}
                   alt={PORTRAIT_ALT}
                   width={PORTRAIT.width}
                   height={PORTRAIT.height}
-                  sizes="260px"
+                  sizes="200px"
                   preload
-                  className="portrait-photo h-auto w-[260px] scale-[1.03]"
+                  className="portrait-photo h-auto w-[200px] scale-[1.03]"
                 />
                 <span aria-hidden="true" className="portrait-tint pointer-events-none absolute inset-0 opacity-35" />
               </div>
@@ -145,7 +155,6 @@ export function Hero({ content, profile, focus, tiles }: HeroProps) {
         </div>
 
         <ProofBar tiles={tiles} />
-        <ScrollHint label={content.scrollHint} />
       </Container>
     </section>
   );

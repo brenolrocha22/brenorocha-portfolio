@@ -38,3 +38,12 @@ export function useMediaQuery(query: string): boolean {
     () => false,
   );
 }
+
+/**
+ * prefers-reduced-motion as an external store: false on the server and during hydration,
+ * the real value right after — so the server HTML and the first client render always match.
+ * Use it for behaviour only; hide/show markup with the CSS `motion-reduce:` variant instead.
+ */
+export function usePrefersReducedMotion(): boolean {
+  return useMediaQuery("(prefers-reduced-motion: reduce)");
+}

@@ -119,6 +119,10 @@ const focusCopySchema = z
     lead: z.string().min(20).max(140),
     /** Stack chips: ids from content/technologies.json (link to #tecnologias). */
     chips: z.array(z.string().min(2)).length(6),
+    ctaPrimary: z.object({ label: z.string().min(3), section: z.enum(["dados", "projetos"]) }).strict(),
+    ctaSecondary: z.object({ label: z.string().min(3), section: z.enum(["dados", "projetos"]) }).strict(),
+    /** Order of the hero carousel slides for this focus (indexes into hero.slides). */
+    slideOrder: z.array(z.number().int().nonnegative()).min(1),
   })
   .strict();
 
@@ -148,8 +152,6 @@ export const homeSchema = z
           )
           .min(1)
           .max(5),
-        ctaPrimary: z.object({ label: z.string().min(3), section: z.enum(["dados", "projetos"]) }).strict(),
-        ctaSecondary: z.object({ label: z.string().min(3), section: z.enum(["dados", "projetos"]) }).strict(),
         dados: focusCopySchema,
         dev: focusCopySchema,
       })
